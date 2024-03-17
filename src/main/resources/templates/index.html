@@ -34,6 +34,12 @@
         <button class="btn btn-ok" type="submit" formaction="/login">Login</button>
         <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
     </form>
+
+    <div>
+        <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
+        <span  th:if="${session.currentUser != null}"> | </span>
+        <a href="createuser.html" th:href="@{/createuser}">Create user</a>
+    </div>
 </div>
 </body>
 </html>
