@@ -6,26 +6,22 @@ package app.entities;
  * @Author: Anton Friis Stengaard
  */
 public class Haiku {
-    private final String haikuParts;
-    private final boolean isFiveSyllables;
+    private String haikuParts;
+    private boolean isFiveSyllables;
 
     public Haiku(String haikuParts, boolean isFiveSyllables) {
         this.haikuParts = haikuParts;
         this.isFiveSyllables = isFiveSyllables;
     }
 
-    public String getHaikuPart(){
+    public String getHaikuPart() {
         return haikuParts;
     }
+
     public boolean getIsFiveSyllables() {
         return isFiveSyllables;
     }
 
-
-    /*
-    public Haiku(String haikuParts, boolean isFiveSyllables) {
-        this.haikuParts = haikuParts;
-        this.isFiveSyllables = isFiveSyllables;
-    }
-     */
 }
+
+
