@@ -28,8 +28,7 @@ public class CalorieCruncherController
 
         if (gender.equals("Male")) {
             bmr = (int) (66.5f + (13.75f * weight) + (5.003f * height) - (6.75f * age));
-        }
-        else if (gender.equals("Female")) {
+        } else if (gender.equals("Female")) {
             bmr = (int) (655.1f + (9.563f * weight) + (1.850f * height) - (4.676f * age));
         }
 
@@ -45,6 +44,4 @@ public class CalorieCruncherController
         ctx.attribute("BMR", bmr);
         ctx.render("/caloriecruncher/cc.html");
     }
-
-
 }
