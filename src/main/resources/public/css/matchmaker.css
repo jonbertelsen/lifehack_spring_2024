@@ -1,0 +1,46 @@
+html{
+    background-color: #FFF0E6;
+}
+
+.page{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 200px;
+    color: #FFF0E6;
+}
+.picture{
+    border-radius: 20px;
+}
+.h1{
+    color: #47141E;
+    font-size: 1.8rem;
+}
+
+::placeholder{
+    color: #FFF0E6;
+}
+.generic-form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+
+.generic-form input[type=text],
+.generic-form input[type=password],
+.generic-form button {
+
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    background-color: #47141E;
+    color: #FFF0E6;
+}
+
+.generic-form button:hover {
+    background-color: darkgray;
+    color: #FFF0E6;
+}
