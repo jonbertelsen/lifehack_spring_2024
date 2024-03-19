@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Galgespil</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/A07.css" th:href="@{/css/A07.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+
+<form class="form-guess" method="post">
+    <input type="text" name="letter" placeholder="Indtast et bogstav"/>
+
+    <button type="submit" formaction="/A07/guessletter">Gæt</button>
+
+    <div>
+        <p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p>
+    </div>
+</form>
+
+
+</body>
+</html>
