@@ -11,6 +11,7 @@
 
 
 <form class="form-guess" method="get">
+    <p th:text="${correctAnswer}"></p>
     <input type="text" name="letter" placeholder="Indtast et bogstav"/>
 
     <button type="submit" formaction="/A07/guessletter">Gæt</button>

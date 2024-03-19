@@ -10,15 +10,18 @@ import io.javalin.http.Context;
 public class A07Controller {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool, GalgeSpil galgeSpil) {
         app.get("/A07", ctx -> index(ctx, connectionPool));
-        app.get("/A07/stage0", ctx -> startgame(ctx));
-        app.get("/A07/guessletter", ctx -> guessLetter(ctx, connectionPool, galgeSpil));
+        app.get("/A07/stage0", ctx -> startgame(ctx, galgeSpil, connectionPool));
+        app.get("/A07/guessletter", ctx -> guessLetter(ctx, galgeSpil, connectionPool));
     }
 
-    private static void startgame(Context ctx) {
+    private static void startgame(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
+        galgeSpil.resetStage();
+        galgeSpil.pickWord();
+        ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
         ctx.render("/A07/stage0");
     }
 
-    private static void guessLetter(Context ctx, ConnectionPool connectionPool, GalgeSpil galgeSpil) {
+    private static void guessLetter(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         //Hent form parameter
         String letter = ctx.formParam("letter");
         stageRender(ctx, galgeSpil.guessLetter(letter), galgeSpil);
