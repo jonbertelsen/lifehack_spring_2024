@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>CalorieCruncher</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/caloriecruncher.css" th:href="@{/css/caloriecruncher.css}" rel="stylesheet"/>
+<img alt="logo" src="./public/images/fat-man-eats-burger-generate-ai-photo.png" th:src="@{/images/fat-man-eats-burger-generate-ai-photo.png}"/>
+<l
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+    </header>
+
+    <h1>Calorie Cruncher</h1>
+
+
+
+    <h2>Calculate your daily BMR!</h2>
+    <h3>Calories burnt everyday</h3>
+
+    <div id="table">
+        <form method="post">
+            <table>
+                <tbody>
+
+                <!--  Gender -->
+                <tr>
+                    <td>
+                        <label>Gender</label>
+                    </td>
+                    <td>
+                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Male"/>Male
+                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Female"/>Female
+                    </td>
+                </tr>
+
+                <!--  Age -->
+                <tr>
+                    <td>
+                        <label>Age</label>
+                    </td>
+                    <td>
+                        <input class="form-input, radio_thing" type="text" name="Age" th:value="${Age}" placeholder="Enter your age"/>
+                    </td>
+
+                </tr>
+
+                <!--  Weight -->
+                <tr>
+                    <td>
+                        <label>Weight</label>
+                    </td>
+                    <td>
+                        <input class="form-input, radio_thing" type="text" name="Weight" th:value="${Weight}" placeholder="Enter your weight">
+                    </td>
+                </tr>
+
+                <!--  Height -->
+                <tr>
+                    <td>
+                        <label>Height</label>
+                    </td>
+                    <td>
+                        <input class="form-input, radio_thing" type="text" name="Height" th:value="${Height}" placeholder="cm"/>
+                    </td>
+                </tr>
+
+                <!--  Button -->
+                <tr>
+                    <td>
+
+                    </td>
+                    <td>
+                        <input class="btn" type="submit" formaction="/caloriecruncherCalculate" value="Calculate!">
+                    </td>
+                </tr>
+
+                </tbody>
+
+            </table>
+        </form>
+    </div>
+
+
+</div>
+</body>
+</html>
