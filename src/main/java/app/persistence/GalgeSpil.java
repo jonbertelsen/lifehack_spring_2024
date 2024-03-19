@@ -48,7 +48,7 @@ public class GalgeSpil {
     }
 
     public boolean guessLetter(String letter){
-        if(correctAnswer.contains(letter)) {
+        if(correctAnswer.contains(letter.toUpperCase())) {
             return true;
         } else{
             return false;
