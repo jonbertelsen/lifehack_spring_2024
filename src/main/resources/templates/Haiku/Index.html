@@ -13,7 +13,6 @@
     <h2>Haiku Generator</h2>
 </div>
 <div class="container">
-
     <form method="post">
         <input type="text" id="line1" name="firstline" placeholder="First line" th:value="${firstline}"/>
         <button type="submit" formaction="/generatefirstlinenormal" class="additionalButton">Generate First Line
@@ -25,31 +24,29 @@
     <br>
 
     <form method="post">
-        <input type="text" id="line2" placeholder="Second line">
-        <button class="additionalButton" formaction="/generatesecondlinenormal">Classic Haiku</button>
-        <button class="additionalButton" formaction="/generatesecondlinebykevin">Haiku by Kevin</button>
-        <button class="additionalButton" formaction="/generatesecondlineaboutkevin">Haiku about Kevin</button>
+        <input type="text" id="line2" name="secondline" th:value="${secondline}" placeholder="Second line">
+        <button type="submit" class="additionalButton" formaction="/generatesecondlinenormal">Classic Haiku</button>
+        <button type="submit" class="additionalButton" formaction="/generatesecondlinebykevin">Haiku by Kevin</button>
+        <button type="submit" class="additionalButton" formaction="/generatesecondlineaboutkevin">Haiku about Kevin
+        </button>
     </form>
     <br>
 
     <form method="post">
-        <input type="text" id="line3" placeholder="Third line">
-        <button class="additionalButton" formaction="/generatethirdlinenormal">Classic Haiku</button>
-        <button class="additionalButton" formaction="/generatethirdlinebykevin">Haiku by Kevin</button>
-        <button class="additionalButton" formaction="/generatethirdlineaboutkevin">Haiku about Kevin</button>
+        <input type="text" name="thirdline" th:value="${thirdline}" id="line3" placeholder="Third line">
+        <button type="submit" class="additionalButton" formaction="/generatethirdlinenormal">Classic Haiku</button>
+        <button type="submit" class="additionalButton" formaction="/generatethirdlinebykevin">Haiku by Kevin</button>
+        <button type="submit" class="additionalButton" formaction="/generatethirdlineaboutkevin">Haiku about Kevin
+        </button>
     </form>
     <br>
 
     <button id="clearFields">Clear Fields</button>
     <button id="saveHaiku">Save Haiku</button>
-    <!--
-    <button class="button-warning" type="submit" name="task_id" formaction="/done" th:value="${task.taskId}">Done</button>
-    <button class="button-ok" type="submit" name="task_id" formaction="/edittask" th:value="${task.taskId}">Edit
-    </button>
-    -->
+
 </div>
 <div class="footer">
-    <a href="../../templates/index.html" th:src="@{../../templates/index.html}">Homepage</a>
+    <a href="/templates/index.html" th:src="@{/templates/index.html}">Homepage</a>
 </div>
 </body>
 </html>
