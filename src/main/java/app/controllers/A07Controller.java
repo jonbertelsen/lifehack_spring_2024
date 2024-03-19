@@ -10,7 +10,12 @@ import io.javalin.http.Context;
 public class A07Controller {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool, GalgeSpil galgeSpil) {
         app.get("/A07", ctx -> index(ctx, connectionPool));
+        app.get("/A07/stage0", ctx -> startgame(ctx));
         app.post("/A07/guessletter", ctx -> guessLetter(ctx, connectionPool, galgeSpil));
+    }
+
+    private static void startgame(Context ctx) {
+        ctx.render("/A07/stage0");
     }
 
     private static void guessLetter(Context ctx, ConnectionPool connectionPool, GalgeSpil galgeSpil) {
