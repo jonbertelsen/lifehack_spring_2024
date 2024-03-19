@@ -1,5 +1,7 @@
 package app.controllers;
 
+import app.entities.MatchMakerUser;
+import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.MatchmakerMapper;
@@ -12,11 +14,36 @@ public class MatchmakerController {
     {
         app.get("/projectname", ctx -> index(ctx, connectionPool));
         app.get("matchmaker/createuser", ctx-> createUser(ctx,connectionPool));
+        app.post("matchmaker/login", ctx -> login(ctx, connectionPool));
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool)
     {
         ctx.render("/projectname/index.html");
+    }
+
+    public static void login(Context ctx, ConnectionPool connectionPool)
+    {
+        // Hent form parametre
+        String username = ctx.formParam("username");
+        String password = ctx.formParam("password");
+
+        // Check om bruger findes i DB med de angivne username + password
+        try
+        {
+            MatchMakerUser user = MatchmakerMapper.login(username, password, connectionPool);
+            ctx.sessionAttribute("currentUser", user);
+            // Hvis ja, send videre til forsiden med login besked
+            ctx.attribute("message", "Du er nu logget ind");
+            ctx.render("index.html");
+        }
+        catch (DatabaseException e)
+        {
+            // Hvis nej, send tilbage til login side med fejl besked
+            ctx.attribute("message", e.getMessage() );
+            ctx.render("index.html");
+        }
+
     }
     private static void createUser(Context ctx, ConnectionPool connectionPool)
     {

@@ -1,7 +1,9 @@
 package app.persistence;
 
+import app.entities.MatchMakerUser;
 import app.entities.User;
 import app.exceptions.DatabaseException;
+import io.javalin.http.Context;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -11,9 +13,9 @@ import java.sql.SQLException;
 public class MatchmakerMapper
 {
 
-    public static User login(String userName, String password, ConnectionPool connectionPool) throws DatabaseException
+    public static MatchMakerUser login(String userName, String password, ConnectionPool connectionPool) throws DatabaseException
     {
-        String sql = "select * from users where username=? and password=?";
+        String sql = "select * from users where userName=? and UserPassword=?";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -27,8 +29,7 @@ public class MatchmakerMapper
             if (rs.next())
             {
                 int id = rs.getInt("user_id");
-                String role = rs.getString("role");
-                return new User(id, userName, password, role);
+                return new MatchMakerUser(id, userName, password);
             } else
             {
                 throw new DatabaseException("Fejl i login. Prøv igen");
