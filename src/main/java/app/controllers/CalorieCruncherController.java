@@ -17,8 +17,8 @@ public class CalorieCruncherController
         ctx.render("/caloriecruncher/index.html");
     }
 
-    private static void calculate(Context ctx, ConnectionPool connectionPool)
-    {
+    private static void calculate(Context ctx, ConnectionPool connectionPool) {
+        String goal = ctx.formParam("Goal");
         String gender = ctx.formParam("Gender");
         int age = Integer.parseInt(ctx.formParam("Age"));
         int weight = Integer.parseInt(ctx.formParam("Weight"));
@@ -33,8 +33,16 @@ public class CalorieCruncherController
             bmr = (int) (655.1f + (9.563f * weight) + (1.850f * height) - (4.676f * age));
         }
 
-        ctx.attribute("BMR",bmr);
+        if (goal.equals("gain")) {
+            bmr += 500;
+        }
+        else if (goal.equals("cut")) {
+            bmr -= 500;
+        }
 
+
+        ctx.attribute("Goal", "Daily calories your body need to " + goal + "!");
+        ctx.attribute("BMR", bmr);
         ctx.render("/caloriecruncher/cc.html");
     }
 

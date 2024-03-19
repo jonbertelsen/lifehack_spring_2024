@@ -24,7 +24,7 @@
 
 
     <h2>Calculate your daily BMR!</h2>
-    <h3>Calories burnt everyday</h3>
+
 
     <div id="table">
         <form method="post">
@@ -72,24 +72,23 @@
                         <input class="form-input, radio_thing" type="text" name="Height" th:value="${Height}" placeholder="cm"/>
                     </td>
                 </tr>
-
-                <!--  Button -->
-                <tr>
-                    <td>
-
-                    </td>
-                    <td>
-                        <input class="btn" type="submit" formaction="/caloriecruncherCalculate" value="Calculate!">
-                    </td>
-                </tr>
-
+                <td>
+                    <label>Goal</label>
+                </td>
+                <td>
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="gain"/>WeightGain
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="cut"/>CuttingWeight
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="maintain"/>MaintainWeight
+                </td>
                 </tbody>
 
             </table>
-        </form>
     </div>
-
-
+    <div id="button-box">
+        <input class="btn" type="submit" formaction="/caloriecruncherCalculate" value="Calculate!">
+    </div>
+    </form>
+    </div>
 </div>
-</body>
+    </body>
 </html>
