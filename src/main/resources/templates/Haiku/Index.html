@@ -1,10 +1,48 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 <head>
+    <title>HaikuGen</title>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/HaikuStyleW.css" th:href="@{/css/HaikuStyleW.css}" rel="stylesheet"/>
+    <link href="haiku.css" rel="stylesheet">
 </head>
 <body>
+<div class="banner">
+    <h2>Haiku Generator</h2>
+</div>
+<div class="container">
+    <input type="text" id="line1" placeholder="First line" th:value="${firstLine}">
 
+    <button class="additionalButton" formaction="/generatefirstlinenormal" >Classic Haiku</button>
+
+    <button class="additionalButton" formaction="/generatefirstlinebykevin" >Haiku by Kevin</button>
+    <button class="additionalButton" formaction="/generatefirstlineaboutkevin" >Haiku about Kevin</button>
+    <br>
+
+    <input type="text" id="line2" placeholder="Second line">
+
+    <button class="additionalButton" formaction="/generatesecondlinenormal" >Classic Haiku</button>
+    <button class="additionalButton" formaction="/generatesecondlinebykevin" >Haiku by Kevin</button>
+    <button class="additionalButton" formaction="/generatesecondlineaboutkevin" >Haiku about Kevin</button>
+    <br>
+    <input type="text" id="line3" placeholder="Third line">
+
+    <button class="additionalButton" formaction="/generatethirdlinenormal" >Classic Haiku</button>
+    <button class="additionalButton" formaction="/generatethirdlinebykevin" >Haiku by Kevin</button>
+    <button class="additionalButton" formaction="/generatethirdlineaboutkevin" >Haiku about Kevin</button>
+    <br>
+    <button id="clearFields">Clear Fields</button>
+    <button id="saveHaiku">Save Haiku</button>
+    <!--
+    <button class="button-warning" type="submit" name="task_id" formaction="/done" th:value="${task.taskId}">Done</button>
+    <button class="button-ok" type="submit" name="task_id" formaction="/edittask" th:value="${task.taskId}">Edit
+    </button>
+    -->
+</div>
+<div class="footer">
+    <a href="templates/index.html">Homepage</a>
+</div>
 </body>
 </html>
