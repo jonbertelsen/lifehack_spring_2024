@@ -19,7 +19,27 @@
 
     <h1>Timezones</h1>
 
-    <p>Make your splash page here</p>
+    <h4>Chose the destinations you wish to calculate the time differences for</h4>
+    <div class="wrapper">
+        <div class="input-box-1">
+            <h6>From</h6>
+            <form class="generic-form" method="post">
+                <input type="time" name="destination-from" placeholder="Time"/>
+                <input type="text" name="destination-from" placeholder="Enter the destination"/>
+            </form>
+        </div>
+
+        <div class="input-box-2">
+            <h6>To</h6>
+            <form class="generic-form" method="post">
+                <input type="time" name="destination-to" placeholder="Time"/>
+                <input type="text" name="destination-to" placeholder="Enter the destination"/>
+            </form>
+            <button class="btn" type="submit" formaction="/calculate">Calculate</button>
+        </div>
+    </div>
+
 </div>
+
 </body>
 </html>
