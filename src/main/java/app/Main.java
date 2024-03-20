@@ -1,9 +1,11 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.HaikuController;
 import app.controllers.TimeZonesController;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
+import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
@@ -19,16 +21,15 @@ public class Main
     public static void main(String[] args)
     {
         // Initializing Javalin and Jetty webserver
-
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add("/public");
             config.fileRenderer(new JavalinThymeleaf(ThymeleafConfig.templateEngine()));
         }).start(7070);
 
         // Routing
-
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
+        HaikuController.addRoutes(app,connectionPool);
     }
 }
