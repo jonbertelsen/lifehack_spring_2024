@@ -1,0 +1,75 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #0029ff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+.container {
+    text-align: center;
+    padding-top: 100px;
+}
+input[type="text"] {
+    width: 300px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    display: block;
+    margin: auto;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#saveHaiku {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+}
+.generateButton {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+#clearFields {
+    background-color: #f44336;
+    color: white;
+    border: none;
+}
+.banner {
+    background-color: rgb(246, 5, 5);
+    color: rgb(0, 255, 19);
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    text-align: center;
+}
+.footer {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.additionalButton {
+    padding: 7px 12px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+}
