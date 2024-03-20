@@ -36,18 +36,23 @@ public class A07Controller {
             boolean correctLetter = galgeSpil.guessLetter(letter);
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
             stageRender(ctx, correctLetter, galgeSpil);
-            galgeSpil.nextStage(letter);
 
         } else if (Character.isDigit(character)) {
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
             ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke tal!");
             stageSwitch(ctx, galgeSpil.getStageCount());
 
         } else {
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
             ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke mærkelige tegn!");
             stageSwitch(ctx, galgeSpil.getStageCount());
         }
