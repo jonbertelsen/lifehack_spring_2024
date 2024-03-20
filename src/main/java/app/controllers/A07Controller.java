@@ -33,10 +33,10 @@ public class A07Controller {
         boolean correctLetter = galgeSpil.guessLetter(letter);
         ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
         ctx.attribute("shownWord", galgeSpil.getShownWord());
-        ArrayList<String> answers=galgeSpil.getAnswers();
+        ArrayList<String> answers=galgeSpil.getAnswerList();
         ctx.attribute("answers",answers);
         stageRender(ctx, correctLetter, galgeSpil);
-        galgeSpil.nextStage(letter);
+
     }
 
 

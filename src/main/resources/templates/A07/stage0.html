@@ -18,13 +18,7 @@
 <p>Dette er stage0</p>
 <p th:text="${correctAnswer}"></p>
 <p th:text="${shownWord}"></p>
-<th:block th:each="answer : ${answers}">
-    <th:unless="${previousAnswers.contains(answer)}">
-    <th:if="${!guessedLetters.contains(answer)}">
-    <p th:text="${answer}"></p>
-    </th:if>
-    </th:unless>
-</th:block>
+
 <form class="form-guess" method="post">
 
     <input type="text" name="letter" placeholder="Indtast et bogstav"/>
@@ -35,6 +29,19 @@
         <p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p>
     </div>
 </form>
+
+
+
+
+<table class="answer-table">
+
+    <tbody>
+    <tr th:each="answer: ${answers}">
+        <td th:text="${answer}"></td>
+    </tr>
+    </tbody>
+
+</table>
 
 
 </body>

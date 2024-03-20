@@ -27,6 +27,15 @@
     </div>
 </form>
 
+<table class="answer-table">
+
+    <tbody>
+    <tr th:each="answer: ${answers}">
+        <td th:text="${answer}"></td>
+    </tr>
+    </tbody>
+
+</table>
 
 </body>
 </html>

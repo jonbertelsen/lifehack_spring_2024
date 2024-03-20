@@ -16,9 +16,6 @@ public class GalgeSpil {
 
     private ArrayList<String> guessedLetters = new ArrayList<>();
 
-    public GalgeSpil(){
-
-    }
 
     public void initializeWords() {
         words.add("ANANAS");
@@ -28,7 +25,7 @@ public class GalgeSpil {
         words.add("HUND");
         words.add("KAT");
         words.add("ÆBLE");
-        words.add("BROKOLI");
+        words.add("BROCCOLI");
         words.add("FODBOLD");
         words.add("STOL");
         words.add("SKRIVEBORD");
@@ -82,19 +79,18 @@ public class GalgeSpil {
     public boolean guessLetter(String letter){
         if(correctAnswer.contains(letter.toUpperCase())) {
             revealLetter(letter);
-            answerList.add(letter);
+            answerList.add(letter.toUpperCase());
             return true;
         } else{
-            answerList.add(letter);
+            answerList.add(letter.toUpperCase());
+            nextStage();
             return false;
         }
     }
-    public void nextStage(String letter){
-        if (!guessLetter(letter))
-        {
+    public void nextStage(){
             stageCount++;
-        }
     }
+
     public void resetStage(){
     stageCount=0;
     }
@@ -116,7 +112,7 @@ public class GalgeSpil {
         return words;
     }
 
-    public ArrayList<String> getAnswers() {
+    public ArrayList<String> getAnswerList() {
         return answerList;
     }
 
