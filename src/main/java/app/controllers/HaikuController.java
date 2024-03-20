@@ -8,7 +8,7 @@ import io.javalin.http.Context;
 import java.util.Random;
 
 public class HaikuController {
-    // Kevin Tutorial
+
     public static void addRoutes(Javalin app, ConnectionPool connectionPool) {
         app.get("/haiku", ctx -> index(ctx, connectionPool));
         app.post("/generatefirstlinenormal", ctx -> generateFirstLineNormal(ctx, connectionPool));
