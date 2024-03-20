@@ -17,9 +17,10 @@ public class FriskForslagMapper {
 
         StringBuilder sqlCondition = new StringBuilder();
         for (int i = 0; i < foodItems.length; ++i){
+            // TODO: guard against injections
             sqlCondition.append("'" + foodItems[i] + "' ILIKE ANY(ingredients) ");
             if (i < foodItems.length - 1)
-                sqlCondition.append(" AND ");
+                sqlCondition.append(" OR ");
         }
 
         String sql = """
@@ -49,7 +50,34 @@ public class FriskForslagMapper {
         catch (SQLException e) {
             throw new DatabaseException("fejl i søgning af opskrifter");
         }
-        System.out.println(filteredRecipes);
         return filteredRecipes;
+    }
+
+    public static FriskForslagRecipe SelectRecipeByName(ConnectionPool cp, String name) throws DatabaseException
+    {
+        // TODO: guard against injections
+        String sql = "SELECT * FROM friskforslag_opskrift WHERE name ILIKE '" + name + "'";
+        try (
+                Connection c = cp.getConnection();
+                PreparedStatement ps = c.prepareStatement(sql);
+        ) {
+            ResultSet rs = ps.executeQuery();
+            if (rs.next())
+                return new FriskForslagRecipe(
+                        rs.getInt("id"),
+                        rs.getString("name"),
+                        rs.getString("description"),
+                        rs.getString("procedure"),
+                        (String[]) rs.getArray("ingredients").getArray(),
+                        (Long[]) rs.getArray("quantities").getArray(),
+                        (String[]) rs.getArray("units").getArray(),
+                        rs.getString("source")
+                        );
+            else
+                return null;
+            }
+        catch (SQLException e) {
+            throw new DatabaseException("fejl i søgning af opskrifter");
+        }
     }
 }

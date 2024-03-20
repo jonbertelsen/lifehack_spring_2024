@@ -9,32 +9,40 @@
 
 /* spacing */
 
+div.page {
+    width: 800px;
+}
+
 table {
     table-layout: fixed;
     width: 100%;
     border-collapse: collapse;
-    border: 3px solid purple;
+    border: 3px solid black;
 }
 
-thead th:nth-child(1) {
-    width: 30%;
+table th {
+    background-color: lightgray;
+    text-align: left;
+    padding: 10px;
+}
+table td {
+    width: 200px;
+    border: 1px dotted silver;
+    word-break: break-all;
+    padding: 10px;
 }
 
-thead th:nth-child(2) {
-    width: 20%;
-}
-
-thead th:nth-child(3) {
-    width: 15%;
-}
-
-thead th:nth-child(4) {
-    width: 35%;
-}
-
-th,
-td {
+.searchParamsTitle {
+    display: flex;
+    flex-direction: column;
     padding: 20px;
+    background-color: lightgray;
+    border-radius: 8px;
+    gap: 10px;
+}
+
+.searchParamsDisplay {
+    font-weight: bolder;
 }
 
 .searchResultsIngredientsSpan {
@@ -43,4 +51,24 @@ td {
 .searchResultsIngredientsCell {
     display: flex;
     flex-direction: column;
+}
+
+.ingredientmatched {
+    background-color: lightgreen;
+    border-radius: 4px;
+}
+
+.recipeBody {
+    p, ul {
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+        width: 600px;
+        font-size: 0.9rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: lighter;
+    }
 }

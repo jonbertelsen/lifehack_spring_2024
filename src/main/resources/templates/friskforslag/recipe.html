@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Projectname</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/friskforslag.css" th:href="@{/css/friskforslag.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogo.jpg"
+                 th:src="@{/images/friskforslag/friskforslaglogo.jpg}"/>
+        </a>
+    </header>
+
+    <div th:if="${fetchedRecipe != null}" class="recipeBody">
+        <h2 th:text="${fetchedRecipe.Name()}"></h2>
+        <h3>Ingredienser</h3>
+        <ul class="recipeIngredients">
+            <li th:each="ing, iterStat : ${fetchedRecipe.Ingredients()}"
+                th:text="${fetchedRecipe.Ingredients()[__${iterStat.index}__]} + ' : ' +
+                                     ${fetchedRecipe.Quantities()[__${iterStat.index}__]} + ' ' +
+                                     ${fetchedRecipe.Units()[__${iterStat.index}__]}">
+            </li>
+        </ul>
+        <h3>Beskrivelse</h3>
+        <p th:text="${fetchedRecipe.Descr()}"></p>
+        <h3>Sådan gør du</h3>
+        <p th:text="${fetchedRecipe.Proc()}"></p>
+
+        <footer >
+            <h3>Kilde:</h3>
+            <p th:text="${fetchedRecipe.Src()}"></p>
+        </footer>
+    </div>
+
+
+</div>
+
+</body>
+</html>

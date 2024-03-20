@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-
+<head>
 <title>Projectname</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,6 +20,10 @@
 
     <h1>Frisk Forslag</h1>
 
+    <p class="searchParamsTitle" th:if="${searchParams != null}">
+        <span>Søgning:</span>
+        <span class="searchParamsDisplay" th:text="${searchParams}"> </span>
+    </p>
     <p>Resultater:</p>
 
     <div th:if="${filteredRecipes != null && !filteredRecipes.isEmpty()}"
@@ -28,8 +32,9 @@
             <thead>
             <tr>
                 <th>Opskrift</th>
-                <th>Brugte Ingredienser</th>
+                <th>Ingredienser</th>
                 <th>Kilde</th>
+                <th>Link</th>
             </tr>
             </thead>
             <tbody>
@@ -37,9 +42,10 @@
                 <th th:text="${rec.Name()}"></th>
                 <td>
                     <ul class="searchResultsIngredientsList" >
-                        <li class="searchResultsIngredientsElement"
-                              th:each="ing, iterStat : ${rec.Ingredients()}"
-                              th:text="${rec.Ingredients()[__${iterStat.index}__]} + ' : ' +
+                        <li th:each="ing, iterStat : ${rec.Ingredients()}"
+                            th:class="${indicatorList[__${recStat.index}__][__${iterStat.index}__]}
+                            ? 'ingredientmatched' : 'ingredientnotmatched'"
+                            th:text="${rec.Ingredients()[__${iterStat.index}__]} + ' : ' +
                                      ${rec.Quantities()[__${iterStat.index}__]} + ' ' +
                                      ${rec.Units()[__${iterStat.index}__]}">
                         </li>
@@ -47,6 +53,11 @@
                 </td>
                 <td>
                     <span th:if="${rec.Src() != null && !rec.Src().isEmpty()}" th:text="${rec.Src()}"></span>
+                </td>
+                <td>
+                    <a th:href="'/friskforslag/recipes/' + ${rec.Name()}">
+                      Vælg
+                    </a>
                 </td>
             </tr>
             </tbody>
