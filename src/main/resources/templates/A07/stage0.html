@@ -15,19 +15,33 @@
     </a>
 </header>
 
-<p>Dette er stage0</p>
-<p th:text="${correctAnswer}"></p>
-<p th:text="${shownWord}"></p>
-<form class="form-guess" method="post">
-
-    <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
-
-    <button type="submit" formaction="/A07/guessletter">Gæt</button>
+<div class="center">
+    <!--  <p>Dette er stage0</p>
+    <p th:text="${correctAnswer}"></p> -->
+    <p class="shown-word" th:text="${shownWord}"></p>
+    <form class="form-guess" method="post">
+        <input  type="text" name="letter" placeholder="Indtast et bogstav"/>
+        <button type="submit" formaction="/A07/guessletter">Gæt</button>
+    </form>
+</div>
 
     <div>
         <p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p>
     </div>
-</form>
+
+
+
+
+
+<table class="answer-table">
+
+    <tbody>
+    <tr th:each="answer: ${answers}">
+        <td th:text="${answer}"></td>
+    </tr>
+    </tbody>
+
+</table>
 
 
 </body>

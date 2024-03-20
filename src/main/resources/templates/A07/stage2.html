@@ -8,24 +8,25 @@
 </head>
 
 <body>
-<header>
+<header class="picture">
     <a>
-        <img src="../../public/images/A07/Stage2.png" th:src="@{/images/A07/Stage2.png}" width="50%"/>
+        <img src="../../public/images/A07/Stage2.png" th:src="@{/images/A07/Stage2.png}" width="100%"/>
     </a>
 </header>
-<p>Dette er stage2</p>
-
-<form class="form-guess" method="post">
-    <p th:text="${correctAnswer}"></p>
-    <p th:text="${shownWord}"></p>
-    <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
-
-    <button type="submit" formaction="/A07/guessletter">Gæt</button>
+<div class="center">
+    <!--  <p>Dette er stage2</p>
+    <p th:text="${correctAnswer}"></p> -->
+    <p class="shown-word" th:text="${shownWord}"></p>
+    <form class="form-guess" method="post">
+        <input  type="text" name="letter" placeholder="Indtast et bogstav"/>
+        <button type="submit" formaction="/A07/guessletter">Gæt</button>
+    </form>
+</div>
 
     <div>
         <p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p>
     </div>
-</form>
+
 
 <table class="answer-table">
 
