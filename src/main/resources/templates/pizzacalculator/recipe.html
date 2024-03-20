@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Timezones</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/pizzacalculator.css" th:href="@{/css/pizzacalculator.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+    </header>
+
+    <h1>The recipe</h1>
+
+    <span th:text="|${session.recipe.quantity} pizzas, ${session.recipe.weight} g per dough ball, ${session.recipe.hydration}% hydration and ${session.recipe.temperature} C|">
+        4 pizzas, 285 g per dough ball, 70% hydration and 22 C
+    </span>
+
+    <h1>The ingredients</h1>
+
+    <p>The dough</p>
+    <ul>
+        <li th:text="|${session.recipe.getFlourInGrammes()} g tipo 0 flour|">700 g tipo 0 flour</li>
+        <li th:text="|${session.recipe.getWaterInGrammes()} g water|">500 g water</li>
+        <li th:text="|${session.recipe.getYeastInGrammes()} g yeast|">10 g yeast</li>
+        <li th:text="|${session.recipe.getHoneyInGrammes()} g honey|">10 g yeast</li>
+        <li th:text="|${session.recipe.getSaltInGrammes()} g salt|">20 g salt</li>
+    </ul>
+
+    <p>The tomato sauce</p>
+    <ul>
+        <li th:text="|${session.recipe.getCanOfTomatoesInNumbers()} can(s) of Mutti or Manzano tomatoes|"> 1 can of tomatoes</li>
+        <li>A handful of basil leafes</li>
+        <li>A pinch of salt</li>
+    </ul>
+
+    <p>The toppings</p>
+    <ul>
+        <li th:text="|${session.recipe.getMozzarellaInGrammes()} g mozarella cheese|">400 g mozarella cheese</li>
+        <li>Fresh basil</li>
+        <li>Virgin Olive Oil</li>
+    </ul>
+
+    <h2>The instructions</h2>
+
+    <p>1. Mix the flour and the water in a bowl and let it rest for 30 minutes</p>
+
+</div>
+</body>
+</html>

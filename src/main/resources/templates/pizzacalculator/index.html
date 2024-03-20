@@ -20,6 +20,14 @@
     <h1>Pizza calculator</h1>
 
     <p>Get the perfect pizza dough - napolitana style</p>
+
+    <form method="post">
+        <input type="number" name="quantity" placeholder="Quantity" th:value="4" required/>
+        <input type="number" name="weight" placeholder="Weight" th:value="285" required/>
+        <input type="number" name="hydration" placeholder="Hydration" th:value="70" required/>
+        <input type="number" name="temperature" placeholder="Temperature" th:value="22" required/>
+        <button type="submit" formaction="/pizzacalculator">Get recipe</button>
+    </form>
 </div>
 </body>
 </html>
