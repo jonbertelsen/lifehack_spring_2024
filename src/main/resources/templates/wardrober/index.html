@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrollable Table</title>
-    <link rel="stylesheet" href="style.css">
+    <link href="../public/css/wardrobestyles.css" th:href="@{/css/wardrobestyles.css}" rel="stylesheet"/>
+
 </head>
 <body>
 
@@ -15,7 +16,7 @@
 
 </header>
 
-<h1>Welcome <span th:text="${session.currentUser.username}"></span> this is your wardrobe</h1>
+<h1>Welcome, <span th:text="${session.currentUser.username}"></span> this is your wardrobe</h1>
 
 
 <div class="scrollable-table">
@@ -27,6 +28,7 @@
             <th>Color</th>
             <th>Size</th>
             <th>Price</th>
+            <th>Action</th>
         </tr>
         <tr th:each="item : ${itemList}">
             <td th:text="${item.category}"> </td>
@@ -35,11 +37,15 @@
             <td th:text="${item.color}"> </td>
             <td th:text="${item.size}"> </td>
             <td th:text="${item.price}"> </td>
+            <td>
+                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="done">Done</button>
+                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="edittask">Edit</button>
+            </td>
         </tr>
     </table>
 </div>
 
-<h2>add a new item to your wardrobe</h2>
+<h2>Add a new item to your wardrobe</h2>
 
 <form action="/Modtager.html">
     <label for="category">Category:</label><br>
