@@ -14,8 +14,6 @@ public class GalgeSpil {
     private Random ran = new Random();
     private ArrayList<String> words = new ArrayList<>();
 
-    private ArrayList<String> guessedLetters = new ArrayList<>();
-
 
     public void initializeWords() {
         words.add("ANANAS");
@@ -100,6 +98,10 @@ public class GalgeSpil {
     stageCount=0;
     }
 
+    public void resetAnswerList(){
+        ArrayList<String> emptyList = new ArrayList<>();
+        answerList = emptyList;
+    }
 
     public int getStageCount() {
         return stageCount;

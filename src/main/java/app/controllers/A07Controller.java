@@ -18,6 +18,7 @@ public class A07Controller {
 
     private static void startgame(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         galgeSpil.resetStage();
+        galgeSpil.resetAnswerList();
         galgeSpil.pickWord();
         galgeSpil.initializeShownWord();
         ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
