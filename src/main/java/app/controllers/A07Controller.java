@@ -7,6 +7,8 @@ import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
+
 public class A07Controller {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool, GalgeSpil galgeSpil) {
         app.get("/A07", ctx -> index(ctx, connectionPool));
@@ -31,9 +33,12 @@ public class A07Controller {
         boolean correctLetter = galgeSpil.guessLetter(letter);
         ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
         ctx.attribute("shownWord", galgeSpil.getShownWord());
+        ArrayList<String> answers=galgeSpil.getAnswers();
+        ctx.attribute("answers",answers);
         stageRender(ctx, correctLetter, galgeSpil);
         galgeSpil.nextStage(letter);
     }
+
 
     private static void index(Context ctx, ConnectionPool connectionPool) {
         ctx.render("/A07/index.html");

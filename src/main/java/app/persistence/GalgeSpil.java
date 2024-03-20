@@ -5,6 +5,8 @@ import java.util.Random;
 
 public class GalgeSpil {
 
+    private ArrayList<String> answerList = new ArrayList<>();
+
     private int stageCount = 0;
 
     private String correctAnswer;
@@ -80,8 +82,10 @@ public class GalgeSpil {
     public boolean guessLetter(String letter){
         if(correctAnswer.contains(letter.toUpperCase())) {
             revealLetter(letter);
+            answerList.add(letter);
             return true;
         } else{
+            answerList.add(letter);
             return false;
         }
     }
@@ -112,6 +116,9 @@ public class GalgeSpil {
         return words;
     }
 
+    public ArrayList<String> getAnswers() {
+        return answerList;
+    }
 
 }
 
