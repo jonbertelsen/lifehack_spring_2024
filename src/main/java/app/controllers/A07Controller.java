@@ -17,13 +17,17 @@ public class A07Controller {
     private static void startgame(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         galgeSpil.resetStage();
         galgeSpil.pickWord();
+        galgeSpil.initializeShownWord();
         ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+        ctx.attribute("shownWord", galgeSpil.getShownWord());
         ctx.render("/A07/stage0");
     }
 
     private static void guessLetter(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         //Hent form parameter
         String letter = ctx.formParam("letter");
+        ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+        ctx.attribute("shownWord", galgeSpil.getShownWord());
         stageRender(ctx, galgeSpil.guessLetter(letter), galgeSpil);
         galgeSpil.nextStage(letter);
 

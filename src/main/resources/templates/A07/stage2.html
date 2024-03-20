@@ -11,6 +11,8 @@
 <p>Dette er stage2</p>
 
 <form class="form-guess" method="post">
+    <p th:text="${correctAnswer}"></p>
+    <p th:text="${shownWord}"></p>
     <input type="text" name="letter" placeholder="Indtast et bogstav"/>
 
     <button type="submit" formaction="/A07/guessletter">Gæt</button>

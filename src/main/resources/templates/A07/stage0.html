@@ -9,9 +9,10 @@
 
 <body>
 <p>Dette er stage0</p>
-
+<p th:text="${correctAnswer}"></p>
+<p th:text="${shownWord}"></p>
 <form class="form-guess" method="post">
-    <p th:text="${correctAnswer}"></p>
+
     <input type="text" name="letter" placeholder="Indtast et bogstav"/>
 
     <button type="submit" formaction="/A07/guessletter">Gæt</button>

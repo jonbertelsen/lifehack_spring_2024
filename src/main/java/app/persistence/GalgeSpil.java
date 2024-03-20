@@ -46,6 +46,12 @@ public class GalgeSpil {
         correctAnswer = words.get(ran.nextInt(words.size()));
         return correctAnswer;
     }
+    public void initializeShownWord(){
+        shownWord="";
+        for (int i = 0; i < correctAnswer.length(); i++) {
+            shownWord+="-";
+        }
+    }
 
     public boolean guessLetter(String letter){
         if(correctAnswer.contains(letter.toUpperCase())) {
