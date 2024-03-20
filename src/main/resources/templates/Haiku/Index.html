@@ -8,16 +8,21 @@
     <link href="../../public/css/HaikuStyleW.css" th:href="@{/css/HaikuStyleW.css}" rel="stylesheet"/>
     <link href="haiku.css" rel="stylesheet">
 </head>
-<body>
+<body style="background-image: url('HBGP.png'); background-size: cover; background-position: center; background-repeat: no-repeat;">
+
 <div class="banner">
-    <h2>Haiku Generator</h2>
-    <h3>Pen name:</h3>
-    <h3 id="penname" th:text="${session.penname}"></h3>
+    <h2>Haiku Generator.exe</h2>
 </div>
+
+<div class="custom-container">
+    <h4>俳号:</h4>
+    <h4 id="penname" th:text="${session.penname}"></h4>
+</div>
+
 <div class="container">
     <form method="post">
         <input type="text" id="line1" name="firstline" placeholder="First line" th:value="${session.firstline}"/>
-        <button type="submit" formaction="/generatefirstlinenormal" class="additionalButton">Generate First Line
+        <button type="submit" formaction="/generatefirstlinenormal" class="additionalButton">Classic Haiku
         </button>
         <button type="submit" formaction="/generatefirstlinebykevin" class="additionalButton">Haiku by Kevin</button>
         <button type="submit" formaction="/generatefirstlineaboutkevin" class="additionalButton">Haiku about Kevin
@@ -51,5 +56,15 @@
 <div class="footer">
     <a href="/templates/index.html" th:src="@{/templates/index.html}">Homepage</a>
 </div>
+
+<div class="left-ad">
+    <img src="DDMH.png" alt="Left Ad">
+</div>
+
+
+<div class="right-ad">
+    <img src="HMND.png" alt="Right Ad">
+</div>
+
 </body>
 </html>
