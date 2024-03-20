@@ -53,8 +53,33 @@ public class GalgeSpil {
         }
     }
 
+    private void revealLetter(String letter){
+        for (int i = 0; i < shownWord.length(); i++) {
+            if(correctAnswer.charAt(i)==letter.toUpperCase().charAt(0)){
+                shownWord = replaceCharBasedOnIndex(shownWord, letter.toUpperCase().charAt(0), i);
+            }
+        }
+    }
+    private String replaceCharBasedOnIndex(String word, char letter, int index){
+        String newWord="";
+
+        for (int i = 0; i < index; i++) {
+            newWord+= word.charAt(i);
+        }
+        newWord+=letter;
+
+        if(index<(word.length()-1)){
+            for (int i = index+1; i < word.length(); i++) {
+                newWord+= word.charAt(i);
+            }
+        }
+
+        return newWord;
+    }
+
     public boolean guessLetter(String letter){
         if(correctAnswer.contains(letter.toUpperCase())) {
+            revealLetter(letter);
             return true;
         } else{
             return false;

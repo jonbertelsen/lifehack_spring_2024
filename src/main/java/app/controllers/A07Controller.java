@@ -26,9 +26,10 @@ public class A07Controller {
     private static void guessLetter(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         //Hent form parameter
         String letter = ctx.formParam("letter");
+        boolean correctLetter = galgeSpil.guessLetter(letter);
         ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
         ctx.attribute("shownWord", galgeSpil.getShownWord());
-        stageRender(ctx, galgeSpil.guessLetter(letter), galgeSpil);
+        stageRender(ctx, correctLetter, galgeSpil);
         galgeSpil.nextStage(letter);
 
     }
