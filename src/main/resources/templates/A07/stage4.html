@@ -18,8 +18,12 @@
     <p th:text="${correctAnswer}"></p> -->
     <p class="shown-word" th:text="${shownWord}"></p>
     <form class="form-guess" method="post">
-        <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
-        <button type="submit" formaction="/A07/guessletter">Gæt</button>
+        <div class="container">
+            <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
+
+            <button type="submit" formaction="/A07/guessletter"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/A07/knapkevin.png" th:src="@{/images/A07/knapkevin.png}" width="20%"/></button>
+
+        </div>
     </form>
 </div>
 
