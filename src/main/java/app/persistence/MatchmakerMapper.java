@@ -43,7 +43,7 @@ public class MatchmakerMapper
 
     public static void createuser(String userName, String userPassword,String firstName,String lastName,int age, String gender, ConnectionPool connectionPool) throws DatabaseException
     {
-        String sql = "INSERT INTO public.matchmaker_user(UserName,UserPassword, FirstName,LastName, age, gender)+ VALUES ( ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO public.matchmaker_user(username,firstname,lastname, age, gender,userpassword) VALUES ( ?, ?, ?, ?, ?, ?)";
 
         try (
                 Connection connection = connectionPool.getConnection();
@@ -51,11 +51,11 @@ public class MatchmakerMapper
         )
         {
             ps.setString(1, userName);
-            ps.setString(2, userPassword);
-            ps.setString(3,firstName);
-            ps.setString(4,lastName);
-            ps.setInt(5,age);
-            ps.setString(6,gender);
+            ps.setString(2,firstName);
+            ps.setString(3,lastName);
+            ps.setInt(4,age);
+            ps.setString(5,gender);
+            ps.setString(6,userPassword);
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected != 1)
@@ -72,5 +72,32 @@ public class MatchmakerMapper
             }
             throw new DatabaseException(msg, e.getMessage());
         }
+    }
+    public static void createPreference(String hairColor, String eyeColor, String sex, String race, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "insert into preference (haircolor, eyecolor, sex, race) values (?, ?, ?, ?)";
+
+        try (
+                Connection connection = connectionPool.getConnection();
+                PreparedStatement ps = connection.prepareStatement(sql)
+        )
+        {
+            ps.setString(1, hairColor);
+            ps.setString(2, eyeColor);
+            ps.setString(3, sex);
+            ps.setString(4, race);
+
+            int rowsAffected = ps.executeUpdate();
+            if (rowsAffected != 1)
+            {
+                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+            }
+
+
+        } catch (SQLException e){
+            String msg = "Der er sket en fejl. Prøv igen";
+            throw new DatabaseException(msg, e.getMessage());
+        }
+
     }
 }
