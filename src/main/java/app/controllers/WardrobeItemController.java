@@ -16,8 +16,9 @@ public class WardrobeItemController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
+        app.get("/wardrober", ctx -> ctx.render("wardrober/index.html"));
         app.post("deleteitem", ctx -> removeItem(ctx, connectionPool));
-        app.post("additem", ctx -> updateItem(ctx, connectionPool));
+        app.post("edititem", ctx -> updateItem(ctx, connectionPool));
     }
 
     private static void removeItem(Context ctx, ConnectionPool connectionPool) {

@@ -9,7 +9,6 @@
 </head>
 <body>
 
-
 <header>
 
 <img src="../../public/images/wardrober/wardrober-high-resolution-logo.png" height="200" width="267"/>
@@ -38,8 +37,8 @@
             <td th:text="${item.size}"> </td>
             <td th:text="${item.price}"> </td>
             <td>
-                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="done">Done</button>
-                <button type="submit" name="taskId" th:value="${task.taskid}" formaction="edittask">Edit</button>
+                <button type="submit" name="itemId" th:value="${item.itemid}" formaction="deleteitem">Delete</button>
+                <button type="submit" name="itemId" th:value="${item.itemid}" formaction="edititem">Edit</button>
             </td>
         </tr>
     </table>
@@ -47,7 +46,7 @@
 
 <h2>Add a new item to your wardrobe</h2>
 
-<form action="/Modtager.html">
+<form action="/index.html">
     <label for="category">Category:</label><br>
     <input id="category" name="category" type="text" value=""><br>
     <label for="brand">Brand:</label><br>
