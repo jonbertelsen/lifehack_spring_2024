@@ -27,13 +27,13 @@ public class HaikuController
     }
 
     private static void generateFirstLineNormal(Context ctx, ConnectionPool connectionPool) {
-        boolean isFiveSyllables = true; // Assuming this is correct for the first line of a haiku
-        boolean madeByKevin = false; // Assuming this is correct for the first line of a haiku
-        boolean aboutKevin = false; // Assuming this is correct for the first line of a haiku
+        boolean isFiveSyllables = true;
+        boolean madeByKevin = false;
+        boolean aboutKevin = false;
 
         try {
-            String firstLine = "Generated first line"; //TODO: Erstat med string fra database.
-            ctx.attribute("firstline", firstLine);
+            String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
+            ctx.sessionAttribute("firstline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (Exception e) {
@@ -50,7 +50,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("secondline", haikuText);
+            ctx.sessionAttribute("secondline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -66,7 +66,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("thirdline", haikuText);
+            ctx.sessionAttribute("thirdline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -86,7 +86,7 @@ public class HaikuController
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
-            ctx.attribute("message","Noget gik galt prøv igen");
+            ctx.sessionAttribute("message","Noget gik galt prøv igen");
             ctx.render("templates/haiku/index.html");
         }
     }
@@ -98,7 +98,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("secondline", haikuText);
+            ctx.sessionAttribute("secondline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -114,7 +114,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("thirdline", haikuText);
+            ctx.sessionAttribute("thirdline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -130,7 +130,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("firstline", haikuText);
+            ctx.sessionAttribute("firstline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -146,7 +146,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("secondline", haikuText);
+            ctx.sessionAttribute("secondline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){
@@ -162,7 +162,7 @@ public class HaikuController
 
         try{
             String haikuText = HaikuMapper.generateHaikuPart(connectionPool,isFiveSyllables,madeByKevin,aboutKevin);
-            ctx.attribute("thirdline", haikuText);
+            ctx.sessionAttribute("thirdline", haikuText);
             ctx.render("/haiku/index.html");
 
         } catch (AbstractMethodError e){

@@ -5,6 +5,7 @@ import app.controllers.HaikuController;
 import app.controllers.TimeZonesController;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
+import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 

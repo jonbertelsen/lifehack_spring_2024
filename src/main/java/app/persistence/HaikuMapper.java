@@ -1,5 +1,11 @@
 package app.persistence;
 
+/**
+ * Purpose:
+ *
+ * @Author: Anton Friis Stengaard
+ */
+
 import app.entities.HaikuPart;
 
 import java.sql.*;
@@ -8,16 +14,11 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
-/**
- * Purpose:
- *
- * @Author: Anton Friis Stengaard
- */
 public class HaikuMapper {
 
     public static String generateHaikuPart(ConnectionPool connectionPool, boolean isFiveSyllables, boolean madeByKevin, boolean aboutKevin){
         List<HaikuPart> haikuParts = new ArrayList<>();
-        String sql = "select text from haiku_parts where is_5_syllables=? and madeByKevin=? and aboutKevin=?";
+        String sql = "SELECT * FROM haiku_parts WHERE is_5_syllables = ? AND made_by_kevin = ? AND about_kevin = ?";
         try(
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS)
