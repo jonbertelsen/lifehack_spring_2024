@@ -23,6 +23,8 @@ public class A07Controller {
         ctx.render("/A07/stage0");
     }
 
+
+
     private static void guessLetter(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         //Hent form parameter
         String letter = ctx.formParam("letter");
@@ -31,7 +33,6 @@ public class A07Controller {
         ctx.attribute("shownWord", galgeSpil.getShownWord());
         stageRender(ctx, correctLetter, galgeSpil);
         galgeSpil.nextStage(letter);
-
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool) {
@@ -39,9 +40,13 @@ public class A07Controller {
     }
 
     private static void stageRender(Context ctx, boolean correctLetter, GalgeSpil galgeSpil) {
-        if (correctLetter) {
+        if (correctLetter && galgeSpil.getShownWord().equals(galgeSpil.getCorrectAnswer())) {
+            stageSwitch(ctx,11);
+
+        } else if(correctLetter) {
             stageSwitch(ctx, galgeSpil.getStageCount());
-        } else if (!correctLetter) {
+        }
+            else if (!correctLetter) {
             stageSwitch(ctx, galgeSpil.getStageCount()+1);
         }
 
@@ -81,6 +86,9 @@ public class A07Controller {
                 break;
             case 10:
                 ctx.render("A07/gameover.html");
+                break;
+            case 11:
+                ctx.render("A07/victoryscreen.html");
                 break;
             default:
                 break;
