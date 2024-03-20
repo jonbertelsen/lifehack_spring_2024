@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-<link href="../../public/css/projectname.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/friskforslag.css" th:href="@{/css/friskforslag.css}" rel="stylesheet"/>
 </head>
 
 <body>
@@ -13,7 +13,8 @@
 <div class="page">
     <header>
         <a href="../index.html" th:href="@{/}">
-            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogo.jpg"
+                 th:src="@{/images/friskforslag/friskforslaglogo.jpg}"/>
         </a>
     </header>
 
@@ -21,23 +22,34 @@
 
     <p>Resultater:</p>
 
-    <div th:if="${filteredRecipes != null || !filteredRecipes.isEmpty()}"
+    <div th:if="${filteredRecipes != null && !filteredRecipes.isEmpty()}"
          class="searchResults">
-        <table th:each="rec : ${filteredRecipes}">
+        <table class="searchResultsTable">
+            <thead>
             <tr>
                 <th>Opskrift</th>
                 <th>Brugte Ingredienser</th>
-                <th>Tid</th>
+                <th>Kilde</th>
             </tr>
-            <tr>
-                <td th:text="${rec.Name()}"></td>
+            </thead>
+            <tbody>
+            <tr th:each="rec : ${filteredRecipes}">
+                <th th:text="${rec.Name()}"></th>
                 <td>
-                    <p th:each="ing,iterStat : ${rec.Ingredients()}">
-                    <span th:text="${ing} + ' : ' + ${iterStat.index} + ' ' + ${ing}"></span>
-                    </p>
+                    <ul class="searchResultsIngredientsList" >
+                        <li class="searchResultsIngredientsElement"
+                              th:each="ing, iterStat : ${rec.Ingredients()}"
+                              th:text="${rec.Ingredients()[__${iterStat.index}__]} + ' : ' +
+                                     ${rec.Quantities()[__${iterStat.index}__]} + ' ' +
+                                     ${rec.Units()[__${iterStat.index}__]}">
+                        </li>
+                    </ul>
                 </td>
-                <td></td>
+                <td>
+                    <span th:if="${rec.Src() != null && !rec.Src().isEmpty()}" th:text="${rec.Src()}"></span>
+                </td>
             </tr>
+            </tbody>
         </table>
 
     </div>

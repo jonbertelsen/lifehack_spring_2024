@@ -7,6 +7,8 @@ import app.persistence.FriskForslagMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class FriskForslagController
@@ -35,6 +37,7 @@ public class FriskForslagController
                 List<FriskForslagRecipe> filteredRecipes =
                         FriskForslagMapper.FilterRecipesIngredients(connectionPool, ingredients);
                 ctx.attribute("filteredRecipes", filteredRecipes);
+
             }
             catch (DatabaseException e) {
                 ctx.attribute("message", "fejl i søgning af database");
