@@ -24,15 +24,32 @@ public class A07Controller {
     }
 
 
-
     private static void guessLetter(Context ctx, GalgeSpil galgeSpil, ConnectionPool connectionPool) {
         //Hent form parameter
         String letter = ctx.formParam("letter");
-        boolean correctLetter = galgeSpil.guessLetter(letter);
-        ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
-        ctx.attribute("shownWord", galgeSpil.getShownWord());
-        stageRender(ctx, correctLetter, galgeSpil);
-        galgeSpil.nextStage(letter);
+
+        char character = letter.charAt(0);
+        if (Character.isLetter(character)) {
+            boolean correctLetter = galgeSpil.guessLetter(letter);
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            stageRender(ctx, correctLetter, galgeSpil);
+            galgeSpil.nextStage(letter);
+
+        } else if (Character.isDigit(character)) {
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke tal!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+
+        } else {
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke mærkelige tegn!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+        }
+
+
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool) {
@@ -41,13 +58,12 @@ public class A07Controller {
 
     private static void stageRender(Context ctx, boolean correctLetter, GalgeSpil galgeSpil) {
         if (correctLetter && galgeSpil.getShownWord().equals(galgeSpil.getCorrectAnswer())) {
-            stageSwitch(ctx,11);
+            stageSwitch(ctx, 11);
 
-        } else if(correctLetter) {
+        } else if (correctLetter) {
             stageSwitch(ctx, galgeSpil.getStageCount());
-        }
-            else if (!correctLetter) {
-            stageSwitch(ctx, galgeSpil.getStageCount()+1);
+        } else if (!correctLetter) {
+            stageSwitch(ctx, galgeSpil.getStageCount() + 1);
         }
 
     }
