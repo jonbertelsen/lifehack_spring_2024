@@ -32,7 +32,15 @@ public class A07Controller {
         String letter = ctx.formParam("letter");
 
         char character = letter.charAt(0);
-        if (Character.isLetter(character)) {
+        if(galgeSpil.alreadyInAnswerList(letter)){
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Du må kun gætte på det samme bogstav en gang!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+        }
+        else if (Character.isLetter(character)) {
             boolean correctLetter = galgeSpil.guessLetter(letter);
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
@@ -48,7 +56,15 @@ public class A07Controller {
             ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke tal!");
             stageSwitch(ctx, galgeSpil.getStageCount());
 
-        } else {
+        }else if(galgeSpil.alreadyInAnswerList(letter)){
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Du må kun gætte på det samme bogstav en gang!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+        }
+        else {
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
@@ -71,7 +87,8 @@ public class A07Controller {
         } else if (correctLetter) {
             stageSwitch(ctx, galgeSpil.getStageCount());
         } else if (!correctLetter) {
-            stageSwitch(ctx, galgeSpil.getStageCount() + 1);
+            stageSwitch(ctx, galgeSpil.getStageCount()+1);
+            galgeSpil.nextStage();
         }
 
     }

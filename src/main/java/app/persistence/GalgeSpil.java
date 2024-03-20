@@ -76,23 +76,21 @@ public class GalgeSpil {
         return newWord;
     }
 
-    public boolean guessLetter(String letter) {
-        if (correctAnswer.contains(letter.toUpperCase())) {
+    public boolean guessLetter(String letter){
+        if(correctAnswer.contains(letter.toUpperCase())) {
             revealLetter(letter);
-            if (!answerList.contains(letter)) {
-                answerList.add(letter);
-                return true;
-            } else {
-                return true;
-            }
-        } else {
-            if (!answerList.contains(letter)) {
-                answerList.add(letter);
-                return false;
-            } else {
-                return false;
-            }
+            answerList.add(letter.toUpperCase());
+            return true;
+        } else{
+            answerList.add(letter.toUpperCase());
+            return false;
         }
+    }
+    public boolean alreadyInAnswerList(String letter) {
+        if (answerList.contains(letter.toUpperCase())) {
+            return true;
+        }
+        return false;
     }
     public void nextStage(){
             stageCount++;
