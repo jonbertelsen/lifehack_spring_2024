@@ -11,10 +11,12 @@
 <body>
 <div class="banner">
     <h2>Haiku Generator</h2>
+    <h3>Pen name:</h3>
+    <h3 id="penname" th:text="${session.penname}"></h3>
 </div>
 <div class="container">
     <form method="post">
-        <input type="text" id="line1" name="firstline" placeholder="First line" th:value="${firstline}"/>
+        <input type="text" id="line1" name="firstline" placeholder="First line" th:value="${session.firstline}"/>
         <button type="submit" formaction="/generatefirstlinenormal" class="additionalButton">Generate First Line
         </button>
         <button type="submit" formaction="/generatefirstlinebykevin" class="additionalButton">Haiku by Kevin</button>
@@ -24,7 +26,7 @@
     <br>
 
     <form method="post">
-        <input type="text" id="line2" name="secondline" th:value="${secondline}" placeholder="Second line">
+        <input type="text" id="line2" name="secondline" placeholder="Second line" th:value="${session.secondline}"/>
         <button type="submit" class="additionalButton" formaction="/generatesecondlinenormal">Classic Haiku</button>
         <button type="submit" class="additionalButton" formaction="/generatesecondlinebykevin">Haiku by Kevin</button>
         <button type="submit" class="additionalButton" formaction="/generatesecondlineaboutkevin">Haiku about Kevin
@@ -33,15 +35,16 @@
     <br>
 
     <form method="post">
-        <input type="text" name="thirdline" th:value="${thirdline}" id="line3" placeholder="Third line">
+        <input type="text" id="line3" name="thirdline" placeholder="Third line" th:value="${session.thirdline}"/>
         <button type="submit" class="additionalButton" formaction="/generatethirdlinenormal">Classic Haiku</button>
         <button type="submit" class="additionalButton" formaction="/generatethirdlinebykevin">Haiku by Kevin</button>
         <button type="submit" class="additionalButton" formaction="/generatethirdlineaboutkevin">Haiku about Kevin
         </button>
     </form>
     <br>
-
-    <button id="clearFields">Clear Fields</button>
+    <form method="post">
+        <button type="submit" formaction="/clearfields" id="clearFields">Clear Fields</button>
+    </form>
     <button id="saveHaiku">Save Haiku</button>
 
 </div>

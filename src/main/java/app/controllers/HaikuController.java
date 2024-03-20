@@ -1,9 +1,13 @@
 package app.controllers;
 
+import app.entities.User;
 import app.persistence.ConnectionPool;
 import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
+import java.util.Arrays;
+import java.util.Random;
 
 public class HaikuController
 {
@@ -19,11 +23,36 @@ public class HaikuController
         app.post("/generatefirstlineaboutkevin", ctx -> generateFirstLineAboutKevin(ctx, connectionPool));
         app.post("/generatesecondlineaboutkevin", ctx -> generateSecondLineAboutKevin(ctx, connectionPool));
         app.post("/generatethirdlineaboutkevin", ctx -> generateThirdLineAboutKevin(ctx, connectionPool));
+        app.post("/clearfields",ctx -> clearFields(ctx,connectionPool));
+    }
+
+    private static void clearFields(Context ctx, ConnectionPool connectionPool) {
+        String clear = "";
+        try {
+            ctx.sessionAttribute("firstline", clear);
+            ctx.sessionAttribute("secondline", clear);
+            ctx.sessionAttribute("thirdline", clear);
+            ctx.render("/haiku/index.html");
+
+        } catch (Exception e) {
+            // Handle exceptions
+            ctx.attribute("message", "Something went wrong. Please try again.");
+            ctx.render("/haiku/index.html");
+        }
+
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool)
     {
+        User currentUser = ctx.sessionAttribute("currentUser");
+        if (currentUser != null) {
+            ctx.sessionAttribute("username",currentUser.getUserName());
+            ctx.sessionAttribute("penname",shuffleString(currentUser.getUserName()));
+        } else {
+            System.out.println("Noone is logged in");
+        }
         ctx.render("/haiku/index.html");
+
     }
 
     private static void generateFirstLineNormal(Context ctx, ConnectionPool connectionPool) {
@@ -169,5 +198,20 @@ public class HaikuController
             ctx.attribute("message","Noget gik galt prøv igen");
             ctx.render("templates/haiku/index.html");
         }
+    }
+
+    public static String shuffleString(String input) {
+        char[] characters = input.toCharArray();
+        Random rand = new Random();
+
+        for (int i = characters.length - 1; i > 0; i--) {
+            int j = rand.nextInt(i + 1);
+            // Swap characters[i] and characters[j]
+            char temp = characters[i];
+            characters[i] = characters[j];
+            characters[j] = temp;
+        }
+
+        return new String(characters);
     }
 }
