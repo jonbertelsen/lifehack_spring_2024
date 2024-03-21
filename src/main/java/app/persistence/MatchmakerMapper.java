@@ -71,7 +71,6 @@ public class MatchmakerMapper
 
         return userId;
     }
-    public static void createPreference(String hairColor, String eyeColor, String sex, String race, ConnectionPool connectionPool) throws DatabaseException {
 
     public static void createPreference(int userid,String hairColor, String eyeColor, String sex, ConnectionPool connectionPool) throws DatabaseException {
 

@@ -42,13 +42,13 @@ public class MatchmakerController {
             ctx.sessionAttribute("currentUser", user);
             // Hvis ja, send videre til forsiden med login besked
             ctx.attribute("message", "Du er nu logget ind");
-            ctx.render("matchmaker/index.html");
+            ctx.render("matchmaker/swipe.html");
         }
         catch (DatabaseException e)
         {
             // Hvis nej, send tilbage til login side med fejl besked
             ctx.attribute("message", e.getMessage() );
-            ctx.render("index.html");
+            ctx.render("matchmaker/index.html");
         }
 
     }
