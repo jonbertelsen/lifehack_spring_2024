@@ -13,7 +13,7 @@
 <div class="page">
     <header>
         <a href="../index.html" th:href="@{/}">
-            <img alt="logo" src="../../public/images/PlantPal/faedregruppencouncil2.jpg" th:src="@{/images/PlantPal/faedregruppencouncil2}"/>
+            <img alt="logo" src="../../public/images/PlantPal/faedregruppencouncil2.jpg" th:src="@{/images/PlantPal/faedregruppencouncil2.jpg}"/>
         </a>
     </header>
 
@@ -57,7 +57,7 @@
     <div class="logout">
         <p th:if="${session.currentUser != null}">
             <span th:text="${session.currentUser.username}">Welcome, Young Padawan</span> |
-            <a href="index.html" th:href="@{/logout}">Logout, You Should</a>
+            <a class="logout-text" href="index.html" th:href="@{/logout}">Logout, You Should</a>
         </p>
     </div>
 

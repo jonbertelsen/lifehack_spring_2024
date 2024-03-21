@@ -16,13 +16,18 @@ body.yoda-theme {
 }
 
 header {
-    width: 100%; /* Make the image responsive to its container */
-    height: auto;
-    margin-bottom: 20px;
+    height: 200px; /* Adjust the height as needed */
+    width: 100%; /* Ensure full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 header a img {
-    width: 80px;
+    max-width: 100%; /* Make the image responsive */
+    max-height: 100%; /* Make the image responsive */
+    padding-bottom: 50px;
+
 }
 
 h1,
@@ -54,7 +59,9 @@ h1 {
     cursor: pointer;
     font-family: 'Arial', sans-serif; /* Standard Font, This Is */
     font-weight: bold; /* Strong, the Text Should Be */
+    text-decoration: none;
 }
+
 
 .vand-table button:hover,
 .create-plant button:hover,
@@ -72,4 +79,10 @@ h1 {
 
 .logout {
     margin-top: auto; /* Push to Bottom, It Will */
+
+}
+
+.logout-text{
+    text-decoration: none;
+    color: #6dde6d;
 }

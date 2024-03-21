@@ -12,7 +12,7 @@
 <div class="page">
     <header>
         <a href="index.html" th:href="@{/}">
-            <img alt="logo" src="../../public/images/PlantPal/PlantPal-logo.png" th:src="@{/images/PlantPal/PlantPal-logo.png}"/>
+            <img alt="logo" src="../../public/images/PlantPal/faedregruppencouncil2.jpg" th:src="@{/images/PlantPal/faedregruppencouncil2.jpg}"/>
         </a>
     </header>
 
@@ -24,7 +24,7 @@
 
     <div th:if="${session.currentUser != null}">
         <span th:text="${session.currentUser.username}">Welcome, Young Padawan</span> |
-        <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout, You Should</a>
+        <a class="logout-text" th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout, You Should</a>
     </div>
 </div>
 </body>
