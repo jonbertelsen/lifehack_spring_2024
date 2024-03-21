@@ -13,6 +13,12 @@ div.page {
     width: 800px;
 }
 
+.friskforslagTitleImageLink {
+    img {
+        width: fit-content;
+    }
+}
+
 table {
     table-layout: fixed;
     width: 100%;

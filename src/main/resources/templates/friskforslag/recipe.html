@@ -13,10 +13,17 @@
 <div class="page">
     <header>
         <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png"
+                 th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+
+        <a class="friskforslagTitleImageLink" href="../friskforslag/index.html" th:href="@{/friskforslag}">
             <img alt="logo" src="../../public/images/friskforslag/friskforslaglogo.jpg"
-                 th:src="@{/images/friskforslag/friskforslaglogo.jpg}"/>
+                 th:src="@{/images/friskforslag/friskforslaglogo.jpg}" />
         </a>
     </header>
+
+    <h1>Frisk Forslag</h1>
 
     <div th:if="${fetchedRecipe != null}" class="recipeBody">
         <h2 th:text="${fetchedRecipe.Name()}"></h2>

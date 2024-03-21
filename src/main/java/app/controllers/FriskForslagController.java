@@ -21,6 +21,7 @@ public class FriskForslagController
         app.get("/friskforslag/search", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/search.html", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/recipes/*", ctx -> findRecipe(ctx, connectionPool));
+        // TODO: add favico handler
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool)
