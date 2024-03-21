@@ -65,6 +65,16 @@ public class PizzaRecipe
         return (int) (700.0 / 4 * quantity);
     }
 
+    public int getPoolishFlourInGrammes()
+    {
+        return (int) (200.0 / 4 * quantity);
+    }
+
+    public int getPoolishWaterInGrammes()
+    {
+        return (int) (200.0 / 4 * quantity);
+    }
+
     public int getWaterInGrammes()
     {
         return (int) (500.0 / 4 * quantity);

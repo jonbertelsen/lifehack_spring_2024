@@ -85,7 +85,8 @@
                  th:src="@{/images/pizzacalculator/poolish.jpg}"/>
             <div class="pizza-card-header">Step 1: The Poolish</div>
             <div class="pizza-card-copy">
-                Mix together 200 g water, 5 g honey, and 10 g fresh yeast. Then add and mix in 200 g Tipo 0 flour.
+                Mix together <span th:text="${session.recipe.getPoolishWaterInGrammes()}">200</span> g water, <span th:text="${session.recipe.getHoneyInGrammes()}">5</span> g honey,
+                and <span th:text="${session.recipe.getYeastInGrammes()}">10</span> g fresh yeast. Then add and mix in  <span th:text="${session.recipe.getPoolishFlourInGrammes()}">200</span> g Tipo 0 flour.
                 Leave in fridge for 16-24 hours with a cover.
             </div>
         </div>
@@ -94,12 +95,17 @@
                  th:src="@{/images/pizzacalculator/dough.jpg}"/>
             <div class="pizza-card-header">Step 2: Mix the dough</div>
             <div class="pizza-card-copy">
-                <p>Take out the poolish. Leave it 1 hour at room temperature. Then add 300 g Manitoba flour plus 200 g
-                    Tipo 0 flour. Mix in water and salt. A little at a time.</p>
+                <p>Take out the poolish. Leave it 1 hour at room temperature. Then add
+                    <span th:text="${session.recipe.getFlourInGrammes() -
+                    session.recipe.getPoolishFlourInGrammes()}">500</span> g
+                    Tipo 0 flour. Mix in
+                    <span th:text="${session.recipe.getWaterInGrammes() -
+                    session.recipe.getPoolishWaterInGrammes()}">300</span>
+                    water and  <span th:text="${session.recipe.getSaltInGrammes()}">20</span> g of salt. A little at a time.</p>
                 <p>
                     Do some slap and folds. Let rest for 15 minutes.
-                    Put a little oil on your hands and fold the dough into one large ball. Add a little oil on top, tap,
-                    tap. Cover with a dish towel. Rest for one hour
+                    Put a little oil on your hands and fold the dough into one large ball.
+                    Add a little oil on top, tap, tap. Cover with a dish towel. Rest for one hour.
                 </p>
             </div>
         </div>
@@ -108,7 +114,7 @@
                  th:src="@{/images/pizzacalculator/pizza_balls.jpg}"/>
             <div class="pizza-card-header">Step 3: Finish the dough</div>
             <div class="pizza-card-copy">
-                Make 3 balls. Put a little oil on your hands. Fold the dough into itself. Close it in. Leave the balls
+                Make <span th:text="${session.recipe.quantity}">3</span> balls. Put a little oil on your hands. Fold the dough into itself. Close it in. Leave the balls
                 on a sheet of baking paper, 4 fingers appart. Add a little oil on top, tap, tap. Cover with plastic foil
                 and let it rest and raise for 1-2 hours.
             </div>
