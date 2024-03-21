@@ -1,56 +1,154 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-<title>Timezones</title>
+<title>Recipe</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
-<link href="../../public/css/pizzacalculator.css" th:href="@{/css/pizzacalculator.css}" rel="stylesheet"/>
+<link href="../../public/css/pizza-calculator.css" th:href="@{/css/pizza-calculator.css}" rel="stylesheet"/>
 </head>
 
 <body>
 
 <div class="page">
     <header>
-        <a href="../index.html" th:href="@{/}">
-            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+        <a href="index.html" th:href="@{/pizzacalculator}">
+            <img alt="logo" src="../../public/images/pizzacalculator/pizza_calc_logo.png"
+                 th:src="@{/images/pizzacalculator/pizza_calc_logo.png}"/>
         </a>
     </header>
 
     <h1>The recipe</h1>
 
-    <span th:text="|${session.recipe.quantity} pizzas, ${session.recipe.weight} g per dough ball, ${session.recipe.hydration}% hydration and ${session.recipe.temperature} C|">
-        4 pizzas, 285 g per dough ball, 70% hydration and 22 C
-    </span>
+    <div class="pizza-card">
+        <div class="pizza-card-header">The data</div>
+        <div class="pizza-card-copy">
+            <ul class="no-dots text-center">
+                <li th:text="|Calculated on ${session.recipe.getDate()}|">2024-03-20</li>
+                <li>&nbsp;</li>
+                <li th:text="|${session.recipe.quantity} pizzas|">4 pizzas</li>
+                <li th:text="|${session.recipe.weight} g per dough ball|">285 g per dough ball</li>
+                <li th:text="|${session.recipe.hydration}% hydration|">70% hydration</li>
+                <li th:text="|${session.recipe.temperature}&deg;C|">22&deg;C</li>
+            </ul>
+        </div>
+    </div>
 
     <h1>The ingredients</h1>
 
-    <p>The dough</p>
-    <ul>
-        <li th:text="|${session.recipe.getFlourInGrammes()} g tipo 0 flour|">700 g tipo 0 flour</li>
-        <li th:text="|${session.recipe.getWaterInGrammes()} g water|">500 g water</li>
-        <li th:text="|${session.recipe.getYeastInGrammes()} g yeast|">10 g yeast</li>
-        <li th:text="|${session.recipe.getHoneyInGrammes()} g honey|">10 g yeast</li>
-        <li th:text="|${session.recipe.getSaltInGrammes()} g salt|">20 g salt</li>
-    </ul>
+    <div class="pizza-cards">
+        <div class="pizza-card">
+            <div class="pizza-card-header">The dough</div>
+            <div class="pizza-card-copy">
+                <ul class="no-dots">
+                    <li th:text="|${session.recipe.getFlourInGrammes()} g tipo 0 flour|">700 g tipo 0 flour</li>
+                    <li th:text="|${session.recipe.getWaterInGrammes()} g water|">500 g water</li>
+                    <li th:text="|${session.recipe.getYeastInGrammes()} g yeast|">10 g yeast</li>
+                    <li th:text="|${session.recipe.getHoneyInGrammes()} g honey|">10 g yeast</li>
+                    <li th:text="|${session.recipe.getSaltInGrammes()} g salt|">20 g salt</li>
+                </ul>
+            </div>
+        </div>
 
-    <p>The tomato sauce</p>
-    <ul>
-        <li th:text="|${session.recipe.getCanOfTomatoesInNumbers()} can(s) of Mutti or Manzano tomatoes|"> 1 can of tomatoes</li>
-        <li>A handful of basil leafes</li>
-        <li>A pinch of salt</li>
-    </ul>
+        <div class="pizza-card">
+            <div class="pizza-card-header">The Tomato Sauce</div>
+            <div class="pizza-card-copy">
+                <ul class="no-dots">
+                    <li th:text="|${session.recipe.getCanOfTomatoesInNumbers()} ${session.recipe.getCanOfTomatoesInNumbers > 1 ? 'cans' : 'can' } of Mutti or Manzano tomatoes|">
+                        1 can of tomatoes
+                    </li>
+                    <li>A handful of basil leafes</li>
+                    <li>A pinch of salt</li>
+                </ul>
+            </div>
+        </div>
 
-    <p>The toppings</p>
-    <ul>
-        <li th:text="|${session.recipe.getMozzarellaInGrammes()} g mozarella cheese|">400 g mozarella cheese</li>
-        <li>Fresh basil</li>
-        <li>Virgin Olive Oil</li>
-    </ul>
+        <div class="pizza-card">
+            <div class="pizza-card-header">The dough</div>
+            <div class="pizza-card-copy">
+                <ul class="no-dots">
+                    <li th:text="|${session.recipe.getMozzarellaInGrammes()} g mozarella cheese|">400 g mozarella
+                        cheese
+                    </li>
+                    <li>Fresh basil</li>
+                    <li>Virgin Olive Oil</li>
+                </ul>
+            </div>
+        </div>
+    </div>
 
     <h2>The instructions</h2>
 
-    <p>1. Mix the flour and the water in a bowl and let it rest for 30 minutes</p>
+    <div class="pizza-cards">
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/poolish.jpg"
+                 th:src="@{/images/pizzacalculator/poolish.jpg}"/>
+            <div class="pizza-card-header">Step 1: The Poolish</div>
+            <div class="pizza-card-copy">
+                Mix together 200 g water, 5 g honey, and 10 g fresh yeast. Then add and mix in 200 g Tipo 0 flour.
+                Leave in fridge for 16-24 hours with a cover.
+            </div>
+        </div>
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/dough.jpg"
+                 th:src="@{/images/pizzacalculator/dough.jpg}"/>
+            <div class="pizza-card-header">Step 2: Mix the dough</div>
+            <div class="pizza-card-copy">
+                <p>Take out the poolish. Leave it 1 hour at room temperature. Then add 300 g Manitoba flour plus 200 g
+                    Tipo 0 flour. Mix in water and salt. A little at a time.</p>
+                <p>
+                    Do some slap and folds. Let rest for 15 minutes.
+                    Put a little oil on your hands and fold the dough into one large ball. Add a little oil on top, tap,
+                    tap. Cover with a dish towel. Rest for one hour
+                </p>
+            </div>
+        </div>
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/pizza_balls.jpg"
+                 th:src="@{/images/pizzacalculator/pizza_balls.jpg}"/>
+            <div class="pizza-card-header">Step 3: Finish the dough</div>
+            <div class="pizza-card-copy">
+                Make 3 balls. Put a little oil on your hands. Fold the dough into itself. Close it in. Leave the balls
+                on a sheet of baking paper, 4 fingers appart. Add a little oil on top, tap, tap. Cover with plastic foil
+                and let it rest and raise for 1-2 hours.
+            </div>
+        </div>
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/tomatosauce.jpg"
+                 th:src="@{/images/pizzacalculator/tomatosauce.jpg}"/>
+            <div class="pizza-card-header">Step 4: Sauce and filling</div>
+            <div class="pizza-card-copy">Pour the tomatoes into a bowl and mash them with your hands. Add salt.
+                Cut the mozarella into straight chuncks. Not too small, not too large. Prepare some basil leaves to put
+                on top.
+            </div>
+        </div>
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/doughshaping.jpg"
+                 th:src="@{/images/pizzacalculator/doughshaping.jpg}"/>
+            <div class="pizza-card-header">Step 5: Compose</div>
+            <div class="pizza-card-copy">
+                Roll each dough ball in flour, place it on a floured surface.
+                Press it down, pinch it in the middle and outwards to press air to the circumference. Press, pull,
+                rotate until you
+                have a nice round shape. Add tomato sauce, cheese chunks, a little basil, drip some virgin olive oil on
+                top. In particular on the basil leaves. Slide in oven and bake for 5-6 minutes at max temperature.
+                Preferably on a steel og stone plate.
+            </div>
+        </div>
+        <div class="pizza-card">
+            <img class="pizza-card-image" alt="timezones" src="../../public/images/pizzacalculator/napolitan.jpg"
+                 th:src="@{/images/pizzacalculator/napolitan.jpg}"/>
+            <div class="pizza-card-header">Step 6: Enjoy</div>
+            <div class="pizza-card-copy">When the pizza is done: take it out, add a little parmesan on top, a little
+                extra
+                basil, and a little extra virgin oil. Slice it. Serve it. Enjoy it. Bon apetite.
+            </div>
+        </div>
+    </div>
+    <div class="pizza-recipe-buttons">
+        <a class="btn btn-ok" href="archive.html" th:href="@{/pizzacalculator/archive}">View archive</a>
+        <a class="btn btn-ok" href="archive.html" th:href="@{/pizzacalculator/create}">Save recipe</a>
+    </div>
 
 </div>
 </body>

@@ -4,6 +4,7 @@ import java.time.LocalDate;
 
 public class PizzaRecipe
 {
+    private int recipeId;
     private int quantity;
     private int weight;
     private int hydration;
@@ -17,6 +18,21 @@ public class PizzaRecipe
         this.hydration = hydration;
         this.temperature = temperature;
         this.date = LocalDate.now();
+    }
+
+    public PizzaRecipe(int recipeId, int quantity, int weight, int hydration, int temperature, LocalDate date)
+    {
+        this.recipeId = recipeId;
+        this.quantity = quantity;
+        this.weight = weight;
+        this.hydration = hydration;
+        this.temperature = temperature;
+        this.date = date;
+    }
+
+    public int getRecipeId()
+    {
+        return recipeId;
     }
 
     public int getQuantity()
@@ -46,7 +62,7 @@ public class PizzaRecipe
 
     public int getFlourInGrammes()
     {
-        return (int) (700 / 4 * quantity);
+        return (int) (700.0 / 4 * quantity);
     }
 
     public int getWaterInGrammes()
@@ -61,7 +77,7 @@ public class PizzaRecipe
 
     public int getSaltInGrammes()
     {
-        return (20 / 4) * quantity;
+        return (int) (20.0 / 4 * quantity);
     }
 
     public int getHoneyInGrammes()
@@ -71,13 +87,12 @@ public class PizzaRecipe
 
     public int getCanOfTomatoesInNumbers()
     {
-        return (int) Math.ceil(quantity / 4);
+        return (int) Math.ceil(quantity / 4.0);
     }
 
     public int getMozzarellaInGrammes()
     {
         return quantity * 100;
     }
-
 
 }
