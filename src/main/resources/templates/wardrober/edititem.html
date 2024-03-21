@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scrollable Table</title>
+    <link href="../../public/css/wardrober.css" th:href="@{/css/wardrober.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<header>
+    <a href="../index.html" th:href="@{/}">
+        <img alt="logo" src="../../public/images/wardrober/wardrober-high-resolution-logo.png" th:src="@{/images/wardrober/wardrober-high-resolution-logo.png}"/>
+    </a>
+</header>
+
+HEJEJHEJHE
+
+<form class="add-item" method="post">
+
+
+    <input type="text" id="category" name="itemid" th:value="${session.item.categoryId}"/>
+
+    <input type="text" id="brand" name="brand" th:value="${session.item.brand}"/>
+
+    <input type="text" id="description" name="description" th:value="${session.item.description}"/>
+
+    <input type="text" id="color" name="color" th:value="${session.item.color}"/>
+
+    <input type="text" id="size" name="color" th:value="${session.item.size}"/>
+
+    <input type="text" id="price" name="price" th:value="${session.item.price}"/>
+
+    <button  type="submit" name="itemId" th:value="${session.item.itemId}" formaction="/updatetask">Update</button>
+
+</form>
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
