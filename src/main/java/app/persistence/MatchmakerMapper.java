@@ -1,6 +1,7 @@
 package app.persistence;
 
 import app.entities.MatchMakerUser;
+import app.entities.MatchmakerFugitive;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import io.javalin.http.Context;
@@ -9,6 +10,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 
 public class MatchmakerMapper
 {
@@ -122,25 +126,58 @@ public class MatchmakerMapper
         }
     }
 
-    public static String getPhotoURL(int fugitivesId, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "select photo_url from fugitives where fugitives_id";
+    public static String getPhotoURL(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT f.photo_url " +
+                "FROM fugitives f " +
+                "JOIN preference p ON f.haircolor = p.haircolor " +
+                "AND f.eyecolor = p.eyecolor " +
+                "AND f.sex = p.sex " +
+                "WHERE p.user_id = ? " +
+                "ORDER BY f.fugitives_id " +
+                "LIMIT 1";
 
-        try(
-                Connection connection = connectionPool.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql);
-        ) {
-            ps.setInt(1, fugitivesId);
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+
+            ps.setInt(1, userId);
 
             ResultSet rs = ps.executeQuery();
             if (rs.next()) {
                 return rs.getString("photo_url");
             } else {
-                throw new DatabaseException("Fugitive med id " + fugitivesId +" kunne ikke findes");
+                throw new DatabaseException("No matching fugitive found for user " + userId);
             }
-        } catch (SQLException e){
-            String msg = "Fejl ved indhentning af billede";
-            throw new DatabaseException(msg, e.getMessage());
+        } catch (SQLException e) {
+            throw new DatabaseException("Error retrieving photo URL", e.getMessage());
         }
-
     }
+    public static MatchmakerFugitive getphoturlAndFugitives_id(int userId, ConnectionPool connectionPool) throws DatabaseException {
+        String sql = "SELECT f.fugitives_id, f.photo_url FROM preference AS p " +
+                "JOIN matchmaker_user AS mmu ON mmu.user_id = p.user_id " +
+                "JOIN fugitives AS f ON f.haircolor = p.haircolor " +
+                "WHERE p.user_id = ?";
+
+        MatchmakerFugitive fugitive = null;
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, userId);
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+                String photourl = rs.getString("photo_url");
+                int fugitivesId = rs.getInt("fugitives_id");
+                fugitive = new MatchmakerFugitive(fugitivesId, photourl);
+            } else {
+                throw new DatabaseException("No matching fugitive found for the user's preferences");
+            }
+        } catch (SQLException e) {
+            throw new DatabaseException("Error fetching random fugitive ID for user", e.getMessage());
+        }
+        return fugitive;
+    }
+
+
+
+
 }

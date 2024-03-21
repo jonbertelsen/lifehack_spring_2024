@@ -77,4 +77,29 @@ html * {
     .page{
     min-width: 300px;
     }
+
+    .x-button {
+        background-color: #ff3333;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    /* Style for Heart button */
+    .heart-button {
+        background-color: #ff69b4;
+        color: #fff;
+        border: none;
+        padding: 10px 15px;
+        border-radius: 50%;
+        cursor: pointer;
+    }
+
+    /* Style for Heart icon */
+    .heart-icon {
+        font-size: 24px;
+        vertical-align: middle;
+    }
 }
