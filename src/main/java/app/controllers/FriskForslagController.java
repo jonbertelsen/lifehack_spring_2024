@@ -4,12 +4,11 @@ import app.entities.FriskForslagRecipe;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.FriskForslagMapper;
+import app.persistence.FriskForslagWebScraper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class FriskForslagController
 {
@@ -26,10 +25,10 @@ public class FriskForslagController
     }
 
     private static void initDB(ConnectionPool connectionPool) {
-        FriskForslagRecipe rec0 = FriskForslagMapper.ScrapeHTML_OpskrifterDK(
+        FriskForslagRecipe rec0 = FriskForslagWebScraper.ScrapeHTML_OpskrifterDK(
                                 connectionPool,
                                 "https://www.opskrifter.dk/opskrift/108206-jordskokkesuppe-med-ristede-svampe");
-        FriskForslagRecipe rec1 = FriskForslagMapper.ScrapeHTML_OpskrifterDK(
+        FriskForslagRecipe rec1 = FriskForslagWebScraper.ScrapeHTML_OpskrifterDK(
                                 connectionPool,
                                 "https://www.opskrifter.dk/opskrift/110383-lakseroulade-med-rygeost-r%C3%B8dl%C3%B8g-krydderurter");
 
@@ -63,8 +62,17 @@ public class FriskForslagController
                 List<List<Boolean>> indicatorList = new ArrayList<>();
                 for (FriskForslagRecipe rec : filteredRecipes){
                     List<Boolean> matchList = new ArrayList<>();
+                    Boolean matched;
+                    String[] qParamsSplit = qParams.split(" ");
                     for (String ing : rec.Ingredients()){
-                        matchList.add(qParams.toLowerCase().contains(ing.toLowerCase()));
+                        matched = false;
+                        for (String qp : qParamsSplit){
+                            if (ing.toLowerCase().contains(qp.toLowerCase())) {
+                                matched = true;
+                                break;
+                            }
+                        }
+                        matchList.add(matched);
                     }
                     indicatorList.add(matchList);
                 }

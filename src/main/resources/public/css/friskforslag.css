@@ -78,3 +78,12 @@ table td {
         font-weight: lighter;
     }
 }
+
+.recipeImg {
+    display: flex;
+    justify-content: center;
+}
+
+.recipeImgImg {
+    max-width: 600px;
+}
