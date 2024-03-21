@@ -114,6 +114,25 @@ public class GalgeSpil {
         ArrayList<String> emptyList = new ArrayList<>();
         answerList = emptyList;
     }
+    public boolean wordContainsNumber(String word) {
+        boolean containsNumber = false;
+        for (char c : word.toCharArray()) {
+            if (Character.isDigit(c)) {
+                containsNumber = true;
+            }
+        }
+        return containsNumber;
+    }
+    public boolean wordContainsOnlyLetters(String word) {
+        boolean containsOnlyLetters = true;
+        for (char c : word.toCharArray()) {
+            if (Character.isLetter(c)) {
+            }else{
+                containsOnlyLetters = false;
+            }
+        }
+        return containsOnlyLetters;
+    }
 
     public int getStageCount() {
         return stageCount;
@@ -134,6 +153,8 @@ public class GalgeSpil {
     public ArrayList<String> getAnswerList() {
         return answerList;
     }
+
+
 
 }
 

@@ -35,7 +35,10 @@ public class A07Controller {
         //Hent form parameter
         String letter = ctx.formParam("letter");
 
-        char character = letter.charAt(0);
+        try {
+            char character = letter.charAt(0);
+
+
         if(galgeSpil.alreadyInAnswerList(letter)){
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
@@ -69,6 +72,14 @@ public class A07Controller {
             stageSwitch(ctx, galgeSpil.getStageCount());
         }
 
+        } catch (StringIndexOutOfBoundsException e) {
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Du skal huske at skrive noget!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+        }
 
     }
 
@@ -76,21 +87,44 @@ public class A07Controller {
         //Hent form parameter
         String word = ctx.formParam("word");
 
-        if(galgeSpil.alreadyInAnswerList(word)){
+        if(word.equals("")){
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Du skal huske at skrive noget!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+        }
+        else if(galgeSpil.alreadyInAnswerList(word)){
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
             ctx.attribute("answers",answers);
             ctx.attribute("message", "Du må kun gætte på det samme ord en gang!");
             stageSwitch(ctx, galgeSpil.getStageCount());
-        }
-        else {
+        } else if (galgeSpil.wordContainsOnlyLetters(word)) {
             boolean correctWord = galgeSpil.guessWord(word);
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
             ctx.attribute("answers",answers);
             stageRender(ctx, correctWord, galgeSpil);
+
+        } else if (galgeSpil.wordContainsNumber(word)) {
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Dit ord må ikke indeholde tal!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
+
+        } else {
+            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
+            ctx.attribute("shownWord", galgeSpil.getShownWord());
+            ArrayList<String>answers=galgeSpil.getAnswerList();
+            ctx.attribute("answers",answers);
+            ctx.attribute("message", "Dit ord må ikke indeholde mærkelige tegn!");
+            stageSwitch(ctx, galgeSpil.getStageCount());
         }
     }
 
