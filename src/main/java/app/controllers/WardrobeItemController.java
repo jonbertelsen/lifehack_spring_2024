@@ -1,13 +1,16 @@
 package app.controllers;
 
 import app.entities.User;
+import app.entities.WardrobeCategory;
 import app.entities.WardrobeItem;
 import app.persistence.ConnectionPool;
+import app.persistence.WardrobeCategoryMapper;
 import app.persistence.WardrobeItemMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 import java.util.List;
+import java.util.Map;
 
 public class WardrobeItemController {
 
@@ -70,10 +73,6 @@ public class WardrobeItemController {
             int categoryId = currentItem.getCategoryId();
 
             ctx.sessionAttribute("item", currentItem);
-
-            List<WardrobeItem> itemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(),connectionPool);
-
-
             //rendering: fletter html sammen med data, fortolker data
             ctx.render("wardrober/edititem.html");
 
