@@ -31,7 +31,7 @@ public class CalorieCruncherController
         } else if (gender.equals("Female")) {
             bmr = (int) (655.1f + (9.563f * weight) + (1.850f * height) - (4.676f * age));
         }
-
+        ctx.attribute("BMR",bmr);
         if (goal.equals("gain")) {
             bmr += 500;
         }
@@ -41,7 +41,7 @@ public class CalorieCruncherController
 
 
         ctx.attribute("Goal", "Daily calories your body need to " + goal + "!");
-        ctx.attribute("BMR", bmr);
+        ctx.attribute("BMRGoal", bmr);
         ctx.render("/caloriecruncher/cc.html");
     }
 }

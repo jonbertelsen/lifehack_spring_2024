@@ -16,10 +16,10 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1900px;
+    max-width: 2400px;
     padding:8px;
     border: 1px solid silver;
-    min-height: 600px;
+    min-height: 1400px;
 }
 
 
@@ -59,7 +59,6 @@ label {
 div {
     display: flex;
     align-items: center;
-    margin-bottom: 20px;
 }
 
 @keyframes appear {
@@ -139,8 +138,9 @@ div {
     height: 30px
 }
 
-#result{
-    font-size: 5.5rem;
+.result{
+    font-size: 60px;
+
 }
 
 #table td {
