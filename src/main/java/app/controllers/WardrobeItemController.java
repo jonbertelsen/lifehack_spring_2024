@@ -1,55 +1,78 @@
 package app.controllers;
 
-import app.entities.WardrobeCategory;
+import app.entities.User;
 import app.entities.WardrobeItem;
 import app.persistence.ConnectionPool;
-import app.persistence.WardrobeCategoryMapper;
 import app.persistence.WardrobeItemMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-import java.math.BigDecimal;
 import java.util.List;
-import java.util.Map;
 
 public class WardrobeItemController {
 
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
-        app.get("/wardrober", ctx -> ctx.render("wardrober/index.html"));
-        app.post("deleteitem", ctx -> removeItem(ctx, connectionPool));
-        app.post("edititem", ctx -> updateItem(ctx, connectionPool));
+        app.get("/wardrober", ctx -> viewWardrobe(ctx, connectionPool));
+        app.post("/deleteitem", ctx -> deleteItem(ctx, connectionPool));
+        app.post("/edititem", ctx -> editItem(ctx, connectionPool));
     }
 
-    private static void removeItem(Context ctx, ConnectionPool connectionPool) {
-
-        int itemId = Integer.parseInt(ctx.formParam("item_id"));
-
-        WardrobeItemMapper.deleteItem(itemId,connectionPool);
-
-        List<WardrobeItem> itemList = WardrobeItemMapper.getAllItems(connectionPool);
-
-        ctx.attribute("itemList",itemList);
-
-        ctx.render("index.html");
+    private static void viewWardrobe(Context ctx, ConnectionPool connectionPool) {
+        User user = ctx.sessionAttribute("currentUser");
+        List<WardrobeItem> wardrobeItemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(), connectionPool);
+        ctx.attribute("itemList", wardrobeItemList);
+        ctx.render("wardrober/index.html");
     }
 
-    public static void updateItem(Context ctx, ConnectionPool connectionPool ){
+    private static void deleteItem(Context ctx, ConnectionPool connectionPool) {
 
-        //trækker ud af web-formularen
-        String brand = ctx.formParam("brand");
-        String description = ctx.formParam("description");
-        String color = ctx.formParam("color");
-        String size = ctx.formParam("size");
-        int price = Integer.parseInt(ctx.formParam("price"));
-        int categoryId = Integer.parseInt(ctx.formParam("category"));
+        User user = ctx.sessionAttribute("currentUser");
 
-        WardrobeItemMapper.createItem(brand,description,price,categoryId,color,size,connectionPool);
+        try {
+            int itemId = Integer.parseInt(ctx.formParam("itemId"));
+            WardrobeItemMapper.delete(itemId,connectionPool);
+            List<WardrobeItem> itemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(),connectionPool);
+            ctx.sessionAttribute("itemList",itemList);
+            // TODO: Change the above to maybe just attribute
+            ctx.render("wardrober/index.html");
 
-        List<WardrobeItem> itemList = WardrobeItemMapper.getAllItems(connectionPool);
 
-        ctx.attribute("itemList",itemList);
-        //rendering: fletter html sammen med data, fortolker data
-        ctx.render("index.html");
+        } catch (NumberFormatException e){
+
+            ctx.attribute("message", e.getMessage());
+            ctx.render("wardrober/index.html");
+
+        }
+    }
+
+    public static void editItem(Context ctx, ConnectionPool connectionPool ){
+
+        User user = ctx.sessionAttribute("currentUser");
+
+        try {
+            //trækker ud af web-formularen
+            String brand = ctx.formParam("brand");
+            String description = ctx.formParam("description");
+            String color = ctx.formParam("color");
+            String size = ctx.formParam("size");
+            int price = Integer.parseInt(ctx.formParam("price"));
+            int categoryId = Integer.parseInt(ctx.formParam("category"));
+
+            WardrobeItemMapper.createItem(brand,description,price,categoryId,color,size,connectionPool);
+
+            List<WardrobeItem> itemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(),connectionPool);
+
+            ctx.attribute("itemList",itemList);
+            //rendering: fletter html sammen med data, fortolker data
+            ctx.render("wardrober/index.html");
+        } catch (NumberFormatException e){
+
+            ctx.attribute("message", e.getMessage());
+            ctx.render("wardrober/index.html");
+
+        }
+
+
     }
 }
