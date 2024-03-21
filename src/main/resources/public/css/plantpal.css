@@ -1,115 +1,75 @@
-body{
-    border: 1px solid red;
+/* Yoda-themed Styles */
 
-
-}
-header{
-  display: flex;
-    justify-content: start;
-    margin-right: 92%;
-
-}
-
-header a img{
-    width: 80px;
-}
-.page{
+body.yoda-theme {
+    background-color: #2e2e2e; /* Dark Side of the Force */
+    color: #d4d4d4; /* Yoda's Wisdom */
     display: flex;
     justify-content: center;
     align-items: center;
+    height: 100vh;
+}
+
+.page {
+    display: flex;
     flex-direction: column;
-
-
-
+    align-items: center;
 }
 
-.titel1{
-    color: #5b9f5b;
-}
-
-                            /*******************Vand tabel style *********************/
-.vand-table button{
-    color: white;
-    background-color: #5b9f5b;
-    margin-left: 10px;
-    border-radius: 7px;
-    border-color: #000000;
-}
-
-.vand-table button:hover{
-    background-color: #6dde6d;
-    cursor: pointer;
-}
-
-.vand-table .buttons{
-    white-space: nowrap;
-}
-
-
-.vand-table{
-    border-collapse: collapse;
-    border: 1px solid #8c8c8c;
-    border-radius: 7px;
-    font-size: 1.2rem;
-    max-width: 400px;
-    min-width: 400px;
-}
-.vand-table td, .vand-table th{
-
-    border: 1px solid #858585;
-    padding: 10px;
-    margin-top: 20px;
+header {
+    width: 100%; /* Make the image responsive to its container */
+    height: auto;
     margin-bottom: 20px;
 }
 
-.logout{
-    margin-top: 10%;
+header a img {
+    width: 80px;
 }
 
-
-                            /*******************Create plante tabel style *********************/
-
-.create-plant{
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    padding-bottom: 10px;
-    font-size: 1.2rem;
-    max-width: 400px;
-    min-width: 400px;
-
-
+h1,
+h2,
+p {
+    font-family: 'Roboto', sans-serif; /* The Force Strong, This Font Is */
+    text-align: center;
 }
 
-.create-plant button{
-    color: white;
-    background-color: #5b9f5b;
+h1 {
+    color: #8fff7f; /* Green, the Force Is */
+    font-size: 2.5rem; /* Size Matters Not, But Yoda's Wisdom Does */
+    margin-bottom: 20px;
+}
+
+.vand-table th {
+    color: #8fff7f; /* Green, the Color Is */
+}
+
+.vand-table button,
+.create-plant button,
+.link {
+    background-color: #8fff7f; /* Green, the Button Is */
+    color: #2e2e2e; /* Text Color, Dark Like the Force */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
     margin-top: 10px;
-    border-radius: 7px;
-    border-color: #000000;
-
-    width: 100px;
-}
-
-.create-plant button:hover{
-    background-color: #6dde6d;
     cursor: pointer;
+    font-family: 'Arial', sans-serif; /* Standard Font, This Is */
+    font-weight: bold; /* Strong, the Text Should Be */
 }
 
-.create-plant input[type=text]{
+.vand-table button:hover,
+.create-plant button:hover,
+.link:hover {
+    background-color: #6dde6d; /* Hover Color, Green Like Yoda */
+}
+
+.create-plant input[type=text] {
     width: 200px;
     padding: 10px;
     margin: 2px;
-
+    border: 1px solid #8fff7f; /* Border, Keep It Must */
+    border-radius: 5px;
 }
 
-.link{
-    border: 1.5px solid black;
-    border-radius: 7px;
-    color: white;
-    text-decoration: none;
-    padding: 2px;
-    background-color: #5b9f5b;
-
+.logout {
+    margin-top: auto; /* Push to Bottom, It Will */
 }
-
