@@ -7,6 +7,7 @@ import app.persistence.FriskForslagMapper;
 import app.persistence.FriskForslagWebScraper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,25 +20,28 @@ public class FriskForslagController
         app.get("/friskforslag/search", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/search.html", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/recipes/*", ctx -> findRecipe(ctx, connectionPool));
-        // TODO: add favico handler
-        // TODO: init database with some webscrape?
-        initDB(connectionPool);
+        // TODO: change this variable int to increase or decrease number of recipes in database
+        initDB(connectionPool, 200);
     }
 
-    private static void initDB(ConnectionPool connectionPool) {
-        FriskForslagRecipe rec0 = FriskForslagWebScraper.ScrapeHTML_OpskrifterDK(
-                                connectionPool,
-                                "https://www.opskrifter.dk/opskrift/108206-jordskokkesuppe-med-ristede-svampe");
-        FriskForslagRecipe rec1 = FriskForslagWebScraper.ScrapeHTML_OpskrifterDK(
-                                connectionPool,
-                                "https://www.opskrifter.dk/opskrift/110383-lakseroulade-med-rygeost-r%C3%B8dl%C3%B8g-krydderurter");
-
+    private static void initDB(ConnectionPool connectionPool, int minWantedRecipesInDatabase)
+    {
         try {
-            FriskForslagMapper.InsertRecipe(connectionPool, rec0);
-            FriskForslagMapper.InsertRecipe(connectionPool, rec1);
+            int dbSize = FriskForslagMapper.GetNumOfRecipesInDatabase(connectionPool);
+            if (dbSize < minWantedRecipesInDatabase) {
+                FriskForslagWebScraper.crawlRecipeListsOpskrifterDK(connectionPool, minWantedRecipesInDatabase / 10);
+            } else {
+                System.err.println(System.lineSeparator().repeat(2)
+                        + "\t>>>"
+                        + "Did not scrape recipes -- "
+                        + "number of recipes stored exceed the minimum requested\t(Requested: "
+                        + minWantedRecipesInDatabase
+                        + " / Actual: "
+                        + dbSize
+                        + ")");
+            }
         } catch (DatabaseException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.err.print("");
         }
     }
 
@@ -60,13 +64,13 @@ public class FriskForslagController
 
                 // indicator list for matching ingredients
                 List<List<Boolean>> indicatorList = new ArrayList<>();
-                for (FriskForslagRecipe rec : filteredRecipes){
+                for (FriskForslagRecipe rec : filteredRecipes) {
                     List<Boolean> matchList = new ArrayList<>();
                     Boolean matched;
                     String[] qParamsSplit = qParams.split(" ");
-                    for (String ing : rec.Ingredients()){
+                    for (String ing : rec.Ingredients()) {
                         matched = false;
-                        for (String qp : qParamsSplit){
+                        for (String qp : qParamsSplit) {
                             if (ing.toLowerCase().contains(qp.toLowerCase())) {
                                 matched = true;
                                 break;
@@ -80,8 +84,7 @@ public class FriskForslagController
                 ctx.attribute("filteredRecipes", filteredRecipes);
                 ctx.attribute("indicatorList", indicatorList);
 
-            }
-            catch (DatabaseException e) {
+            } catch (DatabaseException e) {
                 ctx.attribute("message", "fejl i søgning af database");
             }
 
@@ -89,7 +92,8 @@ public class FriskForslagController
         ctx.render("/friskforslag/search.html");
     }
 
-    private static void findRecipe(Context ctx, ConnectionPool connectionPool){
+    private static void findRecipe(Context ctx, ConnectionPool connectionPool)
+    {
         String reqRecipe = ctx.path().substring(ctx.path().lastIndexOf('/') + 1);
 
         // TODO: hardcoded string saves :)
