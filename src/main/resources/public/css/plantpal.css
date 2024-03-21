@@ -1,0 +1,115 @@
+body{
+    border: 1px solid red;
+
+
+}
+header{
+  display: flex;
+    justify-content: start;
+    margin-right: 92%;
+
+}
+
+header a img{
+    width: 80px;
+}
+.page{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+
+
+}
+
+.titel1{
+    color: #5b9f5b;
+}
+
+                            /*******************Vand tabel style *********************/
+.vand-table button{
+    color: white;
+    background-color: #5b9f5b;
+    margin-left: 10px;
+    border-radius: 7px;
+    border-color: #000000;
+}
+
+.vand-table button:hover{
+    background-color: #6dde6d;
+    cursor: pointer;
+}
+
+.vand-table .buttons{
+    white-space: nowrap;
+}
+
+
+.vand-table{
+    border-collapse: collapse;
+    border: 1px solid #8c8c8c;
+    border-radius: 7px;
+    font-size: 1.2rem;
+    max-width: 400px;
+    min-width: 400px;
+}
+.vand-table td, .vand-table th{
+
+    border: 1px solid #858585;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.logout{
+    margin-top: 10%;
+}
+
+
+                            /*******************Create plante tabel style *********************/
+
+.create-plant{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-bottom: 10px;
+    font-size: 1.2rem;
+    max-width: 400px;
+    min-width: 400px;
+
+
+}
+
+.create-plant button{
+    color: white;
+    background-color: #5b9f5b;
+    margin-top: 10px;
+    border-radius: 7px;
+    border-color: #000000;
+
+    width: 100px;
+}
+
+.create-plant button:hover{
+    background-color: #6dde6d;
+    cursor: pointer;
+}
+
+.create-plant input[type=text]{
+    width: 200px;
+    padding: 10px;
+    margin: 2px;
+
+}
+
+.link{
+    border: 1.5px solid black;
+    border-radius: 7px;
+    color: white;
+    text-decoration: none;
+    padding: 2px;
+    background-color: #5b9f5b;
+
+}
+

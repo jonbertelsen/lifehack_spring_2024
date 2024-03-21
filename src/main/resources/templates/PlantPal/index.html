@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Plantpal</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/plantpal.css" th:href="@{/css/plantpal.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/PlantPal-logo.png" th:src="@{/images/PlantPal-logo.png}"/>
+        </a>
+    </header>
+
+    <h1>Plant pal</h1>
+    <h2 class="titel1">Welcome <span th:text="${session.currentUser.username}"></span></h2>
+
+    <p>Make your splash page here</p>
+
+    <form method="post">
+        <table class="vand-table">
+            <thead>
+            <tr>
+                <th>Plante</th>
+                <th>Dato</th>
+                <th>Placering</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="plante: ${planteList}">
+
+                <td th:text="${plante.navn}"></td>
+                <td th:text="${plante.dato}"></td>
+                <td th:text="${plante.placering}"></td>
+
+                <td>
+                    <div class="buttons">
+                        <button type="submit" name="planteId" th:value="${plante.planteId}"  formaction="/PlantPal/vand">Vand
+                        </button>
+                        <input type="hidden" name="vandTidId" th:value="${plante.vandTidId}" />
+                        <button type="submit" formaction="deleteplante">Delete
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </form>
+    <p ><a class="link" href="createplant.html" th:href="@{/createplant}">Tilføj plante</a></p>
+    <div class="logout">
+        <p th:if="${session.currentUser != null}">
+            <span th:text="${session.currentUser.username}"></span> |
+            <a href="index.html" th:href="@{/logout}">Logout</a>
+        </p>
+    </div>
+
+</div>
+</body>
+</html>

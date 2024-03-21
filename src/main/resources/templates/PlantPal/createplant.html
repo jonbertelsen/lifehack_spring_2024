@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Login</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/plantpal.css" th:href="@{/css/plantpal.css}" rel="stylesheet"/>
+</head>
+
+
+<body>
+<div class="page">
+    <header>
+        <a href="index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/PlantPal-logo.png" th:src="@{/images/PlantPal-logo.png}"/>
+        </a>
+    </header>
+
+    <form class="create-plant" method="post">
+
+        <input type="text" name="plantenavn" placeholder="Tilføj plante navn"/>
+        <input type="text" name="placering" placeholder="Tilføj placering"/>
+        <button type="submit" formaction="/createplant">Create plant</button>
+
+
+    </form>
+    <div th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.username}"></span> |
+        <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
+    </div>
+
+
+</div>
+</body>
+
+
+</html>
