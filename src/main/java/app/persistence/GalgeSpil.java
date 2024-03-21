@@ -84,6 +84,18 @@ public class GalgeSpil {
             return false;
         }
     }
+
+    public boolean guessWord(String word){
+        if(correctAnswer.equals(word.toUpperCase())) {
+            shownWord=correctAnswer;
+            answerList.add(word.toUpperCase());
+            return true;
+        } else{
+            answerList.add(word.toUpperCase());
+            return false;
+        }
+    }
+
     public boolean alreadyInAnswerList(String letter) {
         if (answerList.contains(letter.toUpperCase())) {
             return true;
