@@ -60,15 +60,7 @@ public class A07Controller {
             ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke tal!");
             stageSwitch(ctx, galgeSpil.getStageCount());
 
-        }else if(galgeSpil.alreadyInAnswerList(letter)){
-            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
-            ctx.attribute("shownWord", galgeSpil.getShownWord());
-            ArrayList<String>answers=galgeSpil.getAnswerList();
-            ctx.attribute("answers",answers);
-            ctx.attribute("message", "Du må kun gætte på det samme bogstav en gang!");
-            stageSwitch(ctx, galgeSpil.getStageCount());
-        }
-        else {
+        } else {
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
@@ -84,46 +76,21 @@ public class A07Controller {
         //Hent form parameter
         String word = ctx.formParam("word");
 
-        char character = letter.charAt(0);
-        if(galgeSpil.alreadyInAnswerList(letter)){
+        if(galgeSpil.alreadyInAnswerList(word)){
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
             ctx.attribute("answers",answers);
-            ctx.attribute("message", "Du må kun gætte på det samme bogstav en gang!");
-            stageSwitch(ctx, galgeSpil.getStageCount());
-        }
-        else if (Character.isLetter(character)) {
-            boolean correctLetter = galgeSpil.guessLetter(letter);
-            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
-            ctx.attribute("shownWord", galgeSpil.getShownWord());
-            ArrayList<String>answers=galgeSpil.getAnswerList();
-            ctx.attribute("answers",answers);
-            stageRender(ctx, correctLetter, galgeSpil);
-
-        } else if (Character.isDigit(character)) {
-            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
-            ctx.attribute("shownWord", galgeSpil.getShownWord());
-            ArrayList<String>answers=galgeSpil.getAnswerList();
-            ctx.attribute("answers",answers);
-            ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke tal!");
-            stageSwitch(ctx, galgeSpil.getStageCount());
-
-        }else if(galgeSpil.alreadyInAnswerList(letter)){
-            ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
-            ctx.attribute("shownWord", galgeSpil.getShownWord());
-            ArrayList<String>answers=galgeSpil.getAnswerList();
-            ctx.attribute("answers",answers);
-            ctx.attribute("message", "Du må kun gætte på det samme bogstav en gang!");
+            ctx.attribute("message", "Du må kun gætte på det samme ord en gang!");
             stageSwitch(ctx, galgeSpil.getStageCount());
         }
         else {
+            boolean correctWord = galgeSpil.guessWord(word);
             ctx.attribute("correctAnswer", galgeSpil.getCorrectAnswer());
             ctx.attribute("shownWord", galgeSpil.getShownWord());
             ArrayList<String>answers=galgeSpil.getAnswerList();
             ctx.attribute("answers",answers);
-            ctx.attribute("message", "Du må kun gætte på bogstaver! Ikke mærkelige tegn!");
-            stageSwitch(ctx, galgeSpil.getStageCount());
+            stageRender(ctx, correctWord, galgeSpil);
         }
     }
 
