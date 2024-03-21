@@ -14,26 +14,30 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * homemade webscrape methods tailored for Opskrifter.dk
+ * homemade webscrape methods tailored for Opskrifter.dk (may or may not work)
  */
 public class FriskForslagWebScraper
 {
     /**
      * Crawl and scrape recipes from Opskrifter.dk
      * @param cp
-     * @param nPages
+     * @param nRecipes
      */
-    public static void crawlRecipeListsOpskrifterDK(ConnectionPool cp, int nPages)
+    public static void crawlRecipeListsOpskrifterDK(ConnectionPool cp, int nRecipes)
     {
-        for (int i = 1; i < nPages; ++i) {
+        int i = 0;
+        while (true) {
             String url = "https://www.opskrifter.dk/sog?query=%25&page=" + i;
             String html = fetchHTML(url);
             if (html.isEmpty())
                 break;
             List<String> recipeURLs = scrapeRecipeURLs(html);
             for (String recipeURL : recipeURLs) {
+                if (i >= nRecipes)
+                    return;
                 try {
-                    System.err.println("Adding " + recipeURL + " to the database");
+                    System.err.println("Adding " + recipeURL + " to the database ("
+                    + ++i + "/" + nRecipes + ")");
                     FriskForslagMapper.InsertRecipe(cp, ScrapeHTML_OpskrifterDK(recipeURL));
                 } catch (DatabaseException e) {
                     System.err.print("");

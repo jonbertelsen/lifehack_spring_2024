@@ -24,19 +24,21 @@ public class FriskForslagController
         initDB(connectionPool, 200);
     }
 
-    private static void initDB(ConnectionPool connectionPool, int minWantedRecipesInDatabase)
+    private static void initDB(ConnectionPool connectionPool, int minRecsInDB)
     {
         try {
             int dbSize = FriskForslagMapper.GetNumOfRecipesInDatabase(connectionPool);
-            if (dbSize < minWantedRecipesInDatabase) {
-                FriskForslagWebScraper.crawlRecipeListsOpskrifterDK(connectionPool, minWantedRecipesInDatabase / 10);
+            if (dbSize < minRecsInDB) {
+                FriskForslagWebScraper.crawlRecipeListsOpskrifterDK(connectionPool, minRecsInDB);
             } else {
                 System.err.println(System.lineSeparator().repeat(2)
-                        + "\t>>>"
+                        + "FriskForslag error logging:"
+                        + System.lineSeparator().repeat(1)
+                        + "\t>>> "
                         + "Did not scrape recipes -- "
-                        + "number of recipes stored exceed the minimum requested\t(Requested: "
-                        + minWantedRecipesInDatabase
-                        + " / Actual: "
+                        + "number of recipes stored exceed the minimum requested\t(requested: "
+                        + minRecsInDB
+                        + " | database size: "
                         + dbSize
                         + ")");
             }

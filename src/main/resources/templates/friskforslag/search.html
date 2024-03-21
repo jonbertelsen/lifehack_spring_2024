@@ -19,18 +19,15 @@
                  th:src="@{/images/lifehacklogo.png}"/>
         </a>
         <a class="friskforslagTitleImageLink" href="../friskforslag/index.html" th:href="@{/friskforslag}">
-            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogo.jpg"
-                 th:src="@{/images/friskforslag/friskforslaglogo.jpg}" />
+            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogowtext.jpg"
+                 th:src="@{/images/friskforslag/friskforslaglogowtext.jpg}" />
         </a>
     </header>
 
-    <h1>Frisk Forslag</h1>
-
-    <p class="searchParamsTitle" th:if="${searchParams != null}">
+    <div class="searchParamsTitle" th:if="${searchParams != null}">
         <span>Søgning:</span>
         <span class="searchParamsDisplay" th:text="${searchParams}"> </span>
-    </p>
-    <p>Resultater:</p>
+    </div>
 
     <div th:if="${filteredRecipes != null && !filteredRecipes.isEmpty()}"
          class="searchResults">
@@ -39,7 +36,7 @@
             <tr>
                 <th>Opskrift</th>
                 <th>Ingredienser</th>
-                <th>Kilde</th>
+                <th>Ophavsret</th>
                 <th>Link</th>
             </tr>
             </thead>
@@ -58,7 +55,7 @@
                     </ul>
                 </td>
                 <td>
-                    <span th:if="${rec.Src() != null && !rec.Src().isEmpty()}" th:text="${rec.Src()}"></span>
+                    <span th:if="${rec.Src() != null && !rec.Src().isEmpty()}" th:text="${rec.Author()}"></span>
                 </td>
                 <td>
                     <a th:href="'/friskforslag/recipes/' + ${rec.Name()}">
