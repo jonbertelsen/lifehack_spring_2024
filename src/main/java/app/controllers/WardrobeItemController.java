@@ -1,13 +1,16 @@
 package app.controllers;
 
 import app.entities.User;
+import app.entities.WardrobeCategory;
 import app.entities.WardrobeItem;
 import app.persistence.ConnectionPool;
+import app.persistence.WardrobeCategoryMapper;
 import app.persistence.WardrobeItemMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 import java.util.List;
+import java.util.Map;
 
 public class WardrobeItemController {
 
@@ -16,11 +19,14 @@ public class WardrobeItemController {
         app.get("/wardrober", ctx -> viewWardrobe(ctx, connectionPool));
         app.post("/deleteitem", ctx -> deleteItem(ctx, connectionPool));
         app.post("/edititem", ctx -> editItem(ctx, connectionPool));
+        app.get("/wardroberedit", ctx -> WardrobeCategoryController.viewCategory(ctx,connectionPool));
     }
 
     private static void viewWardrobe(Context ctx, ConnectionPool connectionPool) {
         User user = ctx.sessionAttribute("currentUser");
         List<WardrobeItem> wardrobeItemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(), connectionPool);
+        Map<Integer, WardrobeCategory> wardrobeCategoryMap = WardrobeCategoryMapper.getAllCategories(connectionPool);
+        ctx.sessionAttribute("categoryMap", wardrobeCategoryMap);
         ctx.attribute("itemList", wardrobeItemList);
         ctx.render("wardrober/index.html");
     }
