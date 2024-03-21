@@ -9,19 +9,20 @@ import io.javalin.Javalin;
 import io.javalin.http.Context;
 
 import java.io.*;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.List;
 
 public class MatchmakerController {
+
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
         app.get("/frontpage", ctx -> index(ctx, connectionPool));
         app.post("/loginn", ctx -> login(ctx, connectionPool));
         app.post("/createuserpage", ctx -> ctx.render("/matchmaker/matchmakercreateuser.html"));
         app.post("/signup", ctx -> createUser(ctx, connectionPool));
-        app.post("swipefordislike",ctx-> ctx.render("/matchmaker/swipe.html"));
-        app.post("swipeforlike",ctx-> ctx.render("/matchmaker/swipe.html"));
+        app.post("swipefordislike",ctx-> showFugitivePhoto(ctx,connectionPool));
+        app.post("swipeforlike",ctx-> showFugitivePhoto(ctx,connectionPool));
         //app.post("/swipe.html", ctx -> likeFugitive(ctx, connectionPool));
       //  app.post("/swipepage", ctx -> showFugitivePhoto(ctx, connectionPool));
     }
@@ -49,6 +50,7 @@ public class MatchmakerController {
             // If user is authenticated, set user details in session
             if (user != null) {
                 ctx.sessionAttribute("currentUser", user);
+                ctx.sessionAttribute("count", -1);
                 ctx.attribute("message", "Du er nu logget ind");
                 ctx.render("matchmaker/swipe.html");
                 showFugitivePhoto(ctx,connectionPool);
@@ -114,23 +116,12 @@ public class MatchmakerController {
 
     }
 
-    private static void likeFugitive(Context ctx, ConnectionPool connectionPool){
-        int userId = ctx.sessionAttribute("currentUser");
-        int fugitiveId = Integer.parseInt(ctx.formParam("fk_fugitive"));
-
-        try{
-            MatchmakerMapper.likeFugitive(userId, fugitiveId, connectionPool);
-            ctx.attribute("Fugitive liked");
-            ctx.render("/swipe.html");
-        } catch (DatabaseException e){
-            ctx.attribute("Fejl vel liket, prøv igen", e.getMessage());
-            ctx.render("/swipe.html");
-        }
-
-    }
 
     private static void showFugitivePhoto(Context ctx, ConnectionPool connectionPool) {
         MatchMakerUser currentUser = ctx.sessionAttribute("currentUser");
+
+        int currentCount = ctx.sessionAttribute("count");
+        ctx.sessionAttribute("count", currentCount+1);
 
         if (currentUser == null) {
             ctx.html("Error: User not logged in");
@@ -138,12 +129,22 @@ public class MatchmakerController {
         }
 
         try {
+            int count = ctx.sessionAttribute("count");
+
             int userId = currentUser.getUserId();
-            MatchmakerFugitive photurl=MatchmakerMapper.getphoturlAndFugitives_id(userId,connectionPool);
+            List<MatchmakerFugitive> photurl=MatchmakerMapper.getphoturlAndFugitives_id(userId,connectionPool);
 
-            String  photourl= photurl.getUrl();
+            System.out.println(count);
 
-            saveImage(photourl);
+
+            String photoLink = photurl.get(count).getUrl();
+            System.out.println(photoLink);
+            saveImage(photoLink);
+
+
+
+            ctx.render("/matchmaker/swipe.html");
+
 
 
         } catch (DatabaseException | IOException e) {
@@ -167,6 +168,7 @@ public class MatchmakerController {
 
                 while ((length = inputStream.read(buffer)) != -1) {
                     outputStream.write(buffer, 0, length);
+
                 }
 
                 outputStream.close();

@@ -151,30 +151,31 @@ public class MatchmakerMapper
             throw new DatabaseException("Error retrieving photo URL", e.getMessage());
         }
     }
-    public static MatchmakerFugitive getphoturlAndFugitives_id(int userId, ConnectionPool connectionPool) throws DatabaseException {
+    public static List<MatchmakerFugitive> getphoturlAndFugitives_id(int userId, ConnectionPool connectionPool) throws DatabaseException {
         String sql = "SELECT f.fugitives_id, f.photo_url FROM preference AS p " +
                 "JOIN matchmaker_user AS mmu ON mmu.user_id = p.user_id " +
-                "JOIN fugitives AS f ON f.haircolor = p.haircolor " +
+                "JOIN fugitives AS f ON f.sex = p.sex " +
                 "WHERE p.user_id = ?";
 
         MatchmakerFugitive fugitive = null;
+        List<MatchmakerFugitive> list=new ArrayList<>();
 
         try (Connection connection = connectionPool.getConnection();
              PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, userId);
             ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
+            while (rs.next()) {
                 String photourl = rs.getString("photo_url");
                 int fugitivesId = rs.getInt("fugitives_id");
+
                 fugitive = new MatchmakerFugitive(fugitivesId, photourl);
-            } else {
-                throw new DatabaseException("No matching fugitive found for the user's preferences");
+                list.add(fugitive);
             }
+
         } catch (SQLException e) {
             throw new DatabaseException("Error fetching random fugitive ID for user", e.getMessage());
         }
-        return fugitive;
+        return list;
     }
 
 
