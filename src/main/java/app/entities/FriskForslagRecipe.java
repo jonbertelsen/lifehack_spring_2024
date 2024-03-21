@@ -1,7 +1,5 @@
 package app.entities;
 
-import java.math.BigInteger;
-
 public record FriskForslagRecipe(int Id,
                                  String Name,
                                  String Descr,
@@ -9,5 +7,7 @@ public record FriskForslagRecipe(int Id,
                                  String[] Ingredients,
                                  Long[] Quantities,
                                  String[] Units,
-                                 String Src) {
+                                 String Src,
+                                 String Author,
+                                 String Img) {
 }

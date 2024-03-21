@@ -6,11 +6,10 @@ import app.persistence.ConnectionPool;
 import app.persistence.FriskForslagMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
-
-import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FriskForslagController
 {
@@ -22,6 +21,25 @@ public class FriskForslagController
         app.get("/friskforslag/search.html", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/recipes/*", ctx -> findRecipe(ctx, connectionPool));
         // TODO: add favico handler
+        // TODO: init database with some webscrape?
+        initDB(connectionPool);
+    }
+
+    private static void initDB(ConnectionPool connectionPool) {
+        FriskForslagRecipe rec0 = FriskForslagMapper.ScrapeHTML_OpskrifterDK(
+                                connectionPool,
+                                "https://www.opskrifter.dk/opskrift/108206-jordskokkesuppe-med-ristede-svampe");
+        FriskForslagRecipe rec1 = FriskForslagMapper.ScrapeHTML_OpskrifterDK(
+                                connectionPool,
+                                "https://www.opskrifter.dk/opskrift/110383-lakseroulade-med-rygeost-r%C3%B8dl%C3%B8g-krydderurter");
+
+        try {
+            FriskForslagMapper.InsertRecipe(connectionPool, rec0);
+            FriskForslagMapper.InsertRecipe(connectionPool, rec1);
+        } catch (DatabaseException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool)
@@ -46,7 +64,7 @@ public class FriskForslagController
                 for (FriskForslagRecipe rec : filteredRecipes){
                     List<Boolean> matchList = new ArrayList<>();
                     for (String ing : rec.Ingredients()){
-                        matchList.add(qParams.contains(ing));
+                        matchList.add(qParams.toLowerCase().contains(ing.toLowerCase()));
                     }
                     indicatorList.add(matchList);
                 }
@@ -64,14 +82,13 @@ public class FriskForslagController
     }
 
     private static void findRecipe(Context ctx, ConnectionPool connectionPool){
-        System.out.println("FIND RECIPE : " + ctx.path());
         String reqRecipe = ctx.path().substring(ctx.path().lastIndexOf('/') + 1);
 
-        // hardcoded string saves :)
+        // TODO: hardcoded string saves :)
         reqRecipe = reqRecipe.replace("%20", " ");
         reqRecipe = reqRecipe.replace("%C3%A6", "æ");
-
-        System.out.println("REQUESTED RECIPE : " + reqRecipe);
+        reqRecipe = reqRecipe.replace("%C3%B8", "ø");
+        reqRecipe = reqRecipe.replace("%C3%A5", "å");
 
         FriskForslagRecipe fetchedRecipe = null;
         try {
@@ -80,7 +97,6 @@ public class FriskForslagController
         } catch (DatabaseException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("REQUESTED RECIPE : " + fetchedRecipe);
         ctx.render("/friskforslag/recipe.html");
     }
 }
