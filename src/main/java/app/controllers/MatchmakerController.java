@@ -1,11 +1,9 @@
 package app.controllers;
 
 import app.entities.MatchMakerUser;
-import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.MatchmakerMapper;
-import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
@@ -69,10 +67,10 @@ public class MatchmakerController {
         {
             try
             {
-                MatchmakerMapper.createuser(username, password1,firstName,lastName,age,gender, connectionPool);
+                int userid=MatchmakerMapper.createuser(username, password1,firstName,lastName,age,gender, connectionPool);
                 ctx.attribute("message", "Du er hermed oprettet med brugernavn: " + username +
                         ". Nu skal du logge på.");
-                createPreference(ctx,connectionPool);
+                createPreference(ctx,connectionPool,userid);
                 ctx.render("/matchmaker/index.html");
             }
 
@@ -88,21 +86,20 @@ public class MatchmakerController {
         }
 
     }
-    private static void createPreference(Context ctx, ConnectionPool connectionPool){
+    private static void createPreference(Context ctx, ConnectionPool connectionPool, int userid){
         String hairColor = ctx.formParam("haircolor");
         String eyeColor = ctx.formParam("eyecolor");
         String sex = ctx.formParam("sex");
-        String race = ctx.formParam("race");
 
         try {
 
-            MatchmakerMapper.createPreference(hairColor, eyeColor, sex, race, connectionPool);
+            MatchmakerMapper.createPreference(userid,hairColor, eyeColor, sex,connectionPool);
             ctx.render("createuser.html");
         }catch (DatabaseException e){
             ctx.render("index.html");
         }
 
-        System.out.println("hej");
+
     }
 
 

@@ -41,51 +41,50 @@ public class MatchmakerMapper
         }
     }
 
-    public static void createuser(String userName, String userPassword,String firstName,String lastName,int age, String gender, ConnectionPool connectionPool) throws DatabaseException
-    {
-        String sql = "INSERT INTO public.matchmaker_user(username,firstname,lastname, age, gender,userpassword) VALUES ( ?, ?, ?, ?, ?, ?)";
+    public static int createuser(String userName, String userPassword, String firstName, String lastName, int age, String gender, ConnectionPool connectionPool) throws DatabaseException {
+        int userId = -1; // Default value if user ID retrieval fails
 
-        try (
-                Connection connection = connectionPool.getConnection();
-                PreparedStatement ps = connection.prepareStatement(sql)
-        )
-        {
+        String sql = "INSERT INTO public.matchmaker_user(username, firstname, lastname, age, gender, userpassword) VALUES (?, ?, ?, ?, ?, ?) RETURNING user_id";
+
+        try (Connection connection = connectionPool.getConnection();
+             PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, userName);
-            ps.setString(2,firstName);
-            ps.setString(3,lastName);
-            ps.setInt(4,age);
-            ps.setString(5,gender);
-            ps.setString(6,userPassword);
+            ps.setString(2, firstName);
+            ps.setString(3, lastName);
+            ps.setInt(4, age);
+            ps.setString(5, gender);
+            ps.setString(6, userPassword);
 
-            int rowsAffected = ps.executeUpdate();
-            if (rowsAffected != 1)
-            {
-                throw new DatabaseException("Fejl ved oprettelse af ny bruger");
+            ResultSet rs = ps.executeQuery();
+            if (rs.next()) {
+                userId = rs.getInt("user_id");
+            } else {
+                throw new DatabaseException("Kunne ikke få genereret bruger-ID efter oprettelse.");
             }
-        }
-        catch (SQLException e)
-        {
+        } catch (SQLException e) {
             String msg = "Der er sket en fejl. Prøv igen";
-            if (e.getMessage().startsWith("ERROR: duplicate key value "))
-            {
+            if (e.getMessage().startsWith("ERROR: duplicate key value ")) {
                 msg = "Brugernavnet findes allerede. Vælg et andet";
             }
             throw new DatabaseException(msg, e.getMessage());
         }
-    }
-    public static void createPreference(String hairColor, String eyeColor, String sex, String race, ConnectionPool connectionPool) throws DatabaseException {
 
-        String sql = "insert into preference (haircolor, eyecolor, sex, race) values (?, ?, ?, ?)";
+        return userId;
+    }
+
+    public static void createPreference(int userid,String hairColor, String eyeColor, String sex, ConnectionPool connectionPool) throws DatabaseException {
+
+        String sql = "insert into preference (user_id, haircolor, eyecolor, sex) values (?, ?, ?, ?)";
 
         try (
                 Connection connection = connectionPool.getConnection();
                 PreparedStatement ps = connection.prepareStatement(sql)
         )
         {
-            ps.setString(1, hairColor);
-            ps.setString(2, eyeColor);
-            ps.setString(3, sex);
-            ps.setString(4, race);
+            ps.setInt(1,userid);
+            ps.setString(2, hairColor);
+            ps.setString(3, eyeColor);
+            ps.setString(4, sex);
 
             int rowsAffected = ps.executeUpdate();
             if (rowsAffected != 1)
