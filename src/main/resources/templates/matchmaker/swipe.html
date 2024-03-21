@@ -13,20 +13,20 @@
 
 
 
-    <form method="post">
+
         <h1 class="h1">Bars Apart, Hearts Together</h1>
 
-        <img th:src="@{/images/matchmaker/temp.jpg}" th:alt="bruh">
+        <img class="image" th:src="@{/images/matchmaker/temp.jpg}" th:alt="bruh">
 
-        <button class="x-button" type="submit" name="dislike">X</button>
+        <form class="btns" method="post">
+            <button class="btn cross" type="submit" formaction="swipefordislike">&#10007;</button>
+            <button class="btn heart" type="submit" formaction="swipeforlike">&hearts;</button>
 
-        <!-- Heart Button -->
-        <button class="heart-button" type="submit" name="like"><span class="heart-icon">&hearts;</span></button>
-
-        <!-- Display Fugitive Photo -->
+        </form>
 
 
-    </form>
+
+
 </div>
 
 </body>

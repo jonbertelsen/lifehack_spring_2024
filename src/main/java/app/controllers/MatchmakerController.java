@@ -17,9 +17,11 @@ public class MatchmakerController {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
         app.get("/frontpage", ctx -> index(ctx, connectionPool));
-        app.post("/swipe", ctx -> login(ctx, connectionPool));
+        app.post("/loginn", ctx -> login(ctx, connectionPool));
         app.post("/createuserpage", ctx -> ctx.render("/matchmaker/matchmakercreateuser.html"));
         app.post("/signup", ctx -> createUser(ctx, connectionPool));
+        app.post("swipefordislike",ctx-> ctx.render("/matchmaker/swipe.html"));
+        app.post("swipeforlike",ctx-> ctx.render("/matchmaker/swipe.html"));
         //app.post("/swipe.html", ctx -> likeFugitive(ctx, connectionPool));
       //  app.post("/swipepage", ctx -> showFugitivePhoto(ctx, connectionPool));
     }
@@ -138,14 +140,12 @@ public class MatchmakerController {
         try {
             int userId = currentUser.getUserId();
             MatchmakerFugitive photurl=MatchmakerMapper.getphoturlAndFugitives_id(userId,connectionPool);
-            System.out.println(photurl.getUrl());
+
             String  photourl= photurl.getUrl();
 
             saveImage(photourl);
 
- //           int fugitiveId = MatchmakerMapper.getRandomFugitiveIdForUser(userId, connectionPool);
-   //         String photoURL = MatchmakerMapper.getPhotoURL(fugitiveId, connectionPool);
-  //          ctx.html("<img src='" + photoURL + "' alt='Fugitive Photo'>");
+
         } catch (DatabaseException | IOException e) {
             ctx.html("Error: " + e.getMessage());
         }
@@ -176,6 +176,7 @@ public class MatchmakerController {
 
 
     }
+
 
 
 

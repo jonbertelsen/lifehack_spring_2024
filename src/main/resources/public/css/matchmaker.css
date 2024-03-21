@@ -73,33 +73,36 @@ html * {
     color: black;
 }
 
+
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 100px;
+    margin-top: 40px;
+}
+
+.btns button {
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    background-color: #47141E;
+    color: #FFF0E6;
+    font-size: 2.5rem;
+}
+
+.btns button:hover {
+    background-color: darkgray;
+    color: #FFF0E6;
+}
+.btns {
+    height: 100px;
+    gap: 200px;
+}
+
 @media only screen and (max-width: 600px) {
     .page{
-    min-width: 300px;
-    }
-
-    .x-button {
-        background-color: #ff3333;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    /* Style for Heart button */
-    .heart-button {
-        background-color: #ff69b4;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 50%;
-        cursor: pointer;
-    }
-
-    /* Style for Heart icon */
-    .heart-icon {
-        font-size: 24px;
-        vertical-align: middle;
+        min-width: 300px;
     }
 }
