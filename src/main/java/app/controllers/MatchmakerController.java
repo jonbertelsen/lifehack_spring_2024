@@ -15,6 +15,8 @@ public class MatchmakerController {
         app.post("createuserpage", ctx -> ctx.render("/matchmaker/matchmakercreateuser.html"));
         app.post("/signup",ctx->createUser(ctx,connectionPool));
        // app.post("matchmaker/createuserpage",ctx-> createPreference(ctx,connectionPool));
+        app.post("/swipe.html", ctx -> likeFugitive(ctx, connectionPool));
+        app.get("/swipe/html", ctx -> showFugitivePhoto(ctx, connectionPool));
 
     }
 
@@ -102,5 +104,31 @@ public class MatchmakerController {
 
     }
 
+    private static void likeFugitive(Context ctx, ConnectionPool connectionPool){
+        int userId = ctx.sessionAttribute("currentUser");
+        int fugitiveId = Integer.parseInt(ctx.formParam("fk_fugitive"));
+
+        try{
+            MatchmakerMapper.likeFugitive(userId, fugitiveId, connectionPool);
+            ctx.attribute("Fugitive liked");
+            ctx.render("/swipe.html");
+        } catch (DatabaseException e){
+            ctx.attribute("Fejl vel liket, prøv igen", e.getMessage());
+            ctx.render("/swipe.html");
+        }
+
+    }
+
+    private static void showFugitivePhoto(Context ctx, ConnectionPool connectionPool){
+        int fugitiveId = Integer.parseInt(ctx.formParam("fugitive_id"));
+
+        try{
+            String photoURL = MatchmakerMapper.getPhotoURL(fugitiveId,connectionPool);
+            ctx.html("<img src='" + photoURL + "' alt='Fugitive Photo'>");
+        }catch (DatabaseException e){
+            ctx.attribute("Fejl omkring billede");
+
+        }
+    }
 
 }
