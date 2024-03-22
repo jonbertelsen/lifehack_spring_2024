@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>HaikuGen</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/HaikuStyleW.css" th:href="@{/css/HaikuStyleW.css}" rel="stylesheet"/>
+</head>
+
+<div class="banner">
+    <h2>Haiku Generator.exe</h2>
+</div>
+
+<div class="custom-container">
+    <h4>俳号:</h4>
+    <h4 id="penname" th:text="${session.penname}"></h4>
+</div>
+
+<div class="container">
+    <form method="post">
+        <input type="text" id="line1" name="firstline" placeholder="First line" th:value="${session.firstline}"/>
+        <button type="submit" formaction="/generatefirstlinenormal" class="additionalButton">Classic Haiku
+        </button>
+        <button type="submit" formaction="/generatefirstlinebykevin" class="additionalButton">Haiku by Kevin</button>
+        <button type="submit" formaction="/generatefirstlineaboutkevin" class="additionalButton">Haiku about Kevin
+        </button>
+    </form>
+    <br>
+
+    <form method="post">
+        <input type="text" id="line2" name="secondline" placeholder="Second line" th:value="${session.secondline}"/>
+        <button type="submit" class="additionalButton" formaction="/generatesecondlinenormal">Classic Haiku</button>
+        <button type="submit" class="additionalButton" formaction="/generatesecondlinebykevin">Haiku by Kevin</button>
+        <button type="submit" class="additionalButton" formaction="/generatesecondlineaboutkevin">Haiku about Kevin
+        </button>
+    </form>
+    <br>
+
+    <form method="post">
+        <input type="text" id="line3" name="thirdline" placeholder="Third line" th:value="${session.thirdline}"/>
+        <button type="submit" class="additionalButton" formaction="/generatethirdlinenormal">Classic Haiku</button>
+        <button type="submit" class="additionalButton" formaction="/generatethirdlinebykevin">Haiku by Kevin</button>
+        <button type="submit" class="additionalButton" formaction="/generatethirdlineaboutkevin">Haiku about Kevin
+        </button>
+    </form>
+    <br>
+    <form method="post">
+        <button type="submit" formaction="/clearfields" id="clearFields">Clear Fields</button>
+    </form>
+    <button id="saveHaiku">Save Haiku</button>
+
+</div>
+<div class="footer">
+    <a href="/templates/index.html" th:src="@{/templates/index.html}">Homepage</a>
+</div>
+
+<div class="left-ad">
+    <img class="advertisement" alt="left-ad" src="src/main/resources/public/images/haiku/DDMH.png"
+         th:src="@{/images/haiku/DDMH.png}"/>
+</div>
+
+
+<div class="right-ad">
+    <img class="advertisement" alt="left-ad" src="src/main/resources/public/images/haiku/HMND.png"
+         th:src="@{/images/haiku/HMND.png}"/>
+</div>
+
+</body>
+</html>
