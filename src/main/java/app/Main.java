@@ -1,6 +1,8 @@
 package app;
 
 import app.config.ThymeleafConfig;
+
+import app.controllers.FriskForslagController;
 import app.controllers.MatchmakerController;
 import app.controllers.PlantPalController;
 import app.controllers.CalorieCruncherController;
@@ -34,7 +36,7 @@ public class Main
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
-
+        FriskForslagController.addRoutes(app, connectionPool);
         MatchmakerController.addRoutes(app,connectionPool);
         PlantPalController.addRoutes(app,connectionPool);
         CalorieCruncherController.addRoutes(app, connectionPool);

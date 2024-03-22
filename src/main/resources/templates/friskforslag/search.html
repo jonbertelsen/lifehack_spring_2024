@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+<title>FriskForslag</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/friskforslag.css" th:href="@{/css/friskforslag.css}" rel="stylesheet"/>
+<link rel="icon" type="image/jpg" sizes="32x32" th:href="@{/images/friskforslag/friskforslaglogo32x32.jpg}">
+<link rel="icon" type="image/jpg" sizes="48x48" th:href="@{/images/friskforslag/friskforslaglogo48x48.jpg}">
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png"
+                 th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+        <a class="friskforslagTitleImageLink" href="../friskforslag/index.html" th:href="@{/friskforslag}">
+            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogowtext.jpg"
+                 th:src="@{/images/friskforslag/friskforslaglogowtext.jpg}" />
+        </a>
+    </header>
+
+    <div class="searchParamsTitle" th:if="${searchParams != null}">
+        <span>Søgning:</span>
+        <span class="searchParamsDisplay" th:text="${searchParams}"> </span>
+    </div>
+
+    <div th:if="${filteredRecipes != null && !filteredRecipes.isEmpty()}"
+         class="searchResults">
+        <table class="searchResultsTable">
+            <thead>
+            <tr>
+                <th>Opskrift</th>
+                <th>Ingredienser</th>
+                <th>Ophavsret</th>
+                <th>Link</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="rec : ${filteredRecipes}">
+                <th th:text="${rec.Name()}"></th>
+                <td>
+                    <ul class="searchResultsIngredientsList" >
+                        <li th:each="ing, iterStat : ${rec.Ingredients()}"
+                            th:class="${indicatorList[__${recStat.index}__][__${iterStat.index}__]}
+                            ? 'ingredientmatched' : 'ingredientnotmatched'"
+                            th:text="${rec.Ingredients()[__${iterStat.index}__]} + ' : ' +
+                                     ${rec.Quantities()[__${iterStat.index}__]} + ' ' +
+                                     ${rec.Units()[__${iterStat.index}__]}">
+                        </li>
+                    </ul>
+                </td>
+                <td>
+                    <span th:if="${rec.Src() != null && !rec.Src().isEmpty()}" th:text="${rec.Author()}"></span>
+                </td>
+                <td>
+                    <a th:href="'/friskforslag/recipes/' + ${rec.Name()}">
+                      Vælg
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <div th:if="${filteredRecipes == null || filteredRecipes.isEmpty()}">
+        <p class="searchResultParagraph">
+            Ingen resultater :(
+        </p>
+    </div>
+
+</div>
+
+</body>
+</html>
