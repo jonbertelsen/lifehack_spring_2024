@@ -20,25 +20,41 @@ public class FriskForslagWebScraper
 {
     /**
      * Crawl and scrape recipes from Opskrifter.dk
-     * @param cp
-     * @param nRecipes
+     * @param cp database connection
+     * @param nRecipes number of recipes you wish to import
      */
-    public static void crawlRecipeListsOpskrifterDK(ConnectionPool cp, int nRecipes)
+    public static void ScrapeRecipesFromOpskrifterDK(ConnectionPool cp, int nRecipes)
     {
-        int i = 0;
+        List<FriskForslagRecipe> recipesView = null;
+        try {
+            recipesView = FriskForslagMapper.FilterRecipesIngredients(cp, "%");
+        } catch (DatabaseException e) {
+            System.err.println(e.getMessage());
+        }
+
+        int i = 0, j = 0;
         while (true) {
+            ++i;
             String url = "https://www.opskrifter.dk/sog?query=%25&page=" + i;
             String html = fetchHTML(url);
             if (html.isEmpty())
                 break;
             List<String> recipeURLs = scrapeRecipeURLs(html);
             for (String recipeURL : recipeURLs) {
-                if (i >= nRecipes)
+                if (j >= nRecipes)
                     return;
+                boolean skip = false;
+                for (FriskForslagRecipe rec : recipesView) {
+                    if (rec.Src().equals(recipeURL)) {
+                        skip = true;
+                        break;
+                    }
+                }
+                if (skip)
+                    continue;
                 try {
-                    System.err.println("Adding " + recipeURL + " to the database ("
-                    + ++i + "/" + nRecipes + ")");
-                    FriskForslagMapper.InsertRecipe(cp, ScrapeHTML_OpskrifterDK(recipeURL));
+                    FriskForslagMapper.InsertRecipe(cp, ScrapeRecipeSpec(recipeURL));
+                    ++j;
                 } catch (DatabaseException e) {
                     System.err.print("");
                 }
@@ -46,7 +62,7 @@ public class FriskForslagWebScraper
         }
     }
 
-    public static String fetchHTML(String address)
+    private static String fetchHTML(String address)
     {
         StringBuilder responseHTML = new StringBuilder();
         try {
@@ -69,12 +85,12 @@ public class FriskForslagWebScraper
             }
 
         } catch (URISyntaxException | IOException e) {
-            e.printStackTrace();
+            System.err.println(e.getMessage());
         }
         return responseHTML.toString();
     }
 
-    public static List<String> scrapeRecipeURLs(String html)
+    private static List<String> scrapeRecipeURLs(String html)
     {
         List<String> recipeURLs = new ArrayList<>();
 
@@ -100,7 +116,7 @@ public class FriskForslagWebScraper
         return recipeURLs;
     }
 
-    public static FriskForslagRecipe ScrapeHTML_OpskrifterDK(String url)
+    private static FriskForslagRecipe ScrapeRecipeSpec(String url)
     {
         /*
          * Fetch html
@@ -139,6 +155,7 @@ public class FriskForslagWebScraper
             //System.out.println(quoteContent);
             quoteIndex_0 = quoteIndex_1 + 1;
 
+
             // switch modes
             switch (quoteContent) {
                 case "Recipe" -> mode = "Recipe";
@@ -150,36 +167,43 @@ public class FriskForslagWebScraper
                 case "url" -> mode = "url";
                 default -> {
                     if (mode.equals("Recipe")) {
-                        if (quoteContent.equals("name")) {
-                        } else {
-                            name = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "name" -> {
+                            }
+                            default -> {
+                                name = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                     if (mode.equals("image")) {
-                        if (quoteContent.equals("name")) {
-                        } else {
-                            img = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "name" -> {
+                            }
+                            default -> {
+                                img = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                     if (mode.equals("author")) {
-                        if (quoteContent.equals("@type")) {
-                        }
-                        else if (quoteContent.equals("Person")) {
-                        }
-                        else if (quoteContent.equals("name")) {
-                        }
-                        else {
-                            author = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "@type", "Person", "name" -> {
+                            }
+                            default -> {
+                                author = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                     if (mode.equals("description")) {
-                        if (quoteContent.equals("name")) {
-                        } else {
-                            descr = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "name" -> {
+                            }
+                            default -> {
+                                descr = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                     if (mode.equals("recipeIngredient")) {
@@ -201,28 +225,30 @@ public class FriskForslagWebScraper
                         }
                     }
                     if (mode.equals("recipeInstructions")) {
-                        if (quoteContent.equals("name")) {
-                        } else if (quoteContent.equals("@type")) {
-                        } else if (quoteContent.equals("HowToStep")) {
-                        } else if (quoteContent.equals("Procedure")) {
-                        } else if (quoteContent.equals("text")) {
-                        } else {
-                            proc = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "name", "@type", "HowToStep", "Procedure", "text" -> {
+                            }
+                            default -> {
+                                proc = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                     if (mode.equals("url")) {
-                        if (quoteContent.equals("name")) {
-                        } else {
-                            src = quoteContent;
-                            mode = "";
+                        switch (quoteContent) {
+                            case "name" -> {
+                            }
+                            default -> {
+                                src = quoteContent;
+                                mode = "";
+                            }
                         }
                     }
                 }
             }
         }
 
-        Long quantAsInt[] = new Long[quant.size()];
+        Long[] quantAsInt = new Long[quant.size()];
         for (int i = 0; i < quantAsInt.length; ++i) {
             try {
                 quantAsInt[i] = Long.parseLong(quant.get(i));
@@ -230,18 +256,11 @@ public class FriskForslagWebScraper
                 quantAsInt[i] = (long) 0;
             }
         }
-        FriskForslagRecipe finalRecipe = new FriskForslagRecipe(0,
-                name,
-                descr,
-                proc,
-                ingr.toArray(new String[0]),
-                quantAsInt,
-                units.toArray(new String[0]),
-                src,
-                author,
-                img);
 
-        return finalRecipe;
+        return new FriskForslagRecipe(0,
+                name, descr, proc, ingr.toArray(new String[0]),
+                quantAsInt, units.toArray(new String[0]),
+                src, author, img);
     }
 
 

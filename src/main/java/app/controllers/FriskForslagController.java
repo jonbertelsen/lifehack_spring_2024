@@ -21,26 +21,37 @@ public class FriskForslagController
         app.get("/friskforslag/search.html", ctx -> search(ctx, connectionPool));
         app.get("/friskforslag/recipes/*", ctx -> findRecipe(ctx, connectionPool));
         // TODO: change this variable int to increase or decrease number of recipes in database
-        initDB(connectionPool, 200);
+        initDB(connectionPool, 500);
     }
 
+    /**
+     * initDB, adds recipes to the database if minRecsInDB is greater
+     * than what is currently in the datase.
+     * @param connectionPool
+     * @param minRecsInDB keep this low to avoid a very long loading time, recommended is 100-500
+     * (max is 5000)
+     */
     private static void initDB(ConnectionPool connectionPool, int minRecsInDB)
     {
+        if (minRecsInDB > 5000)
+            minRecsInDB = 5000;
         try {
+            FriskForslagMapper.ResetIdSequence(connectionPool);
             int dbSize = FriskForslagMapper.GetNumOfRecipesInDatabase(connectionPool);
             if (dbSize < minRecsInDB) {
-                FriskForslagWebScraper.crawlRecipeListsOpskrifterDK(connectionPool, minRecsInDB);
+                System.err.printf("%sFriskForslag info:%s\t>>> database size (%d) is less than requested %d... %s\t>>> adding %d new recipes (this might take some time, consider lowering the parameter if you are impatient)%n",
+                        System.lineSeparator().repeat(2),
+                        System.lineSeparator().repeat(1),
+                        dbSize, minRecsInDB,
+                        System.lineSeparator(),
+                        minRecsInDB - dbSize);
+                FriskForslagWebScraper.ScrapeRecipesFromOpskrifterDK(connectionPool, minRecsInDB);
+                System.err.println("\t>>> done inserting new recipes ...");
             } else {
-                System.err.println(System.lineSeparator().repeat(2)
-                        + "FriskForslag error logging:"
-                        + System.lineSeparator().repeat(1)
-                        + "\t>>> "
-                        + "Did not scrape recipes -- "
-                        + "number of recipes stored exceed the minimum requested\t(requested: "
-                        + minRecsInDB
-                        + " | database size: "
-                        + dbSize
-                        + ")");
+                System.err.printf("%sFriskForslag info:%s\t>>> Did not scrape recipes -- number of recipes stored exceed the minimum requested\t(requested: %d | database size: %d)%n",
+                        System.lineSeparator().repeat(2),
+                        System.lineSeparator().repeat(1),
+                        minRecsInDB, dbSize);
             }
         } catch (DatabaseException e) {
             System.err.print("");

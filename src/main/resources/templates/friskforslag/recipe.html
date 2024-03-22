@@ -24,8 +24,8 @@
         </a>
     </header>
 
-    <div class="recipeImg" th:if="${fetchedRecipe.Img() != NULL && !fetchedRecipe.Img().isEmpty()}">
-        <img class="recipeImgImg" border="0" alt="" src="" th:src="${fetchedRecipe.Img()}">
+    <div class="recipeImg" th:if="${fetchedRecipe.Img() != null}">
+        <img th:if="${!fetchedRecipe.Img().isEmpty()}" class="recipeImgImg" alt="" src="" th:src="${fetchedRecipe.Img()}">
     </div>
 
 
@@ -43,11 +43,8 @@
         <p th:text="${fetchedRecipe.Descr()}"></p>
         <h3>Sådan gør du</h3>
         <p th:text="${fetchedRecipe.Proc()}"></p>
-
-        <footer >
-            <h3>Kilde:</h3>
-            <a th:if="${fetchedRecipe.Src() != null}" href="/friskforslag" th:href="${fetchedRecipe.Src()}">Link til oprindelig side</a>
-        </footer>
+        <h3>Kilde:</h3>
+        <a th:if="${fetchedRecipe.Src() != null}" href="/friskforslag" th:href="${fetchedRecipe.Src()}">Link til oprindelig side</a>
     </div>
 
 
