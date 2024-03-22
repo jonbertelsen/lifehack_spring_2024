@@ -19,6 +19,7 @@ body {
     padding:8px;
     border: 1px solid silver;
     min-height: 600px;
+    gap:10px;
 }
 
 header {
