@@ -71,6 +71,7 @@ public class WardrobeItemController {
             int categoryId = currentItem.getCategoryId();
 
             ctx.sessionAttribute("item", currentItem);
+
             //rendering: fletter html sammen med data, fortolker data
             ctx.render("wardrober/edititem.html");
 
@@ -80,7 +81,5 @@ public class WardrobeItemController {
             ctx.render("wardrober/index.html");
 
         }
-
-
     }
 }

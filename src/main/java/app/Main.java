@@ -33,6 +33,5 @@ public class Main
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
         WardrobeItemController.addRoutes(app,connectionPool);
-        WardrobeCategoryController.addRoutes(app,connectionPool);
     }
 }
