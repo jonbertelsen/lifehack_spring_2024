@@ -24,6 +24,7 @@ public class UserController
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");
 
+
         if (password1.equals(password2))
         {
             try
