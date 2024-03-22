@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Plantpal - Yoda Edition</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/plantpal.css" th:href="@{/css/plantpal.css}" rel="stylesheet"/>
+</head>
+
+<body class="yoda-theme">
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/PlantPal/faedregruppencouncil2.jpg" th:src="@{/images/PlantPal/faedregruppencouncil2.jpg}"/>
+        </a>
+    </header>
+
+    <h1>Plant Pal, You Have</h1>
+    <h2 class="titel1">Welcome, <span th:text="${session.currentUser.username}">Young Padawan</span></h2>
+
+    <form method="post">
+        <table class="vand-table">
+            <thead>
+            <tr>
+                <th>Plant, It Is</th>
+                <th>Date, Recorded</th>
+                <th>Location, It Dwells</th>
+                <th>Action, You Must Take</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="plante: ${planteList}">
+
+                <td th:text="${plante.navn}">Plants, Listed Here</td>
+                <td th:text="${plante.dato}">Date, Remember</td>
+                <td th:text="${plante.placering}">Location, Known Not</td>
+
+                <td>
+                    <div class="buttons">
+                        <button type="submit" name="planteId" th:value="${plante.planteId}"  formaction="/PlantPal/vand">Water, You Shall
+                        </button>
+                        <input type="hidden" name="vandTidId" th:value="${plante.vandTidId}" />
+                        <button type="submit" name="planteId" th:value="${plante.planteId}" formaction="deleteplante">Delete, You Must
+                        </button>
+                    </div>
+                </td>
+
+            </tr>
+
+            </tbody>
+
+        </table>
+    </form>
+    <p><a class="link" href="createplant.html" th:href="@{/createplant}">Add Plant, You Want</a></p>
+    <div class="logout">
+        <p th:if="${session.currentUser != null}">
+            <span th:text="${session.currentUser.username}">Welcome, Young Padawan</span> |
+            <a class="logout-text" href="index.html" th:href="@{/logout}">Logout, You Should</a>
+        </p>
+    </div>
+
+</div>
+</body>
+</html>
