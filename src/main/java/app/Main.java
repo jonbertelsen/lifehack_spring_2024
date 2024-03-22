@@ -3,6 +3,7 @@ package app;
 import app.config.ThymeleafConfig;
 import app.controllers.TimeZonesController;
 import app.controllers.UserController;
+import app.controllers.WardrobeCategoryController;
 import app.controllers.WardrobeItemController;
 import app.persistence.ConnectionPool;
 import io.javalin.Javalin;
@@ -32,5 +33,6 @@ public class Main
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
         WardrobeItemController.addRoutes(app,connectionPool);
+        WardrobeCategoryController.addRoutes(app,connectionPool);
     }
 }

@@ -19,7 +19,6 @@ public class WardrobeItemController {
         app.get("/wardrober", ctx -> viewWardrobe(ctx, connectionPool));
         app.post("/deleteitem", ctx -> deleteItem(ctx, connectionPool));
         app.post("/edititem", ctx -> editItem(ctx, connectionPool));
-        app.get("/wardroberedit", ctx -> WardrobeCategoryController.viewCategory(ctx,connectionPool));
     }
 
     private static void viewWardrobe(Context ctx, ConnectionPool connectionPool) {
@@ -57,7 +56,6 @@ public class WardrobeItemController {
         List<WardrobeItem> itemList = ctx.sessionAttribute("itemList");
 
         try {
-            //trækker ud af web-formularen
             int itemId = Integer.parseInt(ctx.formParam("itemId"));
             WardrobeItem currentItem = null;
             for (WardrobeItem i : itemList) {

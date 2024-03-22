@@ -14,6 +14,11 @@ import java.util.Map;
 
 public class WardrobeCategoryController {
 
+    public static void addRoutes(Javalin app, ConnectionPool connectionPool)
+    {
+        app.get("/wardroberedit", ctx -> viewCategory(ctx,connectionPool));
+    }
+
     public static void viewCategory(Context ctx, ConnectionPool connectionPool) {
         Map<Integer, WardrobeCategory> wardrobeCategoryMap = WardrobeCategoryMapper.getAllCategories(connectionPool);
         ctx.sessionAttribute("categoryMap", wardrobeCategoryMap);
