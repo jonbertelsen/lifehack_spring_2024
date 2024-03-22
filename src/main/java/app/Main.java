@@ -1,6 +1,7 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.FactController;
 import app.controllers.TimeZonesController;
 import app.controllers.UserController;
 import app.persistence.ConnectionPool;
@@ -16,6 +17,7 @@ public class Main
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
+
     public static void main(String[] args)
     {
         // Initializing Javalin and Jetty webserver
@@ -30,5 +32,6 @@ public class Main
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
+        FactController.addRoutes(app, connectionPool);
     }
 }
