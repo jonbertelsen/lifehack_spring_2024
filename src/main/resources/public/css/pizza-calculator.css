@@ -1,0 +1,252 @@
+header {
+    background-color: rgba(0, 146, 70, 0.57);
+}
+
+
+.index-btn a {
+    color: #009246;
+    text-decoration: underline;
+}
+
+.index-btn a:hover {
+    color: darkgreen;
+    text-decoration: none;
+}
+
+.index-btn a:visited {
+    color: #009246;
+}
+
+.message {
+    color: red;
+    font-size: 1.0rem;
+    border: 1px solid red;
+    padding: 10px;
+    border-radius: 5px;
+    width: 400px;
+}
+
+.pizza-form {
+    border: 1px solid silver;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    width: 400px;
+    border-radius: 8px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 5px;
+}
+
+.slider {
+    -webkit-appearance: none;
+    width: 100%;
+    border-radius: 5px;
+    height: 8px;
+    background: #009246;
+    outline: none;
+    opacity: 0.7;
+    -webkit-transition: .2s;
+    transition: opacity .2s;
+}
+
+.slider:hover {
+    opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 16px;
+    height: 16px;
+    background: red;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+    width: 16px;
+    height: 16px;
+    background: red;
+    cursor: pointer;
+}
+
+.pizza-form button {
+    align-self: center;
+}
+
+/*** recipe.html ***/
+
+.no-dots {
+    list-style-type: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.text-center {
+    text-align: center;
+}
+
+/* Custom cards */
+
+.pizza-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+}
+
+.pizza-card {
+    display: flex;
+    flex-direction: column;
+    min-width: 100px;
+    max-width: 280px;
+    align-items: center;
+    border: 1px solid silver;
+    border-radius: 8px;
+}
+
+.pizza-card-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.pizza-card-header {
+    font-size: 1.15rem;
+    background: #009246;
+    outline: none;
+    opacity: 0.7;
+    width: 100%;
+    color: white;
+    padding: 8px;
+    text-align: center;
+}
+
+.pizza-card-copy {
+    padding: 10px;
+    font-size: 0.9rem;
+}
+
+.pizza-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.pizza-table th, .pizza-table td {
+    border: 1px solid silver;
+    padding: 8px;
+}
+
+.pizza-table tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.archive-form {
+    width: 90%;
+}
+
+.pizza-recipe-buttons {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pizza-recipe-buttons a {
+    width: 280px;
+}
+
+.pizza-archive-buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.index-btn {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 400px;
+    margin-top: 20px;
+}
+
+.index-btn a {
+    flex-grow: 1;
+    text-align: center;
+
+}
+
+.btn {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+}
+
+.btn-ok:hover {
+    background-color: #007f3d;
+}
+
+.btn-ok {
+    background-color: #009246;
+    color: white;
+}
+
+.btn-delete:hover {
+    background-color: #ff3333;
+}
+
+.btn-delete {
+    background-color: #ff0000;
+    color: white;
+}
+
+
+@media all and (max-width: 600px) {
+
+    .message {
+        width: 90%;
+    }
+
+    .pizza-form {
+        width: 90%;
+    }
+
+    .pizza-card {
+        max-width: none;
+    }
+
+    .pizza-recipe-buttons {
+        flex-direction: column;
+        width: 100%;
+        gap: 10px;
+    }
+
+    .pizza-recipe-buttons a {
+        width: 100%;
+    }
+
+    .btn {
+        width: 100%;
+    }
+
+    .index-btn {
+        flex-direction: column;
+        gap: 10px;
+        width: 90%;
+    }
+}
+
+
