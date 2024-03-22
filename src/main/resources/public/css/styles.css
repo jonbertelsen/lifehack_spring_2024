@@ -19,6 +19,7 @@ body {
     padding:8px;
     border: 1px solid silver;
     min-height: 600px;
+    gap:10px;
 }
 
 header {
@@ -27,12 +28,13 @@ header {
 
 header a {
     display: flex;
-    flex-direction: column;
-    align-items: center;
+
+    align-items: end;
 }
 
 header a img {
     width: 70%;
+    height: 50%;
 }
 
 h1 {

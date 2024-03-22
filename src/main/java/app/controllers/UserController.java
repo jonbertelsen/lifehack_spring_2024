@@ -7,8 +7,6 @@ import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-import java.util.List;
-
 public class UserController
 {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
@@ -25,6 +23,7 @@ public class UserController
         String username = ctx.formParam("username");
         String password1 = ctx.formParam("password1");
         String password2 = ctx.formParam("password2");
+
 
         if (password1.equals(password2))
         {

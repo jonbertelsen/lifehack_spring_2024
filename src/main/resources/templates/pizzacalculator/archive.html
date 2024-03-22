@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>The archive</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/pizza-calculator.css" th:href="@{/css/pizza-calculator.css}" rel="stylesheet"/>
+
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="index.html" th:href="@{/pizzacalculator}">
+            <img alt="logo" src="../../public/images/pizzacalculator/pizza_calc_logo.png"
+                 th:src="@{/images/pizzacalculator/pizza_calc_logo.png}"/>
+        </a>
+    </header>
+
+    <h1>The archive</h1>
+
+    <p>Look back in history and get the best recipes</p>
+
+    <form id="archive-form" class="archive-form" method="post">
+        <table class="pizza-table">
+            <head>
+                <tr>
+                    <th>The date</th>
+                    <th>The data</th>
+                    <th></th>
+                </tr>
+            </head>
+            <tbody>
+            <tr th:each="recipe: ${recipeList}">
+                <td th:text="${recipe.date}">2024-03-20</td>
+                <td th:text="|${recipe.quantity} pizzas, ${recipe.weight} g per dough ball, ${recipe.hydration} hydration, ${recipe.temperature} &deg;C|">
+                    4 pizzas, 285 g per dough ball, 70% hydration, 22&deg;C
+                </td>
+                <td>
+                    <div class="pizza-archive-buttons">
+                        <button type="submit" name="recipeId"
+                                class="btn btn-ok"
+                                th:value="${recipe.recipeid}" formaction="/pizzacalculator">
+                            View
+                        </button>
+                        <button type="submit" name="recipeId"
+                                class="btn btn-delete"
+                                th:value="${recipe.recipeid}"
+                                formaction="/pizzacalculator/delete"
+                                onclick="return confirmSubmission('archive-form')"/>
+                        Delete
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </form>
+
+</div>
+<script src="../../public/js/pizzacalculator.js" th:src="@{/js/pizzacalculator.js}"></script>
+</body>
+</html>

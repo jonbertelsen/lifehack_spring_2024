@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Projectname</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/matchmaker.css" th:href="@{/css/matchmaker.css}" rel="stylesheet"/>
+
+
+<body>
+<div class="page">
+
+    <form  method="post">
+    <div class="buttons-makingauser">
+    <input class="username" type="text" name="username" placeholder="username"/>
+    <input class = "password" type="text" name="password1" placeholder="password"/>
+    <input type="text" name="password2" placeholder=" Enter your password again"/>
+    <input class="firstname" type="text" name="firstname" placeholder="firstname">
+    <input class="lastname" type="text" name="lastname" placeholder="lastname">
+    <input class="age" type="text" name="age" placeholder="age">
+    <input class="gender" type="text" name="gender" placeholder="gender M/F" maxlength="1">
+
+
+    <label for="description">Description:</label><br>
+    <textarea id="description" name="description" rows="4" cols="50" maxlength="200"placeholder="describe yourself in 200 characters"></textarea>
+</div>
+
+<div class="haircolor">
+    <h3>What is the preferred haircolor</h3>
+    <select name="haircolor">
+        <option value="Blonde">Blonde</option>
+        <option value="Green">Green</option>
+        <option value="Brown">Brown</option>
+        <option value="Black">Black</option>
+    </select>
+</div>
+
+<div class="eyecolor">
+    <h3>What is the preferred Eyecolor</h3>
+    <select name="eyecolor">
+        <option value="Brown">Brown</option>
+        <option value="Green">Green</option>
+        <option value="black">black</option>
+        <option value="Blue">Blue</option>
+    </select>
+</div>
+<div class="sex">
+    <h3>Who are you looking to connect with?</h3>
+    <select name="sex">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+
+    </select>
+</div>
+
+<button class="usercreated btn-ok" type="submit" formaction="/signup">sign up</button>
+        <div><p th:text="${message}"></p></div>
+    </form>
+</div>
+</body>
+</html>

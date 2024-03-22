@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="da" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Pizza calculator</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/pizza-calculator.css" th:href="@{/css/pizza-calculator.css}" rel="stylesheet"/>
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="index.html" th:href="@{/pizzacalculator}">
+            <img alt="logo" src="../../public/images/pizzacalculator/pizza_calc_logo.png"
+                 th:src="@{/images/pizzacalculator/pizza_calc_logo.png}"/>
+        </a>
+    </header>
+
+    <h1>Pizza calculator</h1>
+
+    <p>Get the perfect pizza dough - napolitana style</p>
+
+    <div class="message" th:if="${!#strings.isEmpty(message)}">
+        <span th:text="${message}">Error message</span>
+    </div>
+
+    <form class="pizza-form" method="post">
+        <div class="input-group">
+            <label for="quantity">How many pizzas? <span id="quantityValue">4</span></label>
+            <input class="slider" type="range" name="quantity" id="quantity" min="1" max="10" th:value="4">
+        </div>
+        <div class="input-group">
+            <label for="weight">Weight per dough ball? <span id="weightValue">285</span></label>
+            <input class="slider" type="range" name="weight" id="weight" min="225" max="345" th:value="285"/>
+        </div>
+        <div class="input-group">
+            <label for="hydration">Hydration percentage? <span id="hydrationValue">70</span></label>
+            <input class="slider" type="range" name="hydration" id="hydration" min="60" max="80" th:value="70"/>
+        </div>
+        <div class="input-group">
+            <label for="temperature">Air temperature? <span id="temperatureValue">22</span></label>
+            <input class="slider" type="range" name="temperature" id="temperature" min="16" max="30" th:value="22"/>
+        </div>
+        <button class="btn btn-ok"
+                formaction="recipe.html"
+                th:formaction="@{/pizzacalculator}"
+                type="submit">Get recipe
+        </button>
+    </form>
+
+    <div class="index-btn">
+        <a class="" href="../index.html" th:href="@{/}">Back to frontpage and login section</a>
+        <a class="" href="archive.html" th:href="@{/pizzacalculator/archive}">View archive</a>
+    </div>
+</div>
+<script src="../../public/js/pizzacalculator_index.js" th:src="@{/js/pizzacalculator_index.js}"></script>
+</body>
+</html>

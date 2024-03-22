@@ -1,0 +1,108 @@
+html{
+    background-color: #FFF0E6;
+}
+html * {
+    box-sizing: border-box;
+}
+
+.page{
+    min-width: 800px;
+}
+
+
+.picture{
+    border-radius: 20px;
+}
+.h1{
+    color: #47141E;
+    font-size: 1.8rem;
+}
+
+::placeholder{
+    color: #FFF0E6;
+}
+.generic-form {
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 40px;
+}
+
+
+.generic-form input[type=text],
+.generic-form input[type=password],
+.generic-form button {
+
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    background-color: #47141E;
+    color: #FFF0E6;
+}
+
+.generic-form button:hover {
+    background-color: darkgray;
+    color: #FFF0E6;
+}
+
+.buttons-makingauser input[type=text],
+.buttons-makingauser input[type=password],
+.buttons-makingauser button,
+.buttons-makingauser label{
+    display: flex;
+    flex-direction: column;
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    background-color: #47141E;
+    color: #FFF0E6;
+}
+
+.usercreated{
+    color: #47141E;
+    font-size: 1.8rem;
+}
+
+.usercreated:hover {
+    background-color: darkgray;
+    color: #FFF0E6;
+}
+
+.username{
+    color: black;
+}
+
+
+
+.btns {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 100px;
+    margin-top: 40px;
+}
+
+.btns button {
+    padding: 20px;
+    border-radius: 5px;
+    border: 1px solid silver;
+    background-color: #47141E;
+    color: #FFF0E6;
+    font-size: 2.5rem;
+}
+
+.btns button:hover {
+    background-color: darkgray;
+    color: #FFF0E6;
+}
+.btns {
+    height: 100px;
+    gap: 200px;
+}
+
+@media only screen and (max-width: 600px) {
+    .page{
+        min-width: 300px;
+    }
+}
