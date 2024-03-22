@@ -1,0 +1,88 @@
+/* Yoda-themed Styles */
+
+body.yoda-theme {
+    background-color: #2e2e2e; /* Dark Side of the Force */
+    color: #d4d4d4; /* Yoda's Wisdom */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header {
+    height: 200px; /* Adjust the height as needed */
+    width: 100%; /* Ensure full width */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header a img {
+    max-width: 100%; /* Make the image responsive */
+    max-height: 100%; /* Make the image responsive */
+    padding-bottom: 50px;
+
+}
+
+h1,
+h2,
+p {
+    font-family: 'Roboto', sans-serif; /* The Force Strong, This Font Is */
+    text-align: center;
+}
+
+h1 {
+    color: #8fff7f; /* Green, the Force Is */
+    font-size: 2.5rem; /* Size Matters Not, But Yoda's Wisdom Does */
+    margin-bottom: 20px;
+}
+
+.vand-table th {
+    color: #8fff7f; /* Green, the Color Is */
+}
+
+.vand-table button,
+.create-plant button,
+.link {
+    background-color: #8fff7f; /* Green, the Button Is */
+    color: #2e2e2e; /* Text Color, Dark Like the Force */
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    margin-top: 10px;
+    cursor: pointer;
+    font-family: 'Arial', sans-serif; /* Standard Font, This Is */
+    font-weight: bold; /* Strong, the Text Should Be */
+    text-decoration: none;
+}
+
+
+.vand-table button:hover,
+.create-plant button:hover,
+.link:hover {
+    background-color: #6dde6d; /* Hover Color, Green Like Yoda */
+}
+
+.create-plant input[type=text] {
+    width: 200px;
+    padding: 10px;
+    margin: 2px;
+    border: 1px solid #8fff7f; /* Border, Keep It Must */
+    border-radius: 5px;
+}
+
+.logout {
+    margin-top: auto; /* Push to Bottom, It Will */
+
+}
+
+.logout-text{
+    text-decoration: none;
+    color: #6dde6d;
+}

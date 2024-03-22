@@ -1,6 +1,7 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.PlantPalController;
 import app.controllers.CalorieCruncherController;
 import app.controllers.PizzaCalculatorController;
 import app.controllers.TimeZonesController;
@@ -33,8 +34,8 @@ public class Main
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
 
+        PlantPalController.addRoutes(app,connectionPool);
         CalorieCruncherController.addRoutes(app, connectionPool);
         PizzaCalculatorController.addRoutes(app, connectionPool);
-
     }
 }
