@@ -35,6 +35,12 @@
             </div>
 
             <div class="card">
+                <img class="card-image" alt="matchmaker" src="../public/images/matchmaker/matchmakerlogo.png" th:src="@{/images/matchmaker/matchmakerlogo.png}"/>
+                <div class="card-copy">Bars apart, Hearts Together</div>
+                <a class="card-link" href="matchmaker/index.html" th:href="@{/frontpage/}"/>matchmaker</a>
+            </div>
+
+            <div class="card">
                 <img class="card-image" alt="caloriecruncher" src="../public/images/caloriecruncher/fat-man.png"
                      th:src="@{/images/caloriecruncher/fat-man.png}"/>
                 <div class="card-copy">Calorie Cruncher</div>
@@ -45,24 +51,13 @@
                      th:src="@{/images/pizzacalculator/vito_pizza.png}"/>
                 <div class="card-copy">Pizza calculator</div>
                 <a class="card-link" href="pizzacalculator/index.html" th:href="@{/pizzacalculator/}"/>Create Pizza</a>
-
             </div>
         </div>
 
 
     </div>
 
-    <div class="projects">
-        <h2>Projects to check out</h2>
-        <div class="cards">
-            <div class="card">
-                <img class="card-image" alt="matchmaker" src="../public/images/matchmaker/matchmakerlogo.png" th:src="@{/images/matchmaker/matchmakerlogo.png}"/>
-                <div class="card-copy">Bars apart, Hearts Together</div>
-                <a class="card-link" href="matchmaker/index.html" th:href="@{/frontpage/}"/>matchmaker</a>
-            </div>
-        </div>
 
-    </div>
     <h3>If you need to log in - do it here</h3>
     <form class="generic-form" method="post">
         <input type="text" name="username" placeholder="Enter your username"/>
