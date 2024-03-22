@@ -23,13 +23,13 @@ body {
 }
 
 header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 header a {
     display: flex;
-
-    align-items: end;
+    flex-direction: column;
+    align-items: center;
 }
 
 header a img {
