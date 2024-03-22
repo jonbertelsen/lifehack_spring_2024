@@ -1,24 +1,18 @@
 package app.controllers;
 import app.entities.Plante;
-import app.entities.Task;
 import app.entities.User;
 import app.exceptions.DatabaseException;
 import app.persistence.ConnectionPool;
 import app.persistence.PlanteMapper;
-import app.persistence.UserMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 
-import java.sql.Date;
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 
 /**
  * @author Daniel Rouvillain
  */
-
-
 
 public class PlantPalController
 {
