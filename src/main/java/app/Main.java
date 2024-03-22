@@ -2,6 +2,7 @@ package app;
 
 import app.config.ThymeleafConfig;
 
+import app.controllers.FactController;
 import app.controllers.FriskForslagController;
 import app.controllers.MatchmakerController;
 import app.controllers.PlantPalController;
@@ -22,6 +23,7 @@ public class Main
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
+
     public static void main(String[] args)
     {
         // Initializing Javalin and Jetty webserver
@@ -36,6 +38,7 @@ public class Main
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
+        FactController.addRoutes(app, connectionPool);
         FriskForslagController.addRoutes(app, connectionPool);
         MatchmakerController.addRoutes(app,connectionPool);
         PlantPalController.addRoutes(app,connectionPool);
