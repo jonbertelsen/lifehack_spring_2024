@@ -19,10 +19,6 @@
 
     <h1>Welcome&nbsp; <span th:text="${session.currentUser.username}"> </span></h1>
 
-
-
-
-
     <form class="table" id="table-styling" method="post">
         <table class="task-table">
             <thead>
@@ -37,7 +33,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="item: ${itemList}">
+            <tr th:each="item: ${session.itemList}">
                 <td th:text="${item.categoryId}"></td>
                 <td th:text="${item.brand}"></td>
                 <td th:text="${item.description}"></td>

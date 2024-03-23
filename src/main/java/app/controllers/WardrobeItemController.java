@@ -19,15 +19,26 @@ public class WardrobeItemController {
         app.get("/wardrober", ctx -> viewWardrobe(ctx, connectionPool));
         app.post("/deleteitem", ctx -> deleteItem(ctx, connectionPool));
         app.post("/edititem", ctx -> editItem(ctx, connectionPool));
+        app.post("/updateitem", ctx -> updateItem(ctx, connectionPool));
+    }
+
+    private static void updateItem(Context ctx, ConnectionPool connectionPool)
+    {
+        // TODO: Implement this method
     }
 
     private static void viewWardrobe(Context ctx, ConnectionPool connectionPool) {
         User user = ctx.sessionAttribute("currentUser");
-        List<WardrobeItem> wardrobeItemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(), connectionPool);
-        Map<Integer, WardrobeCategory> wardrobeCategoryMap = WardrobeCategoryMapper.getAllCategories(connectionPool);
-        ctx.sessionAttribute("categoryMap", wardrobeCategoryMap);
-        ctx.attribute("itemList", wardrobeItemList);
-        ctx.render("wardrober/index.html");
+        if (user != null) {
+            List<WardrobeItem> wardrobeItemList = WardrobeItemMapper.getAllItemsPerUser(user.getUserId(), connectionPool);
+            Map<Integer, WardrobeCategory> wardrobeCategoryMap = WardrobeCategoryMapper.getAllCategories(connectionPool);
+            ctx.sessionAttribute("categoryMap", wardrobeCategoryMap);
+            ctx.sessionAttribute("itemList", wardrobeItemList);
+            ctx.render("wardrober/index.html");
+        } else {
+            ctx.attribute("message", "You need to be logged in to view your wardrobe");
+            ctx.render("/index.html");
+        }
     }
 
     private static void deleteItem(Context ctx, ConnectionPool connectionPool) {
