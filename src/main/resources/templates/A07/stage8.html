@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Galgespil</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../public/css/A07.css" th:href="@{/css/A07.css}" rel="stylesheet"/>
+</head>
+
+<body>
+<header class="picture">
+    <a>
+        <img src="../../public/images/A07/Stage8.png" th:src="@{/images/A07/Stage8.png}" width="100%"/>
+        <h1>Stop nu ;(</h1>
+        <img src="../../public/images/A07/STOP.png" th:src="@{/images/A07/STOP.png}" width="30%"/>
+    </a>
+</header>
+<div class="center">
+    <!--  <p>Dette er stage8</p>
+    <p th:text="${correctAnswer}"></p> -->
+    <p class="shown-word" th:text="${shownWord}"></p>
+    <form class="form-guess" method="post">
+        <div class="container">
+            <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
+
+            <button type="submit" formaction="/A07/guessletter"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/A07/knapkevin.png" th:src="@{/images/A07/knapkevin.png}" width="20%"/></button>
+
+            <input type="text" name="word" placeholder="Indtast et ord"/>
+
+            <button type="submit" formaction="/A07/guessword"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/A07/knapkevin.png" th:src="@{/images/A07/knapkevin.png}" width="20%"/></button>
+
+        </div>
+    </form>
+</div>
+
+    <div>
+        <p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p>
+    </div>
+
+
+<table class="answer-table">
+
+    <tbody>
+    <tr th:each="answer: ${answers}">
+        <td th:text="${answer}"></td>
+    </tr>
+    </tbody>
+
+</table>
+
+
+</body>
+</html>

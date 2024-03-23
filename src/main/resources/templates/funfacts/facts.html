@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+  <title>Fun Fact</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="../../public/css/funfacts.css" th:href="@{/css/funfacts.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="page">
+<header>
+  <a href="../index.html" th:href="@{/}">
+    <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+  </a>
+</header>
+
+<div class="cardBox">
+  <div class="card">
+    <h2>DAGENS <br> FUN <br> FACT</h2>
+    <div class="content">
+      <p th:text="${fact}"></p>
+    </div>
+  </div>
+</div>
+</div>
+
+
+
+</body>

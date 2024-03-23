@@ -1,0 +1,56 @@
+.play-button{
+    font-size: 1.2rem;
+    border-radius: 10px;
+    margin-top: 120px;
+    background-color: black;
+    color:white;
+}
+
+.play-button:hover{
+    background-color: lightgray;
+}
+
+.picture{
+    display:block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+
+.center {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.shown-word{
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 75px;
+}
+
+container {
+    position: relative;
+    display: inline-block;
+}
+
+.button-image {
+    width: 50px;
+    height: auto;
+}
+
+.button-text {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 8px;
+    font-weight: bold;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    pointer-events: none;
+}

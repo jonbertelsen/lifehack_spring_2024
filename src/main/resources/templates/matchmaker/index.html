@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Projectname</title>
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+<link href="../../public/css/matchmaker.css" th:href="@{/css/matchmaker.css}" rel="stylesheet"/>
+
+
+<body>
+
+
+
+<div class="page">
+    <h1 class="h1">Bars Apart, Hearts Together</h1>
+
+        <a href="../index.html" th:href="@{/}">
+        <img class="picture" alt="logo" src="../../public/images/matchmaker/matchmakerlogo.png" th:src="@{/images/matchmaker/matchmakerlogo.png}"/>
+    </a>
+    <form class="generic-form" method="post">
+    <input type="text" name="username" placeholder=" username"/>
+    <input type="text" name="password" placeholder=" enter your password"/>
+    <button class="btn btn-ok" type="submit" formaction="/loginn">Login</button>
+    <button class="btn createuser" type="submit" formaction="/createuserpage">Create user</button>
+    </form>
+
+</div>
+</body>
+</html>
