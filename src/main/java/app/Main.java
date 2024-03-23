@@ -1,6 +1,8 @@
 package app;
 
 import app.config.ThymeleafConfig;
+import app.controllers.A07Controller;
+import app.persistence.GalgeSpil;
 import app.controllers.HaikuController;
 import app.controllers.FactController;
 import app.controllers.FriskForslagController;
@@ -37,6 +39,7 @@ public class Main
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
+        A07Controller.addRoutes(app, connectionPool, new GalgeSpil());
         HaikuController.addRoutes(app,connectionPool);
         FactController.addRoutes(app, connectionPool);
         FriskForslagController.addRoutes(app, connectionPool);
@@ -44,6 +47,5 @@ public class Main
         PlantPalController.addRoutes(app,connectionPool);
         CalorieCruncherController.addRoutes(app, connectionPool);
         PizzaCalculatorController.addRoutes(app, connectionPool);
-
     }
 }
