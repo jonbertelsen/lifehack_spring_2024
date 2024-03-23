@@ -12,6 +12,8 @@ import app.controllers.CalorieCruncherController;
 import app.controllers.PizzaCalculatorController;
 import app.controllers.TimeZonesController;
 import app.controllers.UserController;
+import app.controllers.WardrobeCategoryController;
+import app.controllers.WardrobeItemController;
 import app.persistence.ConnectionPool;
 import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
@@ -39,6 +41,7 @@ public class Main
         app.get("/", ctx -> ctx.render("index.html"));
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
+        WardrobeItemController.addRoutes(app,connectionPool);
         A07Controller.addRoutes(app, connectionPool, new GalgeSpil());
         HaikuController.addRoutes(app,connectionPool);
         FactController.addRoutes(app, connectionPool);
