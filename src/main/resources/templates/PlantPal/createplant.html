@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Add Plant - Yoda Style</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/plantpal.css" th:href="@{/css/plantpal.css}" rel="stylesheet"/>
+</head>
+
+<body class="yoda-theme">
+<div class="page">
+    <header>
+        <a href="index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/PlantPal/faedregruppencouncil2.jpg" th:src="@{/images/PlantPal/faedregruppencouncil2.jpg}"/>
+        </a>
+    </header>
+
+    <form class="create-plant" method="post">
+        <input type="text" name="plantenavn" placeholder="Plant Name, You Must Add"/>
+        <input type="text" name="placering" placeholder="Location, You Shall Specify"/>
+        <button type="submit" formaction="/createplant">Create Plant, You Will</button>
+    </form>
+
+    <div th:if="${session.currentUser != null}">
+        <span th:text="${session.currentUser.username}">Welcome, Young Padawan</span> |
+        <a class="logout-text" th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout, You Should</a>
+    </div>
+</div>
+</body>
+</html>

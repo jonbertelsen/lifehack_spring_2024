@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Fun Fact Frontpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/funfacts.css" th:href="@{/css/funfacts.css}" rel="stylesheet"/>
+
+</head>
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+    </header>
+
+
+    <div class="cardBox">
+        <div class="card">
+            <h2>DAGENS <br> FUN <br> FACT</h2>
+
+            <div class="content">
+                <h3>Vælg en dato</h3>
+                <form method="post" action="/getfact">
+                    <div class="form-group">
+                        <label for="date"></label>
+                        <input type="date" id="date" name="date">
+                    </div>
+                    <div class="form-group">
+                        <button type="submit">Se dagens fun fact </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+</body>

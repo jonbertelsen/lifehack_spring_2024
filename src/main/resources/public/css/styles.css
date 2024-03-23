@@ -19,10 +19,11 @@ body {
     padding:8px;
     border: 1px solid silver;
     min-height: 600px;
+    gap:10px;
 }
 
 header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 header a {
@@ -33,6 +34,7 @@ header a {
 
 header a img {
     width: 70%;
+    height: 50%;
 }
 
 h1 {

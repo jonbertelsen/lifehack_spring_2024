@@ -20,13 +20,62 @@
     <div class="projects">
         <h2>Projects to check out</h2>
         <div class="cards">
+
                 <div class="card">
                     <img class="card-image" alt="timezones" src="../public/images/timezones/timezone_icon.jpg" th:src="@{/images/timezones/timezone_icon.jpg}"/>
                     <div class="card-copy">Check the clock, everywhere</div>
                     <a class="card-link" href="timezones/index.html" th:href="@{/timezones/}"/>Timezones</a>
                 </div>
+  
+            <!-- Start på Haiku card -->
+            <div class="card">
+                <img class="card-image" alt="haiku" src="../public/images/haiku/haiku.png" th:src="@{/images/haiku/haiku.png}"/>
+                <div class="card-copy">Generate a cool haiku</div>
+                <a class="card-link" href="haiku/index.html" th:href="@{/haiku/}"/>Haiku Generator</a>
+            </div>
+            <!-- Slut på Haiku card -->
+
+            <div class="card">
+                <img class="card-image" alt="planPal" src="../public/images/PlantPal/PlantPal-logo.png"
+                     th:src="@{/images/PlantPal/PlantPal-logo.png}"/>
+                <div class="card-copy">PlantPal</div>
+                <a class="card-link" href="PlantPal/index.html" th:href="@{/PlantPal/}">Water I must</a>
+            </div>
+
+            <div class="card">
+                <img class="card-image" alt="matchmaker" src="../public/images/matchmaker/matchmakerlogo.png" th:src="@{/images/matchmaker/matchmakerlogo.png}"/>
+                <div class="card-copy">Bars apart, Hearts Together</div>
+                <a class="card-link" href="matchmaker/index.html" th:href="@{/frontpage/}">Find My Match</a>
+            </div>
+
+            <div class="card">
+                <img class="card-image" alt="caloriecruncher" src="../public/images/caloriecruncher/fat-man.png"
+                     th:src="@{/images/caloriecruncher/fat-man.png}"/>
+                <div class="card-copy">Calorie Cruncher</div>
+                <a class="card-link" href="caloriecruncher/index.html" th:href="@{/caloriecruncher/}">Get Crunchin'</a>
+            </div>
+            <div class="card">
+                <img class="card-image" alt="timezones" src="../public/images/pizzacalculator/vito_pizza.png"
+                     th:src="@{/images/pizzacalculator/vito_pizza.png}"/>
+                <div class="card-copy">Pizza calculator</div>
+                <a class="card-link" href="pizzacalculator/index.html" th:href="@{/pizzacalculator/}">Create a Pizza</a>
+            </div>
+            <div class="card">
+                <img class="card-image" alt="timezones" src="../public/images/friskforslag/friskforslaglogowtext.jpg"
+                     th:src="@{/images/friskforslag/friskforslaglogowtext.jpg}"/>
+                <div class="card-copy">Find opskrift</div>
+                <a class="card-link" href="friskforslag/index.html" th:href="@{/friskforslag/}">Bon Appétit</a>
+            </div>
+            <div class="card">
+                <img class="card-image" alt="timezones" src="../public/images/funfact/funfact_logo.png"
+                     th:src="@{/images/funfact/funfact_logo.png}"/>
+                <div class="card-copy">FunFacts</div>
+                <a class="card-link" href="funfacts/index.html" th:href="@{/funfacts/}">Get your fact</a>
+            </div>
+
         </div>
     </div>
+
     <h3>If you need to log in - do it here</h3>
     <form class="generic-form" method="post">
         <input type="text" name="username" placeholder="Enter your username"/>
@@ -37,7 +86,7 @@
 
     <div>
         <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>
-        <span  th:if="${session.currentUser != null}"> | </span>
+        <span th:if="${session.currentUser != null}"> | </span>
         <a href="createuser.html" th:href="@{/createuser}">Create user</a>
     </div>
 </div>

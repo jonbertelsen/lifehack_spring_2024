@@ -1,0 +1,136 @@
+div.page {
+    width: 800px;
+}
+
+.friskforslagTitleImageLink {
+    img {
+        width: fit-content;
+    }
+}
+
+.searchResults {
+    height: 800px;
+    overflow: auto;
+}
+
+.searchResultsTable {
+    table-layout: fixed;
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 10px;
+}
+
+.searchResultsTable th {
+    text-align: left;
+    padding: 10px;
+}
+.searchResultsTable td {
+    word-break: break-all;
+    padding: 4px;
+}
+
+.searchResultsTable tr {
+    border-radius: 20px;
+}
+
+.searchResultsTable tr:nth-child(odd) {
+    background-color: lightgray;
+}
+
+.searchParamsTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    gap: 10px;
+}
+
+.searchParamsDisplay {
+    font-weight: bolder;
+}
+
+.searchResultsIngredientsSpan {
+}
+
+.searchResultsIngredientsCell {
+    display: flex;
+    flex-direction: column;
+}
+
+.ingredientmatched {
+    font-weight: bolder;
+    text-decoration-line: underline;
+    text-decoration-color: black;
+}
+
+.recipeBody {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 800px;
+    padding: 30px;
+    p, ul {
+        background-color: lightgray;
+        padding: 18px;
+        border-radius: 10px;
+        width: 600px;
+        font-size: 0.9rem;
+    }
+
+    h3 {
+        font-size: 1.2rem;
+        font-weight: lighter;
+    }
+}
+
+.recipeImg {
+    display: flex;
+    justify-content: center;
+}
+
+.recipeImgImg {
+    max-width: 600px;
+}
+
+
+.searchResultsIngredientsList {
+    font-size: 0.8rem;
+}
+
+.searchParamsTitle {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+}
+
+.ingredientForm {
+    display: flex;
+    align-self: flex-start;
+    width: 600px;
+    gap: 40px;
+}
+
+.ingredientFormSearchText {
+    width: 500px;
+    font-size: 1.2rem;
+
+    display: flex;
+    align-self: flex-start;
+}
+
+.ingredientFormButton {
+    font-size: 1.2rem;
+    color: whitesmoke;
+    background-color: darkgreen;
+    border: 1px;
+    padding: 4px;
+    border-radius: 6px;
+}
+.ingredientFormButton:hover {
+    background-color: limegreen;
+}
+
+.ingredientFormTitle {
+    display: flex;
+}
