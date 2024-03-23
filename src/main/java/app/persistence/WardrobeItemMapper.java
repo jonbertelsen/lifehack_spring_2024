@@ -1,6 +1,5 @@
 package app.persistence;
 
-import app.entities.Task;
 import app.entities.WardrobeItem;
 import app.exceptions.DatabaseException;
 

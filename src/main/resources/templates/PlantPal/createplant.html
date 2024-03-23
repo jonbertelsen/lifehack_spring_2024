@@ -19,7 +19,7 @@
     <form class="create-plant" method="post">
         <input type="text" name="plantenavn" placeholder="Plant Name, You Must Add"/>
         <input type="text" name="placering" placeholder="Location, You Shall Specify"/>
-        <button type="submit" formaction="/createplant">Create Plant, You Will</button>
+        <button type="submit" formaction="createplant">Create Plant, You Will</button>
     </form>
 
     <div th:if="${session.currentUser != null}">

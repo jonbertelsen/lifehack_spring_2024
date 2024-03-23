@@ -39,7 +39,7 @@
 
                 <td>
                     <div class="buttons">
-                        <button type="submit" name="planteId" th:value="${plante.planteId}"  formaction="/PlantPal/vand">Water, You Shall
+                        <button type="submit" name="planteId" th:value="${plante.planteId}"  formaction="vand">Water, You Shall
                         </button>
                         <input type="hidden" name="vandTidId" th:value="${plante.vandTidId}" />
                         <button type="submit" name="planteId" th:value="${plante.planteId}" formaction="deleteplante">Delete, You Must
@@ -53,7 +53,7 @@
 
         </table>
     </form>
-    <p><a class="link" href="createplant.html" th:href="@{/createplant}">Add Plant, You Want</a></p>
+    <p><a class="link" href="createplant.html" th:href="@{createplant}">Add Plant, You Want</a></p>
     <div class="logout">
         <p th:if="${session.currentUser != null}">
             <span th:text="${session.currentUser.username}">Welcome, Young Padawan</span> |

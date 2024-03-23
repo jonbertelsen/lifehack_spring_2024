@@ -19,9 +19,9 @@ public class PlantPalController
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
         app.get("PlantPal", ctx -> index(ctx, connectionPool));
-        app.get("createplant", ctx -> ctx.render("/PlantPal/createplant.html"));
-        app.post("createplant", ctx -> createplant(ctx,connectionPool));
-        app.post("/PlantPal/deleteplante", ctx -> deleteplante(ctx, connectionPool));
+        app.get("PlantPal/createplant", ctx -> ctx.render("/PlantPal/createplant.html"));
+        app.post("PlantPal/createplant", ctx -> createplant(ctx,connectionPool));
+        app.post("PlantPal/deleteplante", ctx -> deleteplante(ctx, connectionPool));
         app.post("PlantPal/vand", ctx -> updateDate(ctx, connectionPool));
     }
 
@@ -34,7 +34,8 @@ public class PlantPalController
             ctx.render("/PlantPal/index.html", Map.of("planteList",planteList));
 
         } catch (Exception e) {
-            throw new RuntimeException(e);
+            ctx.attribute("message", "Husk at logge ind");
+            ctx.render("/index.html");
         }
 
 
@@ -93,9 +94,7 @@ public class PlantPalController
                 String placering = ctx.formParam("placering");
                 PlanteMapper.addPlante(user,planteNavn,placering,connectionPool);
                 List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(), connectionPool);
-
-
-                ctx.render("/PlantPal", Map.of("planteList", planteList));
+                ctx.render("/PlantPal/index.html", Map.of("planteList", planteList));
             } catch (DatabaseException e) {
                 ctx.render("/PlantPal/createplant.html");
             }

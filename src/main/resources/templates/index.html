@@ -19,6 +19,7 @@
 
     <div class="projects">
         <h2>Projects to check out</h2>
+        <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
         <div class="cards">
 
                 <div class="card">
@@ -55,22 +56,34 @@
                 <a class="card-link" href="caloriecruncher/index.html" th:href="@{/caloriecruncher/}">Get Crunchin'</a>
             </div>
             <div class="card">
-                <img class="card-image" alt="timezones" src="../public/images/pizzacalculator/vito_pizza.png"
+                <img class="card-image" alt="pizzacalculator" src="../public/images/pizzacalculator/vito_pizza.png"
                      th:src="@{/images/pizzacalculator/vito_pizza.png}"/>
                 <div class="card-copy">Pizza calculator</div>
                 <a class="card-link" href="pizzacalculator/index.html" th:href="@{/pizzacalculator/}">Create a Pizza</a>
             </div>
             <div class="card">
-                <img class="card-image" alt="timezones" src="../public/images/friskforslag/friskforslaglogowtext.jpg"
+                <img class="card-image" alt="friskforslag" src="../public/images/friskforslag/friskforslaglogowtext.jpg"
                      th:src="@{/images/friskforslag/friskforslaglogowtext.jpg}"/>
                 <div class="card-copy">Find opskrift</div>
                 <a class="card-link" href="friskforslag/index.html" th:href="@{/friskforslag/}">Bon Appétit</a>
             </div>
             <div class="card">
-                <img class="card-image" alt="timezones" src="../public/images/funfact/funfact_logo.png"
+                <img class="card-image" alt="funfact" src="../public/images/funfact/funfact_logo.png"
                      th:src="@{/images/funfact/funfact_logo.png}"/>
                 <div class="card-copy">FunFacts</div>
                 <a class="card-link" href="funfacts/index.html" th:href="@{/funfacts/}">Get your fact</a>
+            </div>
+            <div class="card">
+                <img class="card-image" alt="hangman" src="../public/images/A07/hangman.png"
+                     th:src="@{/images/A07/hangman.png}"/>
+                <div class="card-copy">Hangman</div>
+                <a class="card-link" href="funfacts/index.html" th:href="@{/A07}">Game on</a>
+            </div>
+            <div class="card">
+                <img class="card-image" alt="wardrober" src="../public/images/wardrober/wardrober-high-resolution-logo.png"
+                     th:src="@{/images/wardrober/wardrober-high-resolution-logo.png}"/>
+                <div class="card-copy">Wardrober</div>
+                <a class="card-link" href="wardrober/index.html" th:href="@{/wardrober}">Ward My Robe</a>
             </div>
 
         </div>
@@ -81,7 +94,6 @@
         <input type="text" name="username" placeholder="Enter your username"/>
         <input type="password" name="password" placeholder="Enter your password"/>
         <button class="btn btn-ok" type="submit" formaction="/login">Login</button>
-        <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
     </form>
 
     <div>
@@ -90,8 +102,6 @@
         <a href="createuser.html" th:href="@{/createuser}">Create user</a>
     </div>
 </div>
-
-<p><a href="A07/index.html" th:href="@{/A07/}">Spil</a></p>
 
 </body>
 </html>
