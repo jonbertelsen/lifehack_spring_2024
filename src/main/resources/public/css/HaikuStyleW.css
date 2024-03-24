@@ -1,0 +1,130 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('../images/haiku/HBGP.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.container {
+    text-align: center;
+    padding-top: 100px;
+}
+.custom-container {
+    background-color: rgba(222, 181, 243, 0.35);
+    padding: 20px;
+    margin-top: 30px;
+    border: 2px solid rgba(90, 5, 245, 0.58);
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.46);
+}
+
+.custom-container h4 {
+    color: rgba(101, 0, 255, 0.65);
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    width: 600px;
+    padding: 10px;
+    margin: 5px;
+    font-size: 16px;
+    display: block;
+    margin: auto;
+}
+button {
+    padding: 10px 20px;
+    margin: 5px;
+    font-size: 16px;
+    cursor: pointer;
+}
+#saveHaiku {
+    background-color: #00a905;
+    color: white;
+    border: none;
+}
+.generateButton {
+    background-color: #008CBA;
+    color: white;
+    border: none;
+}
+#clearFields {
+    background-color: #de1e0f;
+    color: white;
+    border: none;
+}
+.banner {
+    background-color: #d70101;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    border-bottom: 2px solid rgba(0, 0, 0, 0.59);
+    text-align: center;
+}
+.footer {
+    background-color: #860303;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+}
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+.additionalButton {
+    background-color: #d70101;
+    color: white;
+    border: 2px solid rgba(0, 0, 0, 0.59);
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    margin: 0 5px;
+    border-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.additionalButton:hover {
+    background-color: #a40101;
+    border-color: #750202;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.02);
+}
+
+.left-ad,
+.right-ad {
+    position: fixed;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1000;
+}
+
+.left-ad {
+    left: 1px; /* Adjust distance from the left edge */
+}
+
+.right-ad {
+    right: 1px; /* Adjust distance from the right edge */
+}
+
+.left-ad img,
+.right-ad img {
+    width: 160px;
+    height: auto;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+
+}

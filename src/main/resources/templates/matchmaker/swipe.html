@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Swipe</title>
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/matchmaker.css" th:href="@{/css/matchmaker.css}" rel="stylesheet"/>
+</head>
+<body>
+
+<div class="page">
+
+
+
+
+
+        <h1 class="h1">Bars Apart, Hearts Together</h1>
+
+        <img class="image" th:src="@{/images/matchmaker/temp.jpg}" th:alt="bruh">
+
+        <form class="btns" method="post">
+            <button class="btn cross" type="submit" formaction="swipefordislike">&#10007;</button>
+            <button class="btn heart" type="submit" formaction="swipeforlike">&hearts;</button>
+
+        </form>
+
+
+
+
+</div>
+
+</body>
+</html>

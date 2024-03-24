@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="">
+<head>
+    <title>FriskForslag</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
+    <link href="../../public/css/friskforslag.css" th:href="@{/css/friskforslag.css}" rel="stylesheet"/>
+    <link rel="icon" type="image/jpg" sizes="32x32" th:href="@{/images/friskforslag/friskforslaglogo32x32.jpg}">
+    <link rel="icon" type="image/jpg" sizes="48x48" th:href="@{/images/friskforslag/friskforslaglogo48x48.jpg}">
+</head>
+
+<body>
+
+<div class="page">
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png"
+                 th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+        <a class="friskforslagTitleImageLink" href="../friskforslag/index.html" th:href="@{/friskforslag}">
+            <img alt="logo" src="../../public/images/friskforslag/friskforslaglogowtext.jpg"
+                 th:src="@{/images/friskforslag/friskforslaglogowtext.jpg}" />
+        </a>
+    </header>
+
+    <div class="recipeImg" th:if="${fetchedRecipe.Img() != null}">
+        <img th:if="${!fetchedRecipe.Img().isEmpty()}" class="recipeImgImg" alt="" src="" th:src="${fetchedRecipe.Img()}">
+    </div>
+
+
+    <div th:if="${fetchedRecipe != null}" class="recipeBody">
+        <h2 th:text="${fetchedRecipe.Name()}"></h2>
+        <h3>Ingredienser</h3>
+        <ul class="recipeIngredients">
+            <li th:each="ing, iterStat : ${fetchedRecipe.Ingredients()}"
+                th:text="${fetchedRecipe.Ingredients()[__${iterStat.index}__]} + ' : ' +
+                                     ${fetchedRecipe.Quantities()[__${iterStat.index}__]} + ' ' +
+                                     ${fetchedRecipe.Units()[__${iterStat.index}__]}">
+            </li>
+        </ul>
+        <h3>Beskrivelse</h3>
+        <p th:text="${fetchedRecipe.Descr()}"></p>
+        <h3>Sådan gør du</h3>
+        <p th:text="${fetchedRecipe.Proc()}"></p>
+        <h3>Kilde:</h3>
+        <a th:if="${fetchedRecipe.Src() != null}" href="/friskforslag" th:href="${fetchedRecipe.Src()}">Link til oprindelig side</a>
+    </div>
+
+
+</div>
+
+</body>
+</html>

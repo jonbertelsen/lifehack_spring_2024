@@ -19,10 +19,11 @@ body {
     padding:8px;
     border: 1px solid silver;
     min-height: 600px;
+    gap:10px;
 }
 
 header {
-    margin-bottom: 40px;
+    margin-bottom: 30px;
 }
 
 header a {
@@ -33,6 +34,7 @@ header a {
 
 header a img {
     width: 70%;
+    height: 50%;
 }
 
 h1 {
@@ -82,7 +84,7 @@ h3 {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
 }
 
@@ -100,6 +102,8 @@ h3 {
 .card-image {
     width: 100%;
     height: auto;
+    border-radius: 8px 8px 0px 0px;
+    border-bottom: 1px solid silver;
 }
 
 .card-link {
@@ -121,7 +125,8 @@ h3 {
 .card-copy {
     font-family: "Helvetica Neue";
     padding: 10px;
-    font-size: 0.85rem;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
 
