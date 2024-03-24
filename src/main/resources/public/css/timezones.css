@@ -1,8 +1,19 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 /* CSS rules specific for timezones project */
+
+header {
+    backdrop-filter: blur(7px);
+}
+.backgroudImg {
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 75%;
+    width: 100%;
+    overflow: hidden;
+}
 .page {
     font-family: "Poppins", sans-serif;
-    background-image: url("../../public/images/timezones/timezone_background.jpeg");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: bottom;
@@ -11,6 +22,8 @@
 h4,
 h1{
     color: #ffffff;
+    backdrop-filter: blur(7px);
+
 }
 
 .wrapper {
@@ -71,7 +84,39 @@ h1{
     font-size: 14px;
     font-weight: 200;
 }
+@media (max-width: 600px) {
+    .wrapper {
+        flex-direction: column;
+    }
 
+    .wrapper .btn {
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+.page {
+    font-family: "Poppins", sans-serif;
+    background-image: url('/images/timezones/timezone_background.jpeg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.celebrate-gif {
+    width: 100px;
+    height: auto;
+    display: block;
+    margin: 20px auto;
+}
+.text-container {
+    background-color: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(5px);
+    border-radius: 10px;
+    padding: 10px;
+    display: inline-block;
+    margin: 10px;
+    max-width: 80%;
+    text-align: center;
+}
 /*th:src="@{/images/timezones/world-map.jpeg}"
         <a href="../index.html" th:href="@{/}">
             <img background="../../public/images/timezones/world-map.jpeg"/>
