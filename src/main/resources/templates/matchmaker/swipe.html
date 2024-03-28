@@ -10,23 +10,21 @@
 
 <div class="page">
 
+    <h1 class="h1">Bars Apart, Hearts Together</h1>
 
+    <img class="image" th:src="${fugitive.url}" th:alt="${fugitive.name}"/>
+    <h2 class="h2" th:text="${fugitive.name}">Name</h2>
+    <table class="table">
+        <tr><td>Category</td><td th:text="${fugitive.category}"></td></tr>
+        <tr><td>Occupation</td><td th:text="${fugitive.occupation}"></td></tr>
+        <tr><td>Description</td><td th:text="${fugitive.description}"></td></tr>
+    </table>
 
-
-
-        <h1 class="h1">Bars Apart, Hearts Together</h1>
-
-        <img class="image" th:src="@{/images/matchmaker/temp.jpg}" th:alt="bruh">
-
-        <form class="btns" method="post">
-            <button class="btn cross" type="submit" formaction="swipefordislike">&#10007;</button>
-            <button class="btn heart" type="submit" formaction="swipeforlike">&hearts;</button>
-
-        </form>
-
-
-
-
+    <form class="btns" method="post">
+        <input type="hidden" name="fugitiveId" th:value="${fugitive.fugitivesId}">
+        <button class="btn cross" type="submit" formaction="swipefordislike">&#10007;</button>
+        <button class="btn heart" type="submit" formaction="swipeforlike">&hearts;</button>
+    </form>
 </div>
 
 </body>

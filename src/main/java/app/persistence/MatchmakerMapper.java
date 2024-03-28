@@ -6,6 +6,7 @@ import app.entities.User;
 import app.exceptions.DatabaseException;
 import io.javalin.http.Context;
 
+import javax.xml.namespace.QName;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -152,7 +153,7 @@ public class MatchmakerMapper
         }
     }
     public static List<MatchmakerFugitive> getphoturlAndFugitives_id(int userId, ConnectionPool connectionPool) throws DatabaseException {
-        String sql = "SELECT f.fugitives_id, f.photo_url FROM preference AS p " +
+        String sql = "SELECT f.fugitives_id, f.photo_url, f.name, f.description, f.category, f.occupation FROM preference AS p " +
                 "JOIN matchmaker_user AS mmu ON mmu.user_id = p.user_id " +
                 "JOIN fugitives AS f ON f.sex = p.sex " +
                 "WHERE p.user_id = ?";
@@ -167,8 +168,12 @@ public class MatchmakerMapper
             while (rs.next()) {
                 String photourl = rs.getString("photo_url");
                 int fugitivesId = rs.getInt("fugitives_id");
+                String name = rs.getString("name");
+                String description = rs.getString("description");
+                String category = rs.getString("category");
+                String occupation = rs.getString("occupation");
 
-                fugitive = new MatchmakerFugitive(fugitivesId, photourl);
+                fugitive = new MatchmakerFugitive(fugitivesId, photourl, name, description, category, occupation);
                 list.add(fugitive);
             }
 
@@ -177,8 +182,5 @@ public class MatchmakerMapper
         }
         return list;
     }
-
-
-
 
 }

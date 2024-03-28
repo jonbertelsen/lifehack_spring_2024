@@ -22,6 +22,16 @@ public class MatchmakerFugitive {
         this.url = url;
     }
 
+    public MatchmakerFugitive(int fugitivesId, String photourl, String name, String description, String category, String occupation)
+    {
+        this.fugitivesId = fugitivesId;
+        this.url = photourl;
+        this.name = name;
+        this.description = description;
+        this.category = category;
+        this.occupation = occupation;
+    }
+
     public int getFugitivesId() {
         return fugitivesId;
     }
@@ -61,6 +71,8 @@ public class MatchmakerFugitive {
     public String getUrl() {
         return url;
     }
+
+
 
     @Override
     public String toString() {
