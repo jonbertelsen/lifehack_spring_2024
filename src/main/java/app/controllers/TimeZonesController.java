@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.persistence.ConnectionPool;
+import app.persistence.TimezoneMapper;
 import io.javalin.Javalin;
 import io.javalin.http.Context;
 import java.util.Map;
@@ -19,7 +20,7 @@ public class TimeZonesController {
         String fromCountryCode = ctx.formParam("from");
         String toCountryCode = ctx.formParam("to");
         try {
-            int differenceInSeconds = TimezoneService.calculateTimeDifference(fromCountryCode, toCountryCode, connectionPool);
+            int differenceInSeconds = TimezoneMapper.calculateTimeDifference(fromCountryCode, toCountryCode, connectionPool);
             // Konvertererer sekunder til timer og minutter
             int hours = differenceInSeconds / 3600;
             int minutes = (differenceInSeconds % 3600) / 60;

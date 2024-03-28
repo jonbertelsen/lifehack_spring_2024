@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Projectname</title>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="../../public/css/styles.css" rel="stylesheet" th:href="@{/css/styles.css}"/>
+<link href="../../public/css/savingscalculator.css" rel="stylesheet" th:href="@{/css/savingscalculator.css}"/>
+</head>
+
+<body>
+
+
+<div class="page">
+
+    <header>
+        <a href="../index.html" th:href="@{/}">
+            <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+        </a>
+    </header>
+    <div class="top">
+        <h1>Here is approximately how much you can save </h1>
+        <p>ATTENTION! this is not a precisely amount</p>
+
+
+        <p>Saving Percentage: <span th:text="${calculation.savingPercentage}"></span></p>
+        <p>Income: <span th:text="${calculation.income}"></span></p>
+        <p>Rent: <span th:text="${calculation.rent}"></span></p>
+        <p>Goal: <span th:text="${calculation.goal}"></span></p>
+
+        <p>You can approximately save: <span th:text="${calculation.getResult()}"></span></p>
+
+
+    </div>
+
+</div>
+</body>
+</html>

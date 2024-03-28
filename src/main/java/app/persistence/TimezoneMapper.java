@@ -1,12 +1,12 @@
-package app.controllers;
+package app.persistence;
 
-import app.persistence.ConnectionPool;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class TimezoneService {
+public class TimezoneMapper
+{
 
     public static int getTimezoneOffset(String countryCode, ConnectionPool pool) {
         String sql = "SELECT gmt_offset, dst FROM time_zone WHERE country_code = ? ORDER BY time_start DESC LIMIT 1";

@@ -1,19 +1,8 @@
 package app;
 
 import app.config.ThymeleafConfig;
-import app.controllers.A07Controller;
+import app.controllers.*;
 import app.persistence.GalgeSpil;
-import app.controllers.HaikuController;
-import app.controllers.FactController;
-import app.controllers.FriskForslagController;
-import app.controllers.MatchmakerController;
-import app.controllers.PlantPalController;
-import app.controllers.CalorieCruncherController;
-import app.controllers.PizzaCalculatorController;
-import app.controllers.TimeZonesController;
-import app.controllers.UserController;
-import app.controllers.WardrobeCategoryController;
-import app.controllers.WardrobeItemController;
 import app.persistence.ConnectionPool;
 import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
@@ -24,7 +13,7 @@ public class Main
     private static final String USER = "postgres";
     private static final String PASSWORD = "postgres";
     private static final String URL = "jdbc:postgresql://localhost:5432/%s?currentSchema=public";
-    private static final String DB = "fourthingsplus";
+    private static final String DB = "lifehack";
 
     private static final ConnectionPool connectionPool = ConnectionPool.getInstance(USER, PASSWORD, URL, DB);
 
@@ -50,5 +39,6 @@ public class Main
         PlantPalController.addRoutes(app,connectionPool);
         CalorieCruncherController.addRoutes(app, connectionPool);
         PizzaCalculatorController.addRoutes(app, connectionPool);
+        SavingsCalculatorController.addRoutes(app, connectionPool);
     }
 }

@@ -15,10 +15,9 @@
             <img alt="logo" src="../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
         </a>
     </header>
-    <h1>Lifehack team A</h1>
+    <h1>Team A</h1>
 
     <div class="projects">
-        <h2>Projects to check out</h2>
         <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
         <div class="cards">
 
@@ -84,6 +83,13 @@
                      th:src="@{/images/wardrober/wardrober-high-resolution-logo.png}"/>
                 <div class="card-copy">Wardrober</div>
                 <a class="card-link" href="wardrober/index.html" th:href="@{/wardrober}">Ward My Robe</a>
+            </div>
+            <div class="cards">
+                <div class="card">
+                    <img class="card-image" alt="savingscalculator" src="../public/images/savingscalculator/savings-calculator.png" th:src="@{/images/savingscalculator/savings-calculator.png}"/>
+                    <div class="card-copy">Calculate your savings</div>
+                    <a class="card-link" href="savingscalculator/index.html" th:href="@{/savingscalculator/}"/>Get Rich</a>
+                </div>
             </div>
 
         </div>

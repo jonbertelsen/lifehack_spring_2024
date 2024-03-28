@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<title>Projectname</title>
+<meta charset="UTF-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<link href="../../public/css/styles.css" rel="stylesheet" th:href="@{/css/styles.css}"/>
+<link href="../../public/css/savingscalculator.css" rel="stylesheet" th:href="@{/css/savingscalculator.css}"/>
+</head>
+
+<body>
+<form method="post">
+    <div class="page">
+
+        <header>
+            <a href="../index.html" th:href="@{/}">
+                <img alt="logo" src="../../public/images/lifehacklogo.png" th:src="@{/images/lifehacklogo.png}"/>
+            </a>
+        </header>
+        <div class="top">
+            <h1>Savings Calculator</h1>
+            <p>Calculate how much money you should save in relation to your income & rent</p>
+        </div>
+
+        <div class="income">
+            <div class="salary">
+                <input class="factor-inputfield" name="savingPercentage" placeholder="How many % to save?"
+                       type="number"/>
+                <p>How high a percentage would you like to save each month?</p>
+            </div>
+            <div class="salary">
+                <input class="salary-inputfield" name="income" placeholder="Enter Monthly income" type="number"/>
+                <p>What is your monthly income?</p>
+            </div>
+        </div>
+        <div class="income">
+            <div class="salary">
+                <input class="factor-inputfield" name="rent" placeholder="Enter monthly expenditure" type="number"/>
+                <p>What is your monthly expenditure?</p>
+            </div>
+
+            <div class="salary">
+                <input class="salary-inputfield" name="goal" placeholder="Enter saving goal" type="number"/>
+                <p>How much are you aiming to save up?</p>
+            </div>
+
+        </div>
+
+        <div class="calculation">
+            <button formaction="calculate" type="submit">Calculate</button>
+        </div>
+
+    </div>
+</form>
+
+</body>
+</html>
