@@ -57,6 +57,10 @@ h1{
     color: #ffffff;
 }
 
+.input-box-1 select, .input-box-2 select {
+    padding: 10px;
+}
+
 .generic-form input[type=time],
 .generic-form input[type=text] {
     background: transparent;
@@ -71,8 +75,8 @@ h1{
 }
 
 .wrapper .btn {
-    margin: 20px 0 20px 0;
-    padding: 5px 15px 5px 15px;
+    margin: 20px 30px 20px 0;
+
     background: #ffffff;
     color: black;
     margin-left: 50%;

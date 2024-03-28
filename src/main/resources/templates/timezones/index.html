@@ -34,12 +34,28 @@
         <form class="generic-form" action="/calculate-timezone-difference" method="post">
             <div class="input-box-1">
                 <h6>From</h6>
-                <input type="text" name="from" placeholder="Enter the departure" required>
+                <select name="from">
+                    <option th:each="country : ${session.countryCodeList}"
+                            th:value="${country.countryCode}"
+                            th:text="${country.countryCode + ' (' + country.countryName + ')'}"
+                            placeholder="Enter the departure" required
+                    >
+                        Enter the departure country
+                    </option>
+                </select>
             </div>
 
             <div class="input-box-2">
                 <h6>To</h6>
-                <input type="text" name="to" placeholder="Enter the destination" required>
+                <select name="to">
+                    <option th:each="country : ${session.countryCodeList}"
+                            th:value="${country.countryCode}"
+                            th:text="${country.countryCode + ' (' + country.countryName + ')'}"
+                            placeholder="Enter the destination" required
+                    >
+                        Enter the departure country
+                    </option>
+                </select>
             </div>
 
             <button class="btn" type="submit">Calculate</button>
