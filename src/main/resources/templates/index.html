@@ -17,6 +17,13 @@
     </header>
     <h1>Team A</h1>
 
+    <h3>If you need to log in - do it here</h3>
+    <form class="login-form" method="post">
+        <input type="text" name="username" placeholder="Enter your username"/>
+        <input type="password" name="password" placeholder="Enter your password"/>
+        <button class="btn btn-ok" type="submit" formaction="/login">Login</button>
+    </form>
+
     <div class="projects">
         <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
         <div class="cards">
@@ -94,13 +101,6 @@
 
         </div>
     </div>
-
-    <h3>If you need to log in - do it here</h3>
-    <form class="generic-form" method="post">
-        <input type="text" name="username" placeholder="Enter your username"/>
-        <input type="password" name="password" placeholder="Enter your password"/>
-        <button class="btn btn-ok" type="submit" formaction="/login">Login</button>
-    </form>
 
     <div>
         <a th:if="${session.currentUser != null}" href="index.html" th:href="@{/logout}">Logout</a>

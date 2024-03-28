@@ -62,6 +62,25 @@ h3 {
     gap: 10px;
 }
 
+.login-form {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.login-form input[type=text],
+.login-form input[type=password],
+.login-form button {
+    padding: 7px;
+    border-radius: 5px;
+    border: 1px solid silver;
+}
+
+.generic-form button:hover {
+    background-color: darkgray;
+}
+
 .generic-form input[type=text],
 .generic-form input[type=password],
 .generic-form button {

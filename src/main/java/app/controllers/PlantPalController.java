@@ -30,8 +30,8 @@ public class PlantPalController
         User user = ctx.sessionAttribute("currentUser");
         try{
             List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(),connectionPool);
-
-            ctx.render("/PlantPal/index.html", Map.of("planteList",planteList));
+            ctx.attribute("planteList", planteList);
+            ctx.render("/PlantPal/index.html");
 
         } catch (Exception e) {
             ctx.attribute("message", "Husk at logge ind");
