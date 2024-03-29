@@ -4,30 +4,30 @@
 <title>Galgespil</title>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link href="../public/css/A07.css" th:href="@{/css/A07.css}" rel="stylesheet"/>
+<link href="../../public/css/hangman.css" th:href="@{/css/hangman.css}" rel="stylesheet"/>
 </head>
 
 <body>
 <header class="picture">
     <a>
-        <img src="../../public/images/A07/Stage8.png" th:src="@{/images/A07/Stage8.png}" width="100%"/>
-        <h1>Stop nu ;(</h1>
-        <img src="../../public/images/A07/STOP.png" th:src="@{/images/A07/STOP.png}" width="30%"/>
+        <img src="../../public/images/hangman/Stage2.png" th:src="@{/images/hangman/Stage2.png}" width="100%"/>
+        <h1>Det Nok Nu</h1>
+        <img src="../../public/images/hangman/DetNok.png" th:src="@{/images/hangman/DetNok.png}" width="30%"/>
     </a>
 </header>
 <div class="center">
-    <!--  <p>Dette er stage8</p>
+    <!--  <p>Dette er stage2</p>
     <p th:text="${correctAnswer}"></p> -->
     <p class="shown-word" th:text="${shownWord}"></p>
     <form class="form-guess" method="post">
         <div class="container">
             <input type="text" name="letter" maxlength="1" placeholder="Indtast et bogstav"/>
 
-            <button type="submit" formaction="/A07/guessletter"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/A07/knapkevin.png" th:src="@{/images/A07/knapkevin.png}" width="20%"/></button>
+            <button type="submit" formaction="/hangman/guessletter"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/hangman/knapkevin.png" th:src="@{/images/hangman/knapkevin.png}" width="20%"/></button>
 
             <input type="text" name="word" placeholder="Indtast et ord"/>
 
-            <button type="submit" formaction="/A07/guessword"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/A07/knapkevin.png" th:src="@{/images/A07/knapkevin.png}" width="20%"/></button>
+            <button type="submit" formaction="/hangman/guessword"><div class="button-text">gæt</div><img class="button-image" src="../../public/images/hangman/knapkevin.png" th:src="@{/images/hangman/knapkevin.png}" width="20%"/></button>
 
         </div>
     </form>

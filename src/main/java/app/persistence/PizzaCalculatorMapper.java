@@ -77,7 +77,7 @@ public class PizzaCalculatorMapper
         {
             PreparedStatement statement = connection.prepareStatement(sql);
             statement.setInt(1, recipe.getQuantity());
-            statement.setInt(2, recipe.getWeight());
+            statement.setInt(2, recipe.getWeightPerBall());
             statement.setInt(3, recipe.getHydration());
             statement.setInt(4, recipe.getTemperature());
             statement.setDate(5, java.sql.Date.valueOf(recipe.getDate()));

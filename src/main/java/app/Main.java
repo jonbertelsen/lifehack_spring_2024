@@ -4,7 +4,6 @@ import app.config.ThymeleafConfig;
 import app.controllers.*;
 import app.persistence.GalgeSpil;
 import app.persistence.ConnectionPool;
-import app.persistence.HaikuMapper;
 import io.javalin.Javalin;
 import io.javalin.rendering.template.JavalinThymeleaf;
 
@@ -31,7 +30,7 @@ public class Main
         UserController.addRoutes(app, connectionPool);
         TimeZonesController.addRoutes(app, connectionPool);
         WardrobeItemController.addRoutes(app,connectionPool);
-        A07Controller.addRoutes(app, connectionPool, new GalgeSpil());
+        HangmanController.addRoutes(app, connectionPool, new GalgeSpil());
         HaikuController.addRoutes(app,connectionPool);
         FactController.addRoutes(app, connectionPool);
         FriskForslagController.addRoutes(app, connectionPool);

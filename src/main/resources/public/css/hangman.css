@@ -30,9 +30,20 @@
     font-size: 75px;
 }
 
-container {
-    position: relative;
-    display: inline-block;
+.container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.container input[type="text"] {
+    padding: 8px;
+}
+
+.container img {
+    padding: 8px;
 }
 
 .button-image {

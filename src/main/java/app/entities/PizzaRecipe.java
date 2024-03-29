@@ -6,25 +6,25 @@ public class PizzaRecipe
 {
     private int recipeId;
     private int quantity;
-    private int weight;
+    private int weightPerBall;
     private int hydration;
     private int temperature;
     private LocalDate date;
 
-    public PizzaRecipe(int quantity, int weight, int hydration, int temperature)
+    public PizzaRecipe(int quantity, int weightPerBall, int hydration, int temperature)
     {
         this.quantity = quantity;
-        this.weight = weight;
+        this.weightPerBall = weightPerBall;
         this.hydration = hydration;
         this.temperature = temperature;
         this.date = LocalDate.now();
     }
 
-    public PizzaRecipe(int recipeId, int quantity, int weight, int hydration, int temperature, LocalDate date)
+    public PizzaRecipe(int recipeId, int quantity, int weightPerBall, int hydration, int temperature, LocalDate date)
     {
         this.recipeId = recipeId;
         this.quantity = quantity;
-        this.weight = weight;
+        this.weightPerBall = weightPerBall;
         this.hydration = hydration;
         this.temperature = temperature;
         this.date = date;
@@ -40,9 +40,9 @@ public class PizzaRecipe
         return quantity;
     }
 
-    public int getWeight()
+    public int getWeightPerBall()
     {
-        return weight;
+        return weightPerBall;
     }
 
     public int getHydration()
@@ -60,39 +60,46 @@ public class PizzaRecipe
         return date;
     }
 
+    /*** Calc *****/
+
+    public int getTotalWeight()
+    {
+        return quantity * weightPerBall;
+    }
+
     public int getFlourInGrammes()
     {
-        return (int) (700.0 / 4 * quantity);
+        return roundToNearest25 ((int) (getTotalWeight() / (1 + hydration / 100.0)));
     }
 
     public int getPoolishFlourInGrammes()
     {
-        return (int) (200.0 / 4 * quantity);
+        return roundToNearest25 ( (int) (getFlourInGrammes() * 0.3));
     }
 
     public int getPoolishWaterInGrammes()
     {
-        return (int) (200.0 / 4 * quantity);
+        return roundToNearest25 ((int) (getFlourInGrammes() * 0.3));
     }
 
     public int getWaterInGrammes()
     {
-        return (int) (500.0 / 4 * quantity);
+        return (int) (getTotalWeight() - getFlourInGrammes());
     }
 
     public int getYeastInGrammes()
     {
-        return (int) (10.0 / 4 * quantity) ;
+        return (int) (getFlourInGrammes() * 0.02);
     }
 
     public int getSaltInGrammes()
     {
-        return (int) (20.0 / 4 * quantity);
+        return (int) (getFlourInGrammes() * 0.02);
     }
 
     public int getHoneyInGrammes()
     {
-        return (int) (5 / 4 * quantity);
+        return (int) (getFlourInGrammes() * 0.01);
     }
 
     public int getCanOfTomatoesInNumbers()
@@ -103,6 +110,21 @@ public class PizzaRecipe
     public int getMozzarellaInGrammes()
     {
         return quantity * 100;
+    }
+
+    public int getFinalFlourInGrammes()
+    {
+        return getFlourInGrammes() + getPoolishFlourInGrammes();
+    }
+
+    public int getFinalWaterInGrammes()
+    {
+        return getWaterInGrammes() + getPoolishWaterInGrammes();
+    }
+
+    private int roundToNearest25(int number)
+    {
+        return (int) Math.floor(number / 25.0) * 25;
     }
 
 }

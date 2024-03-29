@@ -67,6 +67,7 @@ h3 {
     flex-direction: row;
     flex-wrap: wrap;
     gap: 10px;
+    margin-bottom: 20px;
 }
 
 .login-form input[type=text],
