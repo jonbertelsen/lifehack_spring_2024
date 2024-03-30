@@ -19,6 +19,8 @@
 
     <h1>Welcome&nbsp; <span th:text="${session.currentUser.username}"> </span></h1>
 
+    <div><p class="error" th:unless="${#strings.isEmpty(message)}" th:text="${message}"></p></div>
+
     <form class="table" id="table-styling" method="post">
         <table class="task-table">
             <thead>
@@ -41,9 +43,9 @@
                 <td th:text="${item.size}"></td>
                 <td th:text="${item.price}"></td>
                 <td>
-                    <button type="submit" name="itemId" th:value="${item.itemId}" formaction="/deleteitem">Delete
+                    <button type="submit" name="itemId" th:value="${item.itemId}" formaction="/wardrober/deleteitem">Delete
                     </button>
-                    <button type="submit" name="itemId" th:value="${item.itemId}" formaction="/edititem">Edit</button>
+                    <button type="submit" name="itemId" th:value="${item.itemId}" formaction="/wardrober/edititem">Edit</button>
                 </td>
             </tr>
             </tbody>
@@ -52,35 +54,35 @@
 
     <h2>Add a new item to your wardrobe</h2>
 
-    <form class="add-item" action="/index.html">
+    <form class="add-item" action="/index.html" method="post">
 
         <div class="add-item-1">
             <div th:unless="${session.categoryMap == null || session.categoryMap.isEmpty()}">
-                <select>
+                <label for="categoryid">Category:</label><br/><br/>
+                <select id="categoryid" name="categoryid" required>
                     <option th:each="category : ${session.categoryMap}"
                             th:value="${category.value.categoryId}"
                             th:text="${category.value.name}">
                     </option>
                 </select>
+                <br/><br/>
             </div>
 
-            <label for="category">Category:</label><br>
-            <input id="category" name="category" type="text" value=""><br>
             <label for="brand">Brand:</label><br>
-            <input id="brand" name="brand" type="text" value=""><br>
+            <input id="brand" name="brand" type="text" value="" required><br>
             <label for="description">Description:</label><br>
-            <input id="description" name="description" type="text" value=""><br>
+            <input id="description" name="description" type="text" value=""  required><br>
         </div>
         <div class="add-item-2">
             <label for="color">Color:</label><br>
-            <input id="color" name="color" type="text" value=""><br>
+            <input id="color" name="color" type="text" value=""  required><br>
             <label for="size">Size:</label><br>
-            <input id="size" name="size" type="text" value=""><br>
+            <input id="size" name="size" type="text" value=""  required><br>
             <label for="price">Price:</label><br>
-            <input id="price" name="price" type="text" value=""><br>
+            <input id="price" name="price" type="text" value=""  required><br>
         </div>
 
-        <button class="btn-submit" type="submit" formaction="/wardrober/create">Submit</button>
+        <button class="btn-submit" type="submit" formaction="/wardrober/createitem">Submit</button>
 
     </form>
 

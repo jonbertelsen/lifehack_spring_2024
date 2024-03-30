@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Scrollable Table</title>
+    <link href="../../public/css/styles.css" th:href="@{/css/styles.css}" rel="stylesheet"/>
     <link href="../../public/css/wardrober.css" th:href="@{/css/wardrober.css}" rel="stylesheet"/>
 
 </head>
@@ -11,28 +12,33 @@
 
 <header>
     <a href="../index.html" th:href="@{/}">
-        <img alt="logo" src="../../public/images/wardrober/wardrober-high-resolution-logo.png" th:src="@{/images/wardrober/wardrober-high-resolution-logo.png}"/>
+        <img class="logo" alt="logo" src="../../public/images/wardrober/wardrober-high-resolution-logo.png" th:src="@{/images/wardrober/wardrober-high-resolution-logo.png}"/>
     </a>
 </header>
 
-HEJEJHEJHE
+<h1>Edit item</h1>
 
-<form class="add-item" method="post">
+<form class="edit-item-form" method="post">
 
+    <label for="category">Category</label>
+    <input type="text" id="category" name="categoryid" th:value="${session.item.categoryId}" required/>
 
-    <input type="text" id="category" name="itemid" th:value="${session.item.categoryId}"/>
+    <label for="brand">Brand</label>
+    <input type="text" id="brand" name="brand" th:value="${session.item.brand}"  required/>
 
-    <input type="text" id="brand" name="brand" th:value="${session.item.brand}"/>
+    <label for="description">Description</label>
+    <input type="text" id="description" name="description" th:value="${session.item.description}"  required/>
 
-    <input type="text" id="description" name="description" th:value="${session.item.description}"/>
+    <label for="color">Color</label>
+    <input type="text" id="color" name="color" th:value="${session.item.color}" required/>
 
-    <input type="text" id="color" name="color" th:value="${session.item.color}"/>
+    <label for="size">Size</label>
+    <input type="text" id="size" name="size" th:value="${session.item.size}" required/>
 
-    <input type="text" id="size" name="color" th:value="${session.item.size}"/>
+    <label for="price">Price</label>
+    <input type="text" id="price" name="price" th:value="${session.item.price}" required/>
 
-    <input type="text" id="price" name="price" th:value="${session.item.price}"/>
-
-    <button  type="submit" name="itemId" th:value="${session.item.itemId}" formaction="/updatetask">Update</button>
+    <button class="btn"  type="submit" name="itemId" th:value="${session.item.itemId}" formaction="/wardrober/updateitem">Update</button>
 
 </form>
 

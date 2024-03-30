@@ -24,6 +24,17 @@ public class WardrobeItem {
         this.usersId = usersId;
     }
 
+    public WardrobeItem(String brand, String color, int price, String size, String description, int categoryId, int usersId)
+    {
+        this.brand = brand;
+        this.color = color;
+        this.price = price;
+        this.size = size;
+        this.description = description;
+        this.categoryId = categoryId;
+        this.usersId = usersId;
+    }
+
     public int getItemId() {
         return itemId;
     }

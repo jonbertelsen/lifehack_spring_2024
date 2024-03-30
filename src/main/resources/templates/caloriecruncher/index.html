@@ -19,46 +19,39 @@
 
     <h1>Calorie Cruncher</h1>
 
-
-
     <h2>Calculate your daily BMR!</h2>
-
 
     <div id="table">
         <form method="post">
             <div>
             <table>
                 <tbody>
-
                 <!--  Gender -->
                 <tr>
                     <td>
                         <label>Gender</label>
                     </td>
                     <td>
-                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Male"/>Male
-                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Female"/>Female
+                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Male" required/>Male
+                        <input class="form-input" type="Radio" name="Gender" th:name="Gender" value="Female" required/>Female
                     </td>
                 </tr>
-
                 <!--  Age -->
                 <tr>
                     <td>
                         <label>Age</label>
                     </td>
                     <td>
-                        <input class="form-input, radio_thing" type="text" name="Age" th:value="${Age}" placeholder="Enter your age"/>
+                        <input class="form-input, radio_thing" type="text" name="Age" th:value="${Age}" placeholder="Enter your age" required/>
                     </td>
-
                 </tr>
-
                 <!--  Weight -->
                 <tr>
                     <td>
                         <label>Weight</label>
                     </td>
                     <td>
-                        <input class="form-input, radio_thing" type="text" name="Weight" th:value="${Weight}" placeholder="Enter your weight (kg)">
+                        <input class="form-input, radio_thing" type="text" name="Weight" th:value="${Weight}" placeholder="Enter your weight (kg)" required>
                     </td>
                 </tr>
 
@@ -68,16 +61,16 @@
                         <label>Height</label>
                     </td>
                     <td>
-                        <input class="form-input, radio_thing" type="text" name="Height" th:value="${Height}" placeholder="Enter your height (cm)"/>
+                        <input class="form-input, radio_thing" type="text" name="Height" th:value="${Height}" placeholder="Enter your height (cm)" required/>
                     </td>
                 </tr>
                 <td>
                     <label>Goal</label>
                 </td>
                 <td>
-                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="gain"/>WeightGain
-                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="cut"/>CuttingWeight
-                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="maintain"/>MaintainWeight
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="gain" required/>WeightGain
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="cut" required/>CuttingWeight
+                    <input class="form-input" type="Radio" name="Goal" th:name="Goal" value="maintain" required/>MaintainWeight
                 </td>
                 </tbody>
             </table>
