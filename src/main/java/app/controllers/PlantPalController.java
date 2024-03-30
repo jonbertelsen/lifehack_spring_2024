@@ -18,11 +18,11 @@ public class PlantPalController
 {
     public static void addRoutes(Javalin app, ConnectionPool connectionPool)
     {
-        app.get("PlantPal", ctx -> index(ctx, connectionPool));
-        app.get("PlantPal/createplant", ctx -> ctx.render("/PlantPal/createplant.html"));
-        app.post("PlantPal/createplant", ctx -> createplant(ctx,connectionPool));
-        app.post("PlantPal/deleteplante", ctx -> deleteplante(ctx, connectionPool));
-        app.post("PlantPal/vand", ctx -> updateDate(ctx, connectionPool));
+        app.get("plantpal", ctx -> index(ctx, connectionPool));
+        app.get("plantpal/createplant", ctx -> ctx.render("/plantpal/createplant.html"));
+        app.post("plantpal/createplant", ctx -> createplant(ctx,connectionPool));
+        app.post("plantpal/deleteplante", ctx -> deleteplante(ctx, connectionPool));
+        app.post("plantpal/vand", ctx -> updateDate(ctx, connectionPool));
     }
 
     private static void index(Context ctx, ConnectionPool connectionPool)
@@ -31,7 +31,7 @@ public class PlantPalController
         try{
             List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(),connectionPool);
             ctx.attribute("planteList", planteList);
-            ctx.render("/PlantPal/index.html");
+            ctx.render("/plantpal/index.html");
 
         } catch (Exception e) {
             ctx.attribute("message", "Husk at logge ind");
@@ -58,11 +58,11 @@ public class PlantPalController
             List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(),connectionPool);
 
             ctx.attribute("planteList", planteList);
-            ctx.render("/PlantPal/index.html");
+            ctx.render("/plantpal/index.html");
 
         } catch (DatabaseException | NumberFormatException e) {
             ctx.attribute("message", e.getMessage());
-            ctx.render("/PlantPal/index.html");
+            ctx.render("/plantpal/index.html");
         }
     }
 
@@ -79,7 +79,7 @@ public class PlantPalController
 
             List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(), connectionPool);
             ctx.attribute("planteList", planteList);
-            ctx.render("/PlantPal/index.html");
+            ctx.render("/plantpal/index.html");
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -94,9 +94,9 @@ public class PlantPalController
                 String placering = ctx.formParam("placering");
                 PlanteMapper.addPlante(user,planteNavn,placering,connectionPool);
                 List<Plante> planteList = PlanteMapper.getAllPlantsPerUser(user.getUserId(), connectionPool);
-                ctx.render("/PlantPal/index.html", Map.of("planteList", planteList));
+                ctx.render("/plantpal/index.html", Map.of("planteList", planteList));
             } catch (DatabaseException e) {
-                ctx.render("/PlantPal/createplant.html");
+                ctx.render("/plantpal/createplant.html");
             }
 
 
