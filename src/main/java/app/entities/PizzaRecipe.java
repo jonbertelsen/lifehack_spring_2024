@@ -69,17 +69,17 @@ public class PizzaRecipe
 
     public int getFlourInGrammes()
     {
-        return roundToNearest25 ((int) (getTotalWeight() / (1 + hydration / 100.0)));
+        return floorToNearest10((int) (getTotalWeight() / (1 + hydration / 100.0)));
     }
 
     public int getPoolishFlourInGrammes()
     {
-        return roundToNearest25 ( (int) (getFlourInGrammes() * 0.3));
+        return floorToNearest10( (int) (getFlourInGrammes() * 0.3));
     }
 
     public int getPoolishWaterInGrammes()
     {
-        return roundToNearest25 ((int) (getFlourInGrammes() * 0.3));
+        return floorToNearest10((int) (getFlourInGrammes() * 0.3));
     }
 
     public int getWaterInGrammes()
@@ -122,9 +122,9 @@ public class PizzaRecipe
         return getWaterInGrammes() + getPoolishWaterInGrammes();
     }
 
-    private int roundToNearest25(int number)
+    private int floorToNearest10(int number)
     {
-        return (int) Math.floor(number / 25.0) * 25;
+        return (int) Math.floor(number / 10.0) * 10;
     }
 
 }

@@ -35,7 +35,7 @@
             <tbody>
             <tr th:each="recipe: ${recipeList}">
                 <td th:text="${recipe.date}">2024-03-20</td>
-                <td th:text="|${recipe.quantity} pizzas, ${recipe.weight} g per dough ball, ${recipe.hydration} hydration, ${recipe.temperature} &deg;C|">
+                <td th:text="|${recipe.quantity} pizzas, ${recipe.weightPerBall} g per dough ball, ${recipe.hydration} hydration, ${recipe.temperature} &deg;C|">
                     4 pizzas, 285 g per dough ball, 70% hydration, 22&deg;C
                 </td>
                 <td>

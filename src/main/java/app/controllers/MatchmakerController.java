@@ -52,7 +52,7 @@ public class MatchmakerController
             // If user is authenticated, set user details in session
             if (currentUser != null)
             {
-                ctx.sessionAttribute("currentUser", currentUser);
+                ctx.sessionAttribute("matchmakerCurrentUser", currentUser);
                 List<MatchmakerFugitive> fugitiveList = MatchmakerMapper.getphoturlAndFugitives_id(currentUser.getUserId(), connectionPool);
                 ctx.sessionAttribute("fugitiveList", fugitiveList);
                 ctx.sessionAttribute("currentFugitiveCount", -1);
@@ -75,7 +75,7 @@ public class MatchmakerController
 
     private static void renderSwipePage(MatchMakerAffinity affinity,  Context ctx, ConnectionPool connectionPool)
     {
-        MatchMakerUser currentUser = ctx.sessionAttribute("currentUser");
+        MatchMakerUser currentUser = ctx.sessionAttribute("matchmakerCurrentUser");
 
         List<MatchmakerFugitive> fugitiveList = ctx.sessionAttribute("fugitiveList");
         int currentFugitiveCount = 0;
