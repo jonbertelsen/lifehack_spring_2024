@@ -76,6 +76,7 @@ h3 {
     padding: 7px;
     border-radius: 5px;
     border: 1px solid silver;
+    width: 15ch;
 }
 
 .generic-form button:hover {
@@ -147,6 +148,13 @@ h3 {
     padding: 10px;
     font-size: 0.8rem;
     font-weight: bold;
+}
+
+@media (max-width: 450px) {
+    .card {
+        min-width: 100px;
+        max-width: 150px;
+    }
 }
 
 
